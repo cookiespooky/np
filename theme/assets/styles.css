@@ -1133,7 +1133,11 @@ footer {
 }
 
 @media (max-width: 820px) {
-  .header-social {
+  .header-social,
+  .header-social.footer-links {
+    display: none;
+  }
+  .site-header .header-actions > .footer-github {
     display: none;
   }
   .home-nav {
@@ -1238,6 +1242,10 @@ footer {
   transform: translateX(0);
 }
 
+.mobile-nav-links {
+  margin-bottom: 10px;
+}
+
 .mobile-nav-links,
 .mobile-nav-footer {
   display: flex;
@@ -1306,5 +1314,47 @@ body.nav-locked {
 
   .sidebar {
     display: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .mobile-nav-inner {
+    align-items: center;
+    text-align: center;
+  }
+
+  .mobile-nav-links,
+  .mobile-nav-footer {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .mobile-nav-links a {
+    justify-content: center;
+  }
+
+  .mobile-docs-nav .sidebar-list,
+  .mobile-docs-nav .sidebar-group,
+  .mobile-docs-nav .sidebar-sublist {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mobile-docs-nav {
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .mobile-docs-nav .sidebar-list a {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .mobile-docs-nav .sidebar-sublist {
+    border-left: 0;
+    padding-left: 0;
   }
 }
