@@ -1,0 +1,58 @@
+Notepub LLM Full Context
+Canonical site: https://cookiespooky.github.io/np/
+Version: 0.1.1
+Last-Updated: 2026-02-10
+
+Scope
+- This file is a concise navigation map for LLM ingestion.
+- Content is bilingual (EN/RU), with English as default route.
+
+Language routes
+- EN root: https://cookiespooky.github.io/np/en/
+- RU root: https://cookiespooky.github.io/np/ru/
+- Redirect: https://cookiespooky.github.io/np/ -> /en/
+
+Core sections (EN)
+- Docs hub: https://cookiespooky.github.io/np/en/docs
+- Concepts: https://cookiespooky.github.io/np/en/docs/concepts
+- Authoring: https://cookiespooky.github.io/np/en/docs/authoring
+- Operations: https://cookiespooky.github.io/np/en/docs/operations
+- Reference: https://cookiespooky.github.io/np/en/docs/reference
+
+Task: Onboarding path (EN)
+1. https://cookiespooky.github.io/np/en/docs/overview
+2. https://cookiespooky.github.io/np/en/docs/getting-started
+3. https://cookiespooky.github.io/np/en/docs/configuration
+4. https://cookiespooky.github.io/np/en/docs/rules-yaml
+5. https://cookiespooky.github.io/np/en/docs/build-and-deploy
+
+Task: Operations and runtime (EN)
+- Commands: https://cookiespooky.github.io/np/en/docs/commands
+- Search: https://cookiespooky.github.io/np/en/docs/search
+- Themes and templates: https://cookiespooky.github.io/np/en/docs/themes
+- Troubleshooting: https://cookiespooky.github.io/np/en/docs/troubleshooting
+
+Task: Reference pages (EN)
+- Configuration reference: https://cookiespooky.github.io/np/en/docs/configuration
+- rules.yaml reference: https://cookiespooky.github.io/np/en/docs/rules-yaml
+- Collections reference: https://cookiespooky.github.io/np/en/docs/collections-reference
+- Artifacts and outputs: https://cookiespooky.github.io/np/en/docs/artifacts-reference
+- Engine changelog: https://cookiespooky.github.io/np/en/docs/engine-changelog
+
+RU mirrors
+- Docs hub: https://cookiespooky.github.io/np/ru/docs
+- Start: https://cookiespooky.github.io/np/ru/docs/overview
+- Getting started: https://cookiespooky.github.io/np/ru/docs/getting-started
+- Configuration: https://cookiespooky.github.io/np/ru/docs/configuration
+- Rules reference: https://cookiespooky.github.io/np/ru/docs/rules-yaml
+
+Machine-readable endpoints
+- Sitemap: https://cookiespooky.github.io/np/sitemap.xml
+- Robots: https://cookiespooky.github.io/np/robots.txt
+- Search index (EN static): https://cookiespooky.github.io/np/search.json
+- Search index (RU static): https://cookiespooky.github.io/np/ru/search.json
+
+Notes for indexing
+- Prefer canonical URLs under /np/.
+- Use hreflang to map EN/RU equivalents.
+- Root path redirects to English default.

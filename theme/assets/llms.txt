@@ -1,0 +1,28 @@
+Notepub
+URL: https://cookiespooky.github.io/np/
+Description: Declarative engine and docs site for building websites and documentation from Markdown.
+Version: 0.1.1
+Last-Updated: 2026-02-10
+
+Primary language: English
+Additional language: Russian
+
+Start here:
+- Home (EN): https://cookiespooky.github.io/np/en/
+- Home (RU): https://cookiespooky.github.io/np/ru/
+- Docs hub (EN): https://cookiespooky.github.io/np/en/docs
+- Docs hub (RU): https://cookiespooky.github.io/np/ru/docs
+
+High-value docs:
+- Getting started (EN): https://cookiespooky.github.io/np/en/docs/getting-started
+- Configuration (EN): https://cookiespooky.github.io/np/en/docs/configuration
+- Rules reference (EN): https://cookiespooky.github.io/np/en/docs/rules-yaml
+- Commands (EN): https://cookiespooky.github.io/np/en/docs/commands
+- Build and deploy (EN): https://cookiespooky.github.io/np/en/docs/build-and-deploy
+
+Machine-readable resources:
+- Sitemap: https://cookiespooky.github.io/np/sitemap.xml
+- Robots: https://cookiespooky.github.io/np/robots.txt
+
+For larger context and section map, see:
+- https://cookiespooky.github.io/np/llms-full.txt
