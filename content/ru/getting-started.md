@@ -30,7 +30,32 @@ lang: ru
 
 ## Путь B: локальный запуск через CLI
 
-1. Соберите бинарник:
+1. Получите бинарник `notepub` (рекомендуется: из релиза):
+
+Linux (amd64):
+
+```bash
+NOTEPUB_VERSION=v0.1.1
+curl -L -o ./notepub "https://github.com/cookiespooky/notepub/releases/download/${NOTEPUB_VERSION}/notepub_linux_amd64"
+chmod +x ./notepub
+```
+
+macOS (Apple Silicon):
+
+```bash
+NOTEPUB_VERSION=v0.1.1
+curl -L -o ./notepub "https://github.com/cookiespooky/notepub/releases/download/${NOTEPUB_VERSION}/notepub_darwin_arm64"
+chmod +x ./notepub
+```
+
+Windows (PowerShell):
+
+```powershell
+$env:NOTEPUB_VERSION="v0.1.1"
+Invoke-WebRequest -Uri "https://github.com/cookiespooky/notepub/releases/download/$env:NOTEPUB_VERSION/notepub_windows_amd64.exe" -OutFile ".\\notepub.exe"
+```
+
+Альтернатива: собрать из исходников:
 
 ```bash
 go build -o notepub ./cmd/notepub
@@ -71,6 +96,15 @@ cp rules.example.yaml rules.yaml
 
 ```bash
 ./notepub build --config ./config.yaml --rules ./rules.yaml --dist ./dist
+```
+
+Эквиваленты для Windows:
+
+```powershell
+.\notepub.exe validate --config .\config.yaml --rules .\rules.yaml
+.\notepub.exe index --config .\config.yaml --rules .\rules.yaml
+.\notepub.exe serve --config .\config.yaml --rules .\rules.yaml
+.\notepub.exe build --config .\config.yaml --rules .\rules.yaml --dist .\dist
 ```
 
 ## Минимальный frontmatter

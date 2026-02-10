@@ -30,7 +30,32 @@ What happens in CI:
 
 ## Path B: run locally with CLI
 
-1. Build binary:
+1. Get `notepub` binary (recommended: download from release):
+
+Linux (amd64):
+
+```bash
+NOTEPUB_VERSION=v0.1.1
+curl -L -o ./notepub "https://github.com/cookiespooky/notepub/releases/download/${NOTEPUB_VERSION}/notepub_linux_amd64"
+chmod +x ./notepub
+```
+
+macOS (Apple Silicon):
+
+```bash
+NOTEPUB_VERSION=v0.1.1
+curl -L -o ./notepub "https://github.com/cookiespooky/notepub/releases/download/${NOTEPUB_VERSION}/notepub_darwin_arm64"
+chmod +x ./notepub
+```
+
+Windows (PowerShell):
+
+```powershell
+$env:NOTEPUB_VERSION="v0.1.1"
+Invoke-WebRequest -Uri "https://github.com/cookiespooky/notepub/releases/download/$env:NOTEPUB_VERSION/notepub_windows_amd64.exe" -OutFile ".\\notepub.exe"
+```
+
+Alternative: build from source:
 
 ```bash
 go build -o notepub ./cmd/notepub
@@ -71,6 +96,15 @@ cp rules.example.yaml rules.yaml
 
 ```bash
 ./notepub build --config ./config.yaml --rules ./rules.yaml --dist ./dist
+```
+
+Windows equivalents:
+
+```powershell
+.\notepub.exe validate --config .\config.yaml --rules .\rules.yaml
+.\notepub.exe index --config .\config.yaml --rules .\rules.yaml
+.\notepub.exe serve --config .\config.yaml --rules .\rules.yaml
+.\notepub.exe build --config .\config.yaml --rules .\rules.yaml --dist .\dist
 ```
 
 ## First content file checklist
