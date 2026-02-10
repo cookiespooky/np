@@ -1,0 +1,313 @@
+{{- $lang := "en" -}}
+{{- if eq .FM.lang "ru" }}{{- $lang = "ru" -}}{{- end -}}
+{{- $isHome := or .IsHome (eq .Page.Type "home_en") (eq .Page.Type "home_ru") -}}
+{{- $homePath := printf "%s/%s" .BaseURL $lang -}}
+{{- $docsPath := printf "%s/%s/docs" .BaseURL $lang -}}
+{{- $docsTitle := "Documentation" -}}
+{{- $searchLabel := "Search" -}}
+{{- if eq $lang "ru" -}}
+  {{- $docsTitle = "Документация" -}}
+  {{- $searchLabel = "Поиск" -}}
+{{- end -}}
+{{- $switchEN := printf "%s/en/" .BaseURL -}}
+{{- $switchRU := printf "%s/ru/" .BaseURL -}}
+{{- if or (eq .Page.Type "docs_en") (eq .Page.Type "docs_ru") -}}
+  {{- $switchEN = printf "%s/en/docs" .BaseURL -}}
+  {{- $switchRU = printf "%s/ru/docs" .BaseURL -}}
+{{- else if or (eq .Page.Type "article_en") (eq .Page.Type "article_ru") (eq .Page.Type "hub_en") (eq .Page.Type "hub_ru") -}}
+  {{- $switchEN = printf "%s/en/docs/%s" .BaseURL .Page.Slug -}}
+  {{- $switchRU = printf "%s/ru/docs/%s" .BaseURL .Page.Slug -}}
+{{- else if or (eq .Page.Type "page_en") (eq .Page.Type "page_ru") -}}
+  {{- $switchEN = printf "%s/en/%s" .BaseURL .Page.Slug -}}
+  {{- $switchRU = printf "%s/ru/%s" .BaseURL .Page.Slug -}}
+{{- end -}}
+<!doctype html>
+<html lang="{{ $lang }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="mask-icon" href="/assets/notepub.svg" color="#0a0a0a" />
+  <link rel="manifest" href="/assets/site.webmanifest" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+  {{- if .Page.Description }}
+  <meta name="description" content="{{ .Page.Description }}" />
+  {{- end }}
+  {{- if .Meta.Robots }}
+  <meta name="robots" content="{{ .Meta.Robots }}" />
+  {{- end }}
+  {{- if .Canonical }}
+  <link rel="canonical" href="{{ .Canonical }}" />
+  {{- end }}
+  <link rel="alternate" hreflang="en" href="{{ $switchEN }}" />
+  <link rel="alternate" hreflang="ru" href="{{ $switchRU }}" />
+  <link rel="alternate" hreflang="x-default" href="{{ printf "%s/en/" .BaseURL }}" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{{ .Title }}" />
+  {{- if .Page.Description }}
+  <meta name="twitter:description" content="{{ .Page.Description }}" />
+  {{- end }}
+  {{- range .Meta.OpenGraph }}
+  <meta property="{{ .Key }}" content="{{ .Value }}" />
+  {{- end }}
+  {{- if .Meta.JSONLD }}
+  <script type="application/ld+json">{{ .Meta.JSONLD }}</script>
+  {{- end }}
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(99999999, "init", {
+      clickmap:true,
+      trackLinks:true,
+      accurateTrackBounce:true,
+      webvisor:true
+    });
+  </script>
+  <script>window.__notepubSearchMode = "{{ .SearchMode }}";</script>
+  <title>{{ .Title }}</title>
+</head>
+
+<body class="{{ if $isHome }}is-home{{ else }}is-page{{ end }}">
+  <noscript><div><img src="https://mc.yandex.ru/watch/99999999" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  {{- if $isHome }}
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{{ $homePath }}" aria-label="Notepub">
+        <span class="logo" aria-hidden="true">
+          <img src="/assets/notepub.svg" alt="" />
+        </span>
+        <span>Notepub</span>
+      </a>
+      <div class="header-actions">
+        <nav class="home-nav" aria-label="Sections">
+          <a href="#solutions">{{ if eq $lang "ru" }}Готовые решения{{ else }}Solutions{{ end }}</a>
+          <a href="#how">{{ if eq $lang "ru" }}Как работает{{ else }}How it Works{{ end }}</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#quickstart">{{ if eq $lang "ru" }}Быстрый старт{{ else }}Quick Start{{ end }}</a>
+          <a href="{{ $docsPath }}">{{ $docsTitle }}</a>
+        </nav>
+        <div class="lang-switch" aria-label="Language switcher">
+          <a class="{{ if eq $lang "ru" }}is-active{{ end }}" href="{{ $switchRU }}">RU</a>
+          <a class="{{ if eq $lang "en" }}is-active{{ end }}" href="{{ $switchEN }}">EN</a>
+        </div>
+        <div class="header-social footer-links">
+          <a class="footer-telegram" href="https://t.me/thefoundersway" aria-label="Telegram" target="_blank" rel="noopener">
+            <img src="/assets/Logo.svg" alt="" width="20" height="20" loading="lazy" decoding="async">
+          </a>
+          <a class="footer-github" href="https://github.com/cookiespooky/notepub" aria-label="GitHub" target="_blank" rel="noopener">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom">
+              <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
+            </svg>
+          </a>
+        </div>
+        <button class="icon-button nav-toggle" type="button" data-nav-open aria-label="Open navigation">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon icon-open" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon icon-close" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M2.146 2.146a.5.5 0 0 1 .708 0L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854a.5.5 0 0 1 0-.708"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <aside class="mobile-nav" data-nav-panel aria-hidden="true">
+    <div class="mobile-nav-inner">
+      <div class="lang-switch mobile-lang-switch" aria-label="Language switcher">
+        <a class="{{ if eq $lang "ru" }}is-active{{ end }}" href="{{ $switchRU }}">RU</a>
+        <a class="{{ if eq $lang "en" }}is-active{{ end }}" href="{{ $switchEN }}">EN</a>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="{{ $homePath }}">Home</a>
+        <a href="#solutions">{{ if eq $lang "ru" }}Что можно создать{{ else }}What You Can Build{{ end }}</a>
+        <a href="#how">{{ if eq $lang "ru" }}Как работает{{ else }}How it Works{{ end }}</a>
+        <a href="#quickstart">{{ if eq $lang "ru" }}Быстрый старт{{ else }}Quick Start{{ end }}</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="{{ $docsPath }}">{{ $docsTitle }}</a>
+      </nav>
+      <div class="mobile-nav-footer">
+        <a class="footer-telegram" href="https://t.me/thefoundersway" target="_blank" rel="noopener" aria-label="Telegram Channel">
+          <img src="/assets/Logo.svg" alt="" width="20" height="20" loading="lazy" decoding="async">
+        </a>
+        <a class="footer-github" href="https://github.com/cookiespooky" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom">
+            <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="mobile-nav-backdrop" data-nav-close></div>
+  </aside>
+
+  <main class="wrap">
+    {{ .Body }}
+  </main>
+
+  {{ template "search_trigger.html" . }}
+
+  <footer class="wrap">
+    <div class="footer-row">
+    </div>
+    <p class="footer-copy">Built with Notepub</p>
+  </footer>
+  {{- else }}
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{{ $homePath }}" aria-label="Notepub">
+        <span class="logo" aria-hidden="true">
+          <img src="/assets/notepub.svg" alt="" />
+        </span>
+        <span>Notepub</span>
+      </a>
+      <div class="header-actions">
+        <div class="lang-switch" aria-label="Language switcher">
+          <a class="{{ if eq $lang "ru" }}is-active{{ end }}" href="{{ $switchRU }}">RU</a>
+          <a class="{{ if eq $lang "en" }}is-active{{ end }}" href="{{ $switchEN }}">EN</a>
+        </div>
+        <a class="footer-github" href="https://github.com/cookiespooky/notepub" aria-label="GitHub" target="_blank" rel="noopener">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom">
+            <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
+          </svg>
+        </a>
+        <a id="np-search-trigger" class="icon-button" href="/search" aria-label="{{ $searchLabel }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+          </svg>
+        </a>
+        <button class="icon-button nav-toggle" type="button" data-nav-open aria-label="Open navigation">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon icon-open" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon icon-close" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <path d="M2.146 2.146a.5.5 0 0 1 .708 0L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854a.5.5 0 0 1 0-.708"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  {{- $root := .Collections.docs_root_articles_en.Items }}
+  {{- $hubs := .Collections.docs_hubs_en.Items }}
+  {{- $groups := .Collections.docs_articles_by_hub_en.Groups }}
+  {{- if eq $lang "ru" }}
+    {{- $root = .Collections.docs_root_articles_ru.Items }}
+    {{- $hubs = .Collections.docs_hubs_ru.Items }}
+    {{- $groups = .Collections.docs_articles_by_hub_ru.Groups }}
+  {{- end }}
+
+  <aside class="mobile-nav" data-nav-panel aria-hidden="true">
+    <div class="mobile-nav-inner">
+      <div class="lang-switch mobile-lang-switch" aria-label="Language switcher">
+        <a class="{{ if eq $lang "ru" }}is-active{{ end }}" href="{{ $switchRU }}">RU</a>
+        <a class="{{ if eq $lang "en" }}is-active{{ end }}" href="{{ $switchEN }}">EN</a>
+      </div>
+      <nav class="mobile-nav-links mobile-docs-nav" aria-label="Навигация по документации">
+        <ul class="sidebar-list">
+          <li class="sidebar-group">
+            <a class="{{ if eq $.Page.Slug "docs" }}is-active{{ end }}" href="{{ $docsPath }}">{{ $docsTitle }}</a>
+          </li>
+          {{- if $root }}
+            <li class="sidebar-group">
+              <ul class="sidebar-sublist sidebar-root">
+                {{- range $root }}
+                <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ .Path }}">{{ .Title }}</a></li>
+                {{- end }}
+              </ul>
+            </li>
+          {{- end }}
+          {{- if $hubs }}
+            {{- range $hubs }}
+            {{- $hub := . }}
+            <li class="sidebar-group">
+              <a class="{{ if eq $hub.Slug $.Page.Slug }}is-active{{ end }}" href="{{ $hub.Path }}">{{ $hub.Title }}</a>
+              {{- if $groups }}
+              <ul class="sidebar-sublist">
+                {{- range $groups }}
+                  {{- if eq .Key $hub.Slug }}
+                    {{- range .Items }}
+                    <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ .Path }}">{{ .Title }}</a></li>
+                    {{- end }}
+                  {{- end }}
+                {{- end }}
+              </ul>
+              {{- end }}
+            </li>
+            {{- end }}
+          {{- end }}
+        </ul>
+      </nav>
+    </div>
+    <div class="mobile-nav-backdrop" data-nav-close></div>
+  </aside>
+
+  <main class="wrap">
+    <div class="layout">
+      <aside class="sidebar" aria-label="Навигация по документации">
+        <ul class="sidebar-list">
+          <li class="sidebar-group">
+            <a class="{{ if eq $.Page.Slug "docs" }}is-active{{ end }}" href="{{ $docsPath }}">{{ $docsTitle }}</a>
+          </li>
+          {{- if $root }}
+            <li class="sidebar-group">
+              <ul class="sidebar-sublist sidebar-root">
+                {{- range $root }}
+                <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ .Path }}">{{ .Title }}</a></li>
+                {{- end }}
+              </ul>
+            </li>
+          {{- end }}
+          {{- if $hubs }}
+            {{- range $hubs }}
+            {{- $hub := . }}
+            <li class="sidebar-group">
+              <a class="{{ if eq $hub.Slug $.Page.Slug }}is-active{{ end }}" href="{{ $hub.Path }}">{{ $hub.Title }}</a>
+              {{- if $groups }}
+              <ul class="sidebar-sublist">
+                {{- range $groups }}
+                  {{- if eq .Key $hub.Slug }}
+                    {{- range .Items }}
+                    <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ .Path }}">{{ .Title }}</a></li>
+                    {{- end }}
+                  {{- end }}
+                {{- end }}
+              </ul>
+              {{- end }}
+            </li>
+            {{- end }}
+          {{- end }}
+        </ul>
+      </aside>
+      <div class="content-area">
+        {{- if ne .Page.Slug "docs" }}
+        <nav class="breadcrumb" aria-label="Хлебные крошки">
+          <a href="{{ $docsPath }}">{{ $docsTitle }}</a>
+          <span>/</span>
+          <span>{{ .Title }}</span>
+        </nav>
+        {{- end }}
+        {{ .Body }}
+      </div>
+    </div>
+  </main>
+
+  {{ template "search_trigger.html" . }}
+
+  <footer class="wrap">
+    <div class="footer-row">
+    </div>
+    <p class="footer-copy">Built with Notepub</p>
+  </footer>
+  {{- end }}
+  <script src="/assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# OS/editor noise
+.DS_Store
+.idea/
+.vscode/
+
+# Runtime/index artifacts
+.notepub/
+.notepub-ru/
+.notepub-fresh/
+.notepub-ogfresh/
+artifacts/
+
+# Build outputs
+dist/
+dist-en-check/
+dist-ru-check/
+dist-docs-check/
+.dist-en/
+.dist-ru/
+
+# Optional local env
+.env
+.env.*

@@ -1,0 +1,234 @@
+version: 1
+
+fields:
+  required: ["type", "slug", "title", "lang"]
+  optional: ["description", "draft", "hub", "related", "order", "redirect_to", "noindex", "jsonld", "tags"]
+  defaults:
+    draft: false
+
+fm_schema:
+  tags: string[]
+  hub: string[]
+  related: string[]
+  order: number
+  draft: boolean
+  noindex: boolean
+  lang: string
+
+types:
+  home_ru:
+    template: "home.html"
+    permalink: "/ru/"
+    include_in:
+      sitemap: true
+      search: false
+
+  docs_ru:
+    template: "hub.html"
+    permalink: "/ru/docs/"
+    include_in:
+      sitemap: true
+      search: false
+
+  page_ru:
+    template: "page.html"
+    permalink: "/ru/{{ slug }}/"
+    include_in:
+      sitemap: true
+      search: true
+
+  article_ru:
+    template: "article.html"
+    permalink: "/ru/docs/{{ slug }}/"
+    include_in:
+      sitemap: true
+      search: true
+
+  hub_ru:
+    template: "hub.html"
+    permalink: "/ru/docs/{{ slug }}/"
+    include_in:
+      sitemap: true
+      search: false
+
+links:
+  - name: "belongs_to_ru"
+    kind: "field"
+    field: "hub"
+    from_types: ["article_ru", "page_ru", "hub_ru"]
+    to_types: ["hub_ru"]
+    to: "slug"
+    inverse: "contains"
+    value_syntax: "auto"
+    resolve:
+      order: ["path", "filename", "slug"]
+      ambiguity: "error"
+      missing: "warn_skip"
+      case: "insensitive"
+
+  - name: "related_ru"
+    kind: "field"
+    field: "related"
+    from_types: ["article_ru", "page_ru"]
+    to_types: ["article_ru", "page_ru"]
+    to: "slug"
+    value_syntax: "auto"
+    resolve:
+      order: ["path", "filename", "slug"]
+      ambiguity: "error"
+      missing: "warn_skip"
+      case: "insensitive"
+
+  - name: "wiki_ru"
+    kind: "wikilinks"
+    from_types: ["page_ru", "article_ru", "hub_ru", "docs_ru", "home_ru"]
+    resolve_by: "wikimap"
+    to_types: ["page_ru", "article_ru", "hub_ru", "docs_ru", "home_ru"]
+    resolve:
+      order: ["path", "filename", "slug"]
+      ambiguity: "error"
+      missing: "warn_skip"
+      case: "insensitive"
+
+collections:
+  docs_root_articles_ru:
+    kind: "filter"
+    materialize: false
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "lang", value: "ru" }
+        - fm_eq: { key: "hub", value: "docs" }
+        - type_in: ["article_ru"]
+    sort:
+      by: "fm.order"
+      dir: "asc"
+      nulls_last: true
+    limit: 200
+
+  docs_hubs_ru:
+    kind: "filter"
+    materialize: false
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "lang", value: "ru" }
+        - fm_eq: { key: "hub", value: "docs" }
+        - type_in: ["hub_ru"]
+    sort:
+      by: "fm.order"
+      dir: "asc"
+      nulls_last: true
+    limit: 200
+
+  docs_articles_by_hub_ru:
+    kind: "filter"
+    materialize: false
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "lang", value: "ru" }
+        - type_in: ["article_ru"]
+    limit: 2000
+    group_by:
+      by: "fm.hub"
+      multi: true
+      group_sort:
+        dir: "asc"
+      item_sort:
+        by: "fm.order"
+        dir: "asc"
+      item_limit: 200
+
+  home_hubs_ru:
+    kind: "filter"
+    materialize: false
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "lang", value: "ru" }
+        - type_in: ["hub_ru"]
+    sort:
+      by: "title"
+      dir: "asc"
+      nulls_last: true
+    limit: 100
+
+  hub_items_ru:
+    kind: "backrefs"
+    materialize: false
+    link: "belongs_to_ru"
+    to_slug: "{{ page.slug }}"
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "lang", value: "ru" }
+        - type_in: ["article_ru", "page_ru"]
+    sort:
+      by: "fm.order"
+      dir: "asc"
+      nulls_last: true
+    limit: 50
+
+  related_pages_ru:
+    kind: "forward"
+    materialize: false
+    link: "related_ru"
+    from_slug: "{{ page.slug }}"
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "lang", value: "ru" }
+    sort:
+      by: "title"
+      dir: "asc"
+      nulls_last: true
+    limit: 12
+
+  wiki_neighbors_ru:
+    kind: "forward"
+    materialize: false
+    link: "wiki_ru"
+    from_slug: "{{ page.slug }}"
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "lang", value: "ru" }
+    limit: 30
+
+sitemap:
+  include_types: ["home_ru", "docs_ru", "page_ru", "article_ru", "hub_ru"]
+  exclude_drafts: true
+
+search:
+  include_types: ["page_ru", "article_ru"]
+  exclude_drafts: true
+  fields_boost:
+    title: 3
+    description: 2
+    body: 1
+    fm:
+      tags: 1
+  preview:
+    from: "description"
+    max_len: 180
+
+artifacts:
+  collections:
+    enabled: true
+    dir: "collections"
+
+validation:
+  single_page_of_type:
+    home_ru: 1
+    docs_ru: 1
+  duplicate_route:
+    action: "error"
+  unknown_type:
+    action: "error"
+  permalink_requires_slug:
+    action: "error"
+  missing_template:
+    action: "error"
+  materialize_requires_limit: true
+  materialize_group_by_requires_item_limit: true

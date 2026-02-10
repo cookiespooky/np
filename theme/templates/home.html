@@ -1,0 +1,222 @@
+{{- $lang := "en" -}}
+{{- if eq .FM.lang "ru" }}{{- $lang = "ru" -}}{{- end -}}
+{{- $isRU := eq $lang "ru" -}}
+{{- $docsPath := printf "%s/%s/docs" .BaseURL $lang -}}
+{{- $gettingStartedPath := printf "%s/%s/docs/getting-started" .BaseURL $lang -}}
+
+<div class="hero">
+  <div class="kicker">
+    <span class="dot" aria-hidden="true"></span>
+    {{ if $isRU }}Markdown + правила -> статический сайт{{ else }}Markdown + rules -> static website{{ end }}
+  </div>
+
+  <h1>{{ if $isRU }}SEO-дружелюбные сайты из Markdown без CMS и фреймворков{{ else }}SEO-friendly websites from Markdown without CMS or frameworks{{ end }}</h1>
+
+  <p class="subhead">{{ if $isRU }}Пишите в привычном Markdown. Notepub соберет сайт по вашим правилам.{{ else }}Write in your usual Markdown workflow. Notepub builds your site from declarative rules.{{ end }}</p>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <h3>🔥 {{ if $isRU }}Без CMS{{ else }}No CMS{{ end }}</h3><p>{{ if $isRU }}никаких админок и баз данных{{ else }}no admin panels or databases{{ end }}</p>
+    </div>
+    <div class="card">
+      <h3>📈 {{ if $isRU }}SEO по умолчанию{{ else }}SEO by default{{ end }}</h3><p>{{ if $isRU }}sitemap, opengraph, JSON-LD, robots.txt{{ else }}sitemap, OpenGraph, JSON-LD, robots.txt{{ end }}</p>
+    </div>
+    <div class="card">
+      <h3>⚡ {{ if $isRU }}Без JS и зависимостей{{ else }}No JS dependencies{{ end }}</h3><p>{{ if $isRU }}чистый HTML, минимальный вес{{ else }}clean HTML, minimal footprint{{ end }}</p>
+    </div>
+    <div class="card">
+      <h3>🔒 {{ if $isRU }}Контент принадлежит вам{{ else }}You own your content{{ end }}</h3><p>{{ if $isRU }}нет привязки к платформам{{ else }}no platform lock-in{{ end }}</p>
+    </div>
+    <div class="card">
+      <h3>🧠 {{ if $isRU }}Гибкая структура{{ else }}Flexible structure{{ end }}</h3><p>{{ if $isRU }}вы описываете правила, остальное делает Notepub{{ else }}you define rules, Notepub does the rest{{ end }}</p>
+    </div>
+    <div class="card">
+      <h3>🔁 {{ if $isRU }}Переиспользуемая модель контента{{ else }}Reusable content model{{ end }}</h3><p>{{ if $isRU }}одни и те же Markdown и правила для блога, docs и витрины{{ else }}same Markdown and rules for blog, docs, and showcase pages{{ end }}</p>
+    </div>
+  </div>
+</div>
+
+<section id="solutions">
+  <h2 class="section-title">{{ if $isRU }}Что можно создать с помощью Notepub{{ else }}What You Can Build with Notepub{{ end }}</h2>
+  <div class="section-subtitle">{{ if $isRU }}Готовые решения без кода и инфраструктуры{{ else }}Ready-to-use solutions without heavy infrastructure{{ end }}</div>
+  <div class="grid grid-3">
+    <div class="card">
+      <h3>{{ if $isRU }}SEO-блог / Digital Garden{{ else }}SEO Blog / Digital Garden{{ end }}</h3>
+      <p>{{ if $isRU }}Контент, который индексируется и растет без JS.{{ else }}Content that indexes and grows without JS-heavy rendering.{{ end }}</p>
+    </div>
+    <div class="card">
+      <h3>{{ if $isRU }}Курсы / Обучающие платформы{{ else }}Courses / Learning Platforms{{ end }}</h3>
+      <p>{{ if $isRU }}Модули, уроки и прогресс без CMS.{{ else }}Modules, lessons, and progress pages without a CMS.{{ end }}</p>
+    </div>
+    <div class="card">
+      <h3>{{ if $isRU }}Техническая документация / API{{ else }}Technical Documentation / API{{ end }}</h3>
+      <p>{{ if $isRU }}Структурированные docs и версии без генераторов.{{ else }}Structured docs and references without bulky generators.{{ end }}</p>
+    </div>
+    <div class="card">
+      <h3>{{ if $isRU }}Каталог / витрина{{ else }}Catalog / Showcase{{ end }}</h3>
+      <p>{{ if $isRU }}Лендинги и каталоги с правилами и связями.{{ else }}Landing pages and catalogs driven by rules and links.{{ end }}</p>
+    </div>
+    <div class="card">
+      <h3>{{ if $isRU }}База знаний для команды{{ else }}Internal Knowledge Base{{ end }}</h3>
+      <p>{{ if $isRU }}Внутренние гайды, процессы и стандарты в единой структуре.{{ else }}Internal guides, processes, and standards in one consistent structure.{{ end }}</p>
+    </div>
+    <div class="card">
+      <h3>{{ if $isRU }}Ваш собственный формат{{ else }}Your Own Format{{ end }}</h3>
+      <p>{{ if $isRU }}Опишите свою модель в rules.yaml и соберите то, что придумали именно вы.{{ else }}Describe your model in rules.yaml and build exactly what you need.{{ end }}</p>
+    </div>
+  </div>
+  <div class="kicker">
+    <span class="dot" aria-hidden="true"></span>
+    {{ if $isRU }}Один движок - разные сценарии.{{ else }}One engine, many scenarios.{{ end }}
+  </div>
+</section>
+
+<section id="how">
+  <h2 class="section-title">{{ if $isRU }}Как работает Notepub{{ else }}How Notepub Works{{ end }}</h2>
+  <div class="section-subtitle">{{ if $isRU }}Только Markdown, шаблон и правила{{ else }}Markdown, templates, and declarative rules{{ end }}</div>
+  <div class="card">
+    <ul class="how-list">
+      <li class="how-step">
+        <span class="how-emoji" aria-hidden="true">✍️</span>
+        <div><strong>{{ if $isRU }}Контент{{ else }}Content{{ end }}</strong><br>{{ if $isRU }}в Markdown (Obsidian, Notion, GitHub, S3, локально){{ else }}in Markdown (Obsidian, Notion, GitHub, S3, local folders){{ end }}</div>
+      </li>
+      <li class="how-step">
+        <span class="how-emoji" aria-hidden="true">📄</span>
+        <div><strong>{{ if $isRU }}Шаблон{{ else }}Theme{{ end }}</strong><br>{{ if $isRU }}готовый или пользовательский{{ else }}prebuilt or fully custom{{ end }}</div>
+      </li>
+      <li class="how-step">
+        <span class="how-emoji" aria-hidden="true">⚙️</span>
+        <div><strong>{{ if $isRU }}Правила{{ else }}Rules{{ end }}</strong><br>{{ if $isRU }}типы, связи и отношения в <code>rules.yaml</code>{{ else }}types, routes, and relations in <code>rules.yaml</code>{{ end }}</div>
+      </li>
+      <li class="how-step">
+        <span class="how-emoji" aria-hidden="true">🧱</span>
+        <div><strong>{{ if $isRU }}Сборка{{ else }}Build{{ end }}</strong><br>{{ if $isRU }}Notepub генерирует чистый HTML, sitemap и метаданные{{ else }}Notepub generates clean HTML, sitemap, and metadata{{ end }}</div>
+      </li>
+      <li class="how-step">
+        <span class="how-emoji" aria-hidden="true">✅</span>
+        <div><strong>{{ if $isRU }}Деплой{{ else }}Deploy{{ end }}</strong><br>{{ if $isRU }}GitHub Pages / VPS / Serverless - без серверов и админок{{ else }}GitHub Pages / VPS / Serverless without heavy ops overhead{{ end }}</div>
+      </li>
+    </ul>
+  </div>
+  <div class="kicker">
+    <span class="dot" aria-hidden="true"></span>
+    {{ if $isRU }}Notepub не навязывает структуру. Он исполняет структуру, которую вы описали.{{ else }}Notepub does not impose structure. It executes the structure you define.{{ end }}
+  </div>
+</section>
+
+<section id="roadmap" class="roadmap">
+  <h2 class="section-title">Roadmap</h2>
+  <div class="section-subtitle">{{ if $isRU }}Что уже есть и что будет дальше{{ else }}What exists today and what comes next{{ end }}</div>
+
+  <div class="roadmap-listing">
+  <div class="roadmap-item">
+    <div class="roadmap-left">
+      <h3>🧱 Core, open-source</h3>
+      <p><em>{{ if $isRU }}Фундамент, который всегда бесплатный и самодостаточный.{{ else }}A free and self-sufficient foundation.{{ end }}</em></p>
+    </div>
+    <div class="roadmap-right">
+      <ul class="roadmap-list">
+        <li><span class="dot" aria-hidden="true"></span>{{ if $isRU }}декларативная модель (rules.yaml){{ else }}declarative model (rules.yaml){{ end }}</li>
+        <li><span class="dot" aria-hidden="true"></span>{{ if $isRU }}Markdown / Obsidian совместимость{{ else }}Markdown / Obsidian compatibility{{ end }}</li>
+        <li><span class="dot" aria-hidden="true"></span>{{ if $isRU }}генерация чистого HTML{{ else }}clean HTML output{{ end }}</li>
+        <li><span class="dot" aria-hidden="true"></span>{{ if $isRU }}SEO по умолчанию (sitemap, JSON-LD, canonical){{ else }}SEO by default (sitemap, JSON-LD, canonical){{ end }}</li>
+        <li><span class="dot" aria-hidden="true"></span>GitHub Pages / VPS / Serverless</li>
+        <li><span class="dot" aria-hidden="true"></span>template-based workflow</li>
+      </ul>
+      <div class="muted">
+        {{ if $isRU }}Core можно использовать без аккаунтов, облаков и сервисов.{{ else }}Core can be used without accounts, cloud lock-ins, or extra services.{{ end }}
+      </div>
+    </div>
+  </div>
+
+  <div class="roadmap-item">
+    <div class="roadmap-left">
+      <h3>🧩 Templates &amp; Recipes (open + curated)</h3>
+      <p><em>{{ if $isRU }}Готовые решения под конкретные сценарии.{{ else }}Ready templates for common scenarios.{{ end }}</em></p>
+    </div>
+    <div class="roadmap-right">
+      <ul class="roadmap-list">
+        <li><span class="dot" aria-hidden="true"></span>SEO blog / personal site / digital garden</li>
+        <li><span class="dot" aria-hidden="true"></span>{{ if $isRU }}документация{{ else }}documentation{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}каталог{{ else }}catalog{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}курс{{ else }}course{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}community-шаблоны{{ else }}community templates{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>best practices inside templates</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="roadmap-item">
+    <div class="roadmap-left">
+      <h3>☁️ Notepub Cloud</h3>
+      <p><em>{{ if $isRU }}Для тех, кто не хочет думать об инфраструктуре.{{ else }}For teams that want managed infrastructure.{{ end }}</em></p>
+    </div>
+    <div class="roadmap-right">
+      <ul class="roadmap-list">
+        <li><span class="dot dot-outline" aria-hidden="true"></span>managed build &amp; deploy</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}хостинг статических сайтов{{ else }}static hosting{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}бэкенд функционал{{ else }}backend capabilities{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}обновления движка{{ else }}engine updates{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}бэкапы и версии{{ else }}backups and versioning{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}домены и SSL{{ else }}domains and SSL{{ end }}</li>
+      </ul>
+      <div class="muted">
+        {{ if $isRU }}Cloud - это удобство, а не обязательное условие. В любой момент можно уйти на self-hosted.{{ else }}Cloud is convenience, not a lock-in. You can move to self-hosted any time.{{ end }}
+      </div>
+    </div>
+  </div>
+
+  <div class="roadmap-item">
+    <div class="roadmap-left">
+      <h3>🧠 Advanced tooling</h3>
+      <p><em>{{ if $isRU }}Инструменты для сложных систем и больших проектов.{{ else }}Tooling for complex systems and large content bases.{{ end }}</em></p>
+    </div>
+    <div class="roadmap-right">
+      <p>{{ if $isRU }}Возможные направления:{{ else }}Possible directions:{{ end }}</p>
+      <ul class="roadmap-list">
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}визуализация структуры / графа{{ else }}structure/graph visualization{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}анализ связей и контента{{ else }}link and content analysis{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}AI-помощники для генерации и рефакторинга{{ else }}AI assistants for generation and refactoring{{ end }}</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>search / embeddings</li>
+        <li><span class="dot dot-outline" aria-hidden="true"></span>content health &amp; consistency</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section id="quickstart">
+  <h2 class="section-title">{{ if $isRU }}Быстрый старт{{ else }}Quick Start{{ end }}</h2>
+  <div class="section-subtitle">{{ if $isRU }}Без кода и инфраструктуры{{ else }}No-code path with minimal setup{{ end }}</div>
+  <div class="card soft">
+    <ul>
+      <li>{{ if $isRU }}Выберите шаблон{{ else }}Pick a template{{ end }}</li>
+      <li>Github -> Use this template</li>
+      <li>{{ if $isRU }}Положите контент в /content или укажите S3 credentials{{ else }}Put content into /content or configure S3 credentials{{ end }}</li>
+      <li>{{ if $isRU }}Включите Github Pages{{ else }}Enable GitHub Pages{{ end }}</li>
+      <li>{{ if $isRU }}Запустите CI{{ else }}Run CI{{ end }}</li>
+    </ul>
+
+    <a href="{{ $docsPath }}">{{ if $isRU }}Подробнее{{ else }}Learn More{{ end }} -></a>
+  </div>
+  <div class="kicker">
+    <span class="dot" aria-hidden="true"></span>
+    {{ if $isRU }}Нужна гибкость и собственная структура?{{ else }}Need full flexibility and custom structure?{{ end }} <a href="{{ $docsPath }}">-> {{ if $isRU }}Читать документацию{{ else }}Read the docs{{ end }}</a>
+  </div>
+</section>
+
+<section id="support-cta">
+  <h2 class="section-title">{{ if $isRU }}Нужна помощь или хотите запустить сайт на Notepub?{{ else }}Need help or want a site built with Notepub?{{ end }}</h2>
+  <div class="section-subtitle">{{ if $isRU }}Подскажем по настройке, структуре контента и запуску.{{ else }}We can help with setup, content structure, and launch.{{ end }}</div>
+  <div class="card soft">
+    <p>{{ if $isRU }}Напишите в Telegram или начните с документации и соберите свой сайт уже сегодня.{{ else }}Message us on Telegram or start with docs and launch your site today.{{ end }}</p>
+    <div class="cta-row">
+      <a class="btn primary" href="https://t.me/cookiespooky" target="_blank" rel="noopener">{{ if $isRU }}Связаться в Telegram{{ else }}Contact on Telegram{{ end }}</a>
+      <a class="btn" href="{{ $gettingStartedPath }}">{{ if $isRU }}Создать сайт на Notepub{{ else }}Build a site with Notepub{{ end }}</a>
+    </div>
+  </div>
+  <div class="kicker">
+    <span class="dot" aria-hidden="true"></span>
+    {{ if $isRU }}Notepub остается вашим: контент, правила и структура всегда под вашим контролем.{{ else }}Notepub stays yours: content, rules, and structure remain under your control.{{ end }}
+  </div>
+</section>

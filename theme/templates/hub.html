@@ -1,0 +1,52 @@
+{{- $isRU := eq .FM.lang "ru" -}}
+{{- $docsHubs := .Collections.docs_hubs_en.Items -}}
+{{- $hubItems := .Collections.hub_items_en.Items -}}
+{{- if $isRU -}}
+  {{- $docsHubs = .Collections.docs_hubs_ru.Items -}}
+  {{- $hubItems = .Collections.hub_items_ru.Items -}}
+{{- end -}}
+<section class="page-hero">
+  <h1>{{ .Title }}</h1>
+  {{- if .Page.Description }}
+  <p class="lead">{{ .Page.Description }}</p>
+  {{- end }}
+</section>
+
+<article class="content">
+  {{ .Body }}
+</article>
+
+{{- if eq .Page.Slug "docs" }}
+<section class="section">
+  <h2 class="section-title">{{ if $isRU }}Разделы документации{{ else }}Documentation Sections{{ end }}</h2>
+  <div class="grid grid-3">
+    {{- range $docsHubs }}
+    <a class="card card-link" href="{{ .Path }}">
+      <h3>{{ .Title }}</h3>
+      {{- if .Description }}
+      <p>{{ .Description }}</p>
+      {{- end }}
+    </a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+
+{{- if $hubItems }}
+<section class="section">
+  <h2 class="section-title">{{ if $isRU }}Материалы раздела{{ else }}Section Materials{{ end }}</h2>
+  <div class="grid grid-3">
+    {{- range $hubItems }}
+    <a class="card card-link" href="{{ .Path }}">
+      <div class="card-meta">
+        <span class="card-tag">{{ .Type }}</span>
+      </div>
+      <h3>{{ .Title }}</h3>
+      {{- if .Description }}
+      <p>{{ .Description }}</p>
+      {{- end }}
+    </a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}

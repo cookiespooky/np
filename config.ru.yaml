@@ -1,0 +1,32 @@
+site:
+  id: default
+  base_url: "http://127.0.0.1:8080/" # must end with /
+  title: "Notepub"
+  description: "Declarative engine for websites and documentation from Markdown."
+  default_og_image: "/assets/notepub.svg"
+content:
+  source: "local"
+  local_dir: "./content/ru"
+paths:
+  file_root: ./.notepub-ru
+  artifacts_dir: ./.notepub-ru/artifacts
+  snapshot_file: ./.notepub-ru/snapshot/objects.json
+  cache_root: ./.notepub-ru/cache
+theme:
+  dir: "."
+  name: "theme"
+  templates_subdir: "templates"
+  assets_subdir: "assets"
+rules_path: "./rules.ru.yaml"
+server:
+  listen: "127.0.0.1:8081"
+
+robots:
+  disallow:
+    - "/private/"
+  extra: |
+    # Custom rules here
+
+cache:
+  html_ttl_seconds: 600
+  stale_if_error_seconds: 604800

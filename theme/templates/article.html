@@ -1,0 +1,30 @@
+{{- $isRU := eq .FM.lang "ru" -}}
+{{- $related := .Collections.related_pages_en.Items -}}
+{{- if $isRU -}}
+  {{- $related = .Collections.related_pages_ru.Items -}}
+{{- end -}}
+<article class="content">
+  <div class="page-hero">
+    <h1>{{ .Title }}</h1>
+    {{- if .Page.Description }}
+    <p class="lead">{{ .Page.Description }}</p>
+    {{- end }}
+  </div>
+  {{ .Body }}
+</article>
+
+{{- if $related }}
+<section class="section">
+  <h2 class="section-title">{{ if $isRU }}Связанные материалы{{ else }}Related Materials{{ end }}</h2>
+  <div class="grid">
+    {{- range $related }}
+    <article class="card">
+      <h3><a href="{{ .Path }}">{{ .Title }}</a></h3>
+      {{- if .Description }}
+      <p>{{ .Description }}</p>
+      {{- end }}
+    </article>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
