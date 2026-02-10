@@ -21,7 +21,7 @@
   <h2 class="section-title">{{ if $isRU }}Разделы документации{{ else }}Documentation Sections{{ end }}</h2>
   <div class="grid grid-3">
     {{- range $docsHubs }}
-    <a class="card card-link" href="{{ .Path }}">
+    <a class="card card-link" href="{{ printf "%s%s" $.BaseURL .Path }}">
       <h3>{{ .Title }}</h3>
       {{- if .Description }}
       <p>{{ .Description }}</p>
@@ -37,7 +37,7 @@
   <h2 class="section-title">{{ if $isRU }}Материалы раздела{{ else }}Section Materials{{ end }}</h2>
   <div class="grid grid-3">
     {{- range $hubItems }}
-    <a class="card card-link" href="{{ .Path }}">
+    <a class="card card-link" href="{{ printf "%s%s" $.BaseURL .Path }}">
       <div class="card-meta">
         <span class="card-tag">{{ .Type }}</span>
       </div>

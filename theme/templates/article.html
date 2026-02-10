@@ -19,7 +19,7 @@
   <div class="grid">
     {{- range $related }}
     <article class="card">
-      <h3><a href="{{ .Path }}">{{ .Title }}</a></h3>
+      <h3><a href="{{ printf "%s%s" $.BaseURL .Path }}">{{ .Title }}</a></h3>
       {{- if .Description }}
       <p>{{ .Description }}</p>
       {{- end }}

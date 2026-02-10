@@ -90,6 +90,37 @@
     });
   }
 
+  function getBasePath() {
+    try {
+      var raw = window.__notepubBaseURL || '/';
+      var path = new URL(raw, window.location.origin).pathname || '/';
+      return path.replace(/\/+$/, '');
+    } catch (_err) {
+      return '';
+    }
+  }
+
+  function withBasePath(path) {
+    if (!path || path.charAt(0) !== '/') return path;
+    if (path.indexOf('//') === 0 || path.charAt(1) === '#') return path;
+    var basePath = getBasePath();
+    if (!basePath) return path;
+    if (path === basePath || path.indexOf(basePath + '/') === 0) return path;
+    return basePath + path;
+  }
+
+  function normalizeRootLinks() {
+    var links = document.querySelectorAll('a[href^="/"]');
+    links.forEach(function (link) {
+      var href = link.getAttribute('href');
+      var next = withBasePath(href);
+      if (next && next !== href) {
+        link.setAttribute('href', next);
+      }
+    });
+  }
+
+  normalizeRootLinks();
   function setHeaderHeight() {
     if (!header) return;
     document.documentElement.style.setProperty('--header-height', header.offsetHeight + 'px');

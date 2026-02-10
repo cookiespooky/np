@@ -19,6 +19,25 @@
     selected: -1
   };
 
+  function getBasePath() {
+    try {
+      var raw = window.__notepubBaseURL || '/';
+      var path = new URL(raw, window.location.origin).pathname || '/';
+      return path.replace(/\/+$/, '');
+    } catch (_err) {
+      return '';
+    }
+  }
+
+  function withBasePath(path) {
+    if (!path || path.charAt(0) !== '/') return path;
+    if (path.indexOf('//') === 0 || path.charAt(1) === '#') return path;
+    var basePath = getBasePath();
+    if (!basePath) return path;
+    if (path === basePath || path.indexOf(basePath + '/') === 0) return path;
+    return basePath + path;
+  }
+
   function init() {
     state.form = document.querySelector('.np-search-page-form');
     state.input = document.querySelector('.np-search-page-form input[name="q"]');
@@ -60,7 +79,7 @@
     } else if (e.key === 'Enter') {
       if (state.selected >= 0 && state.items[state.selected]) {
         e.preventDefault();
-        window.location.href = state.items[state.selected].path;
+        window.location.href = withBasePath(state.items[state.selected].path);
       }
     }
   }
@@ -101,7 +120,7 @@
   }
 
   function loadStaticIndex() {
-    state.staticPromise = fetch('/search.json', {
+    state.staticPromise = fetch(withBasePath('/search.json'), {
       headers: { 'Accept': 'application/json' }
     })
       .then(function(res) {
@@ -120,7 +139,7 @@
     if (state.abort) state.abort.abort();
     state.abort = new AbortController();
     setStatus('Загрузка...');
-    fetch('/v1/search?q=' + encodeURIComponent(q) + '&limit=10', {
+    fetch(withBasePath('/v1/search') + '?q=' + encodeURIComponent(q) + '&limit=10', {
       signal: state.abort.signal,
       headers: { 'Accept': 'application/json' }
     })
@@ -188,7 +207,7 @@
       row.appendChild(title);
       row.appendChild(snippet);
       row.addEventListener('click', function() {
-        window.location.href = item.path;
+        window.location.href = withBasePath(item.path);
       });
       state.autoResults.appendChild(row);
     });
@@ -200,7 +219,7 @@
       items.forEach(function(item) {
         var li = document.createElement('li');
         var a = document.createElement('a');
-        a.href = item.path;
+        a.href = withBasePath(item.path);
         a.textContent = item.title || item.path;
         li.appendChild(a);
         if (item.snippet) {
@@ -235,7 +254,7 @@
 
   function updateHistory(q) {
     if (!window.history || !window.history.replaceState) return;
-    var url = q ? '/search?q=' + encodeURIComponent(q) : '/search';
+    var url = q ? withBasePath('/search?q=' + encodeURIComponent(q)) : withBasePath('/search');
     window.history.replaceState({}, '', url);
   }
 

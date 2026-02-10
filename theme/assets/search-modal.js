@@ -18,6 +18,25 @@
     staticPromise: null
   };
 
+  function getBasePath() {
+    try {
+      var raw = window.__notepubBaseURL || '/';
+      var path = new URL(raw, window.location.origin).pathname || '/';
+      return path.replace(/\/+$/, '');
+    } catch (_err) {
+      return '';
+    }
+  }
+
+  function withBasePath(path) {
+    if (!path || path.charAt(0) !== '/') return path;
+    if (path.indexOf('//') === 0 || path.charAt(1) === '#') return path;
+    var basePath = getBasePath();
+    if (!basePath) return path;
+    if (path === basePath || path.indexOf(basePath + '/') === 0) return path;
+    return basePath + path;
+  }
+
   function init(opts) {
     if (state.inited) return;
     state.inited = true;
@@ -72,7 +91,7 @@
   function onInput() {
     if (!state.input) return;
     var q = state.input.value.trim();
-    if (state.allLink) state.allLink.href = q ? '/search?q=' + encodeURIComponent(q) : '/search';
+    if (state.allLink) state.allLink.href = q ? withBasePath('/search?q=' + encodeURIComponent(q)) : withBasePath('/search');
     if (q.length < 2) {
       clearResults();
       setStatus('');
@@ -113,7 +132,7 @@
   }
 
   function loadStaticIndex() {
-    state.staticPromise = fetch('/search.json', {
+    state.staticPromise = fetch(withBasePath('/search.json'), {
       headers: { 'Accept': 'application/json' }
     })
       .then(function(res) {
@@ -177,7 +196,7 @@
     } else if (e.key === 'Enter') {
       if (state.selected >= 0 && state.items[state.selected]) {
         e.preventDefault();
-        window.location.href = state.items[state.selected].path;
+        window.location.href = withBasePath(state.items[state.selected].path);
       }
     } else if (e.key === 'Escape') {
       e.preventDefault();
@@ -205,7 +224,7 @@
       row.appendChild(title);
       row.appendChild(snippet);
       row.addEventListener('click', function() {
-        window.location.href = item.path;
+        window.location.href = withBasePath(item.path);
       });
       state.results.appendChild(row);
     });
