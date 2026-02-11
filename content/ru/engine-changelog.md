@@ -13,6 +13,32 @@ lang: ru
 
 Ниже перечислены изменения в коде движка после этого коммита, которые сейчас есть в рабочем дереве.
 
+## Релиз `v0.1.3` (`2026-02-11`)
+
+1. Кроссплатформенная блокировка файла в indexer
+
+- Файлы: `internal/indexer/indexer.go`, `internal/indexer/filelock_unix.go`, `internal/indexer/filelock_nonunix.go`
+- Использование `syscall.Flock` вынесено в OS-специфичные обертки.
+- Результат: релизная сборка теперь компилируется для `windows_amd64` и всех целевых платформ.
+- Поведение в рантайме:
+  - unix: сохраняется неблокирующий эксклюзивный lock;
+  - non-unix: best-effort fallback lock.
+
+2. Восстановлен релизный pipeline
+
+- Workflow для тега `v0.1.2` падал на шаге `Build binaries` из-за непереносимого lock-кода.
+- Релиз `v0.1.3` завершен успешно с полным набором артефактов:
+  - `notepub_darwin_amd64`
+  - `notepub_darwin_arm64`
+  - `notepub_linux_amd64`
+  - `notepub_linux_arm64`
+  - `notepub_windows_amd64.exe`
+  - `checksums.txt`
+
+Что обновить в recipe/docs:
+
+- зафиксировать `NOTEPUB_VERSION` на `v0.1.3` в CI workflows и инструкциях.
+
 1. `internal/serve/server.go`
 
 - В обработчике `/search` добавлена загрузка resolve-индекса и построение `data.Collections`.

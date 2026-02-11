@@ -13,6 +13,32 @@ Baseline commit: `4c8f9a8` (`2026-02-06`, `chore: clean core repo, add release w
 
 This page lists engine changes added after that commit.
 
+## Release `v0.1.3` (`2026-02-11`)
+
+1. Cross-platform file lock in indexer
+
+- Files: `internal/indexer/indexer.go`, `internal/indexer/filelock_unix.go`, `internal/indexer/filelock_nonunix.go`
+- `syscall.Flock` usage was moved behind OS-specific wrappers.
+- Result: release builds now compile for `windows_amd64` and all configured targets.
+- Runtime behavior:
+  - unix: keeps non-blocking exclusive lock behavior;
+  - non-unix: best-effort fallback lock implementation.
+
+2. Release pipeline recovered
+
+- Tag `v0.1.2` workflow failed at `Build binaries` because of non-portable lock code.
+- `v0.1.3` release completed successfully with full artifact set:
+  - `notepub_darwin_amd64`
+  - `notepub_darwin_arm64`
+  - `notepub_linux_amd64`
+  - `notepub_linux_arm64`
+  - `notepub_windows_amd64.exe`
+  - `checksums.txt`
+
+Action for recipes and docs:
+
+- update pinned `NOTEPUB_VERSION` to `v0.1.3` in CI workflows and setup instructions.
+
 1. `internal/serve/server.go`
 
 - `/search` handler now loads resolve index and sets `data.Collections`.
