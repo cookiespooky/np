@@ -552,6 +552,33 @@ body.is-home section:first-of-type {
   margin: 10px 0;
 }
 
+.publish-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.publish-cards {
+  display: grid;
+  gap: 16px;
+}
+
+.publish-video-card {
+  padding: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.publish-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #000;
+}
+
 .how-emoji {
   font-size: 18px;
   line-height: 1;
@@ -565,6 +592,10 @@ body.is-home section:first-of-type {
 }
 
 @media (max-width: 900px) {
+  .publish-grid {
+    grid-template-columns: 1fr;
+  }
+
   .roadmap-listing .roadmap-item {
     grid-template-columns: 1fr;
     gap: 12px;

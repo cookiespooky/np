@@ -44,10 +44,19 @@ Repository variables:
 3. Run "Commit-and-sync" in Obsidian Git.
 4. Content repo workflow triggers site deploy automatically.
 
-## Obsidian image embeds
+## Obsidian pre-build normalization
 
-In CI, image embeds like `![[cover.webp]]` are normalized to standard markdown image links before index/build.
-This lets authors keep wiki-style embeds for images without manual path edits.
+In CI, pre-build script normalizes two Obsidian-native patterns before index/build:
+
+- image embeds: `!\[\[cover.webp\]\]` -> standard markdown image links
+- `hub` frontmatter values: wikilinks are converted to plain slugs
+
+`hub` normalization supports both direct slug links and filename links:
+
+- `\[\[product\]\]` -> `product`
+- `\[\[product-hub\]\]` -> `product` (resolved via frontmatter `slug` in that file)
+
+This keeps Obsidian-native authoring while preserving stable hub filtering in templates.
 
 ## Token scope guidance
 

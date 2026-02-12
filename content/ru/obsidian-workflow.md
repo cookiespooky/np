@@ -44,10 +44,19 @@ Repository variables:
 3. Запустите "Commit-and-sync" в Obsidian Git.
 4. Workflow контент-репозитория автоматически триггерит deploy сайта.
 
-## Вставка изображений Obsidian
+## Pre-build нормализация Obsidian
 
-В CI embed-ссылки вида `![[cover.webp]]` автоматически нормализуются в стандартные markdown-ссылки на изображения до index/build.
-Это позволяет оставлять wiki-стиль для картинок без ручного редактирования путей.
+В CI pre-build скрипт нормализует два Obsidian-native паттерна до index/build:
+
+- image embeds: `!\[\[cover.webp\]\]` -> стандартные markdown-ссылки на изображения
+- значения `hub` во frontmatter: вики-ссылки приводятся к plain slug
+
+Для `hub` поддерживаются и прямые slug-ссылки, и ссылки на filename:
+
+- `\[\[product\]\]` -> `product`
+- `\[\[product-hub\]\]` -> `product` (через frontmatter `slug` в файле хаба)
+
+Это сохраняет нативный поток в Obsidian и дает стабильную фильтрацию по хабам в шаблонах.
 
 ## Рекомендации по токенам
 
