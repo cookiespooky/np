@@ -3,7 +3,7 @@ site:
   base_url: "http://127.0.0.1:8080/" # must end with /
   title: "Notepub — SEO-дружелюбные сайты из Markdown без CMS"
   description: "Создавайте быстрые SEO-оптимизированные сайты и документацию из Markdown без админок и зависимостей"
-  default_og_image: "/assets/notepub_og.png"
+  default_og_image: "/assets/notepub_sm.png"
 content:
   source: "local"
   local_dir: "./content/ru"
