@@ -100,20 +100,35 @@ sub normalize_hub_frontmatter {
     my $line = $lines[$i];
 
     if ($line =~ /^hub:\s*(\S.*)$/) {
-      my $norm = resolve_to_slug($1);
-      push @out, "hub:";
-      push @out, "  - \"$norm\"";
+      my $raw = $1;
+      my $plain = unquote($raw);
+      my $norm = resolve_to_slug($raw);
+      if ($raw !~ /\[\[/ && $plain eq $norm) {
+        push @out, $line;
+      } else {
+        push @out, "hub: \"$norm\"";
+      }
       $i++;
       next;
     }
 
     if ($line =~ /^hub:\s*$/) {
-      push @out, "hub:";
+      my @vals = ();
       $i++;
       while ($i <= $#lines && $lines[$i] =~ /^[ \t]+-\s*(.*?)\s*$/) {
         my $norm = resolve_to_slug($1);
-        push @out, "  - \"$norm\"";
+        push @vals, $norm if $norm ne "";
         $i++;
+      }
+      if (@vals == 0) {
+        push @out, "hub:";
+      } elsif (@vals == 1) {
+        push @out, "hub: \"$vals[0]\"";
+      } else {
+        push @out, "hub:";
+        for my $val (@vals) {
+          push @out, "  - \"$val\"";
+        }
       }
       next;
     }
