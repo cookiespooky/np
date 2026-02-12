@@ -76,20 +76,20 @@
   <div class="section-subtitle">{{ if $isRU }}Notepub делает публикацию простой: пишите в Markdown, пушьте изменения, и сайт уже в онлайне.{{ else }}Notepub keeps publishing simple: write in Markdown, push changes, and your site is live.{{ end }}</div>
   <div class="publish-grid">
     <div class="publish-cards">
-      <div class="card">
+      <div class="publish-item">
         <h3>{{ if $isRU }}Obsidian-native workflow{{ else }}Obsidian-native workflow{{ end }}</h3>
         <p>{{ if $isRU }}Пишите заметки как обычно: викилинки, папки, изображения рядом с заметкой. Pre-build нормализует все для веб-вывода.{{ else }}Write notes as usual: wikilinks, folders, images near the note. Pre-build normalizes everything for web output.{{ end }}</p>
       </div>
-      <div class="card">
+      <div class="publish-item">
         <h3>{{ if $isRU }}One push deployment{{ else }}One push deployment{{ end }}</h3>
         <p>{{ if $isRU }}Редактируйте контент, пушьте в GitHub, а Actions автоматически выполняет индексирование, сборку и деплой.{{ else }}Edit content, push to GitHub, and Actions handles indexing, build, and deployment automatically.{{ end }}</p>
       </div>
-      <div class="card">
+      <div class="publish-item">
         <h3>{{ if $isRU }}Fast static delivery{{ else }}Fast static delivery{{ end }}</h3>
         <p>{{ if $isRU }}Статические страницы загружаются быстро, легко кэшируются и стабильно работают на GitHub Pages без дополнительных серверов.{{ else }}Static pages load quickly, are easy to cache, and work reliably on GitHub Pages without extra servers.{{ end }}</p>
       </div>
     </div>
-    <div class="card publish-video-card">
+    <div class="publish-video-card">
       <video class="publish-video" controls playsinline preload="metadata" src="{{ .AssetsBase }}/publish-demo.mp4"></video>
     </div>
   </div>
