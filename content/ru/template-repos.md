@@ -11,6 +11,12 @@ lang: ru
 
 Template-репозитории — базовый путь запуска Notepub для большинства пользователей.
 
+## Официальные template-репозитории
+
+- Шаблон блога: https://github.com/cookiespooky/notepub-recipe-blog
+- Шаблон документации: https://github.com/cookiespooky/notepub-recipe-docs
+- Шаблон контент-репозитория для режима `content_repo`: https://github.com/cookiespooky/np-content-template
+
 ## Что дает template repo
 
 - Рабочие `config.yaml` и `rules.yaml`.

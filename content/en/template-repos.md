@@ -11,6 +11,12 @@ lang: en
 
 Template repos are the default distribution model for most users.
 
+## Official template repositories
+
+- Blog template: https://github.com/cookiespooky/notepub-recipe-blog
+- Documentation template: https://github.com/cookiespooky/notepub-recipe-docs
+- Content repo template for `content_repo` mode: https://github.com/cookiespooky/np-content-template
+
 ## What a template repo gives you
 
 - Working `config.yaml` and `rules.yaml`.
