@@ -1,9 +1,9 @@
 site:
   id: default
   base_url: "http://127.0.0.1:8080/" # must end with /
-  title: "Notepub"
-  description: "Declarative engine for websites and documentation from Markdown."
-  default_og_image: "/assets/notepub.svg"
+  title: "Notepub — SEO-friendly websites from Markdown without CMS"
+  description: "Create fast SEO-optimized websites and documentation from Markdown without CMS and dependencies"
+  default_og_image: "/assets/notepub_og.png"
 content:
   source: "local"
   local_dir: "./content/en"

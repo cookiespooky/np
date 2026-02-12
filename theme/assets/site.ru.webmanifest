@@ -1,0 +1,24 @@
+{
+  "name": "Notepub — SEO-дружелюбные сайты из Markdown без CMS",
+  "short_name": "Notepub",
+  "description": "Создавайте быстрые SEO-оптимизированные сайты и документацию из Markdown без админок и зависимостей",
+  "lang": "ru",
+  "id": "../ru/",
+  "start_url": "../ru/",
+  "scope": "../",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

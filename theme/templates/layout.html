@@ -11,6 +11,10 @@
 {{- end -}}
 {{- $switchEN := printf "%s/en/" .BaseURL -}}
 {{- $switchRU := printf "%s/ru/" .BaseURL -}}
+{{- $manifestFile := "site.en.webmanifest" -}}
+{{- if eq $lang "ru" -}}
+  {{- $manifestFile = "site.ru.webmanifest" -}}
+{{- end -}}
 {{- if or (eq .Page.Type "docs_en") (eq .Page.Type "docs_ru") -}}
   {{- $switchEN = printf "%s/en/docs" .BaseURL -}}
   {{- $switchRU = printf "%s/ru/docs" .BaseURL -}}
@@ -33,7 +37,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{{ .AssetsBase }}/favicon-16x16.png" />
   <link rel="icon" href="{{ .AssetsBase }}/favicon.ico" />
   <link rel="mask-icon" href="{{ .AssetsBase }}/notepub.svg" color="#0a0a0a" />
-  <link rel="manifest" href="{{ .AssetsBase }}/site.webmanifest" />
+  <link rel="manifest" href="{{ .AssetsBase }}/{{ $manifestFile }}" />
   <link rel="stylesheet" href="{{ .AssetsBase }}/styles.css" />
   {{- if .Page.Description }}
   <meta name="description" content="{{ .Page.Description }}" />
