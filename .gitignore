@@ -21,3 +21,6 @@ dist-docs-check/
 # Optional local env
 .env
 .env.*
+
+# Obsidian
+.obsidian/

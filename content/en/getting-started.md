@@ -13,18 +13,18 @@ This is the shortest default scenario. Start here.
 ## Recommended default: local content in the same repository
 
 1. Create your site repository via **Use this template** from a Notepub template. [Available templates](/en/docs/template-repos/)
-![[use-this-template.webp]]
+![](/media/use-this-template.webp)
 2. In repository settings, enable GitHub Pages with **GitHub Actions** as the source. You can also configure a custom domain there.
-![[github-pages.webp]]
+![](/media/github-pages.webp)
 3. Push changes to `main`. Build usually takes under a minute. Monitor progress in **Actions**.
-![[actions.webp]]
+![](/media/actions.webp)
 After build, the site will be available at: `https://USER.github.io/REPOSITORY`, where `USER` is your GitHub username and `REPOSITORY` is your repository name. You can always check the current URL in repository Settings -> Pages.
 
 To edit your site content, place your markdown files into `content/` and remove unnecessary starter files.
 
 >**Important:** keep frontmatter structure in your markdown files consistent with your rules, so Notepub can build your site correctly.
 
-![[content.webp]]
+![](/media/content.webp)
 CI does:
 
 - downloads pinned `notepub` binary

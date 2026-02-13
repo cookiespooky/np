@@ -11,12 +11,12 @@ lang: ru
 Это самый короткий дефолтный сценарий. Начните с него.
 ## Рекомендуемый дефолт: local-контент в этом же репозитории
 
-1. Создайте репозиторий для вашего сайта через **Use this template** из шаблона Notepub. [[ru/template-repos|Доступные шаблоны]]
-![[use-this-template.webp]]
+1. Создайте репозиторий для вашего сайта через **Use this template** из шаблона Notepub. [Доступные шаблоны](/ru/docs/template-repos/)
+![](/media/use-this-template.webp)
 2. В настройках репозитория включите GitHub Pages с источником **GitHub Actions**. Здесь же можно указать собственный домен.
-![[github-pages.webp]]
+![](/media/github-pages.webp)
 3. Push изменения в `main`. Сборка занимает менее минуты. Процесс можно наблюдать в разделе **Actions**.
-![[actions.webp]]
+![](/media/actions.webp)
 После сборки сайт будет доступен по адресу: https://USER.github.io/REPOSITORY, где USER - ваш GitHub username, а REPOSITORY - название репозитория. Актуальную ссылку можно посмотреть в разделе Settings - Pages репозитория.
 
 Чтобы отредактировать контент вашего сайта, положите ваши markdown-файлы в content/ и удалите лишние.
@@ -24,7 +24,7 @@ lang: ru
 >**Важно учитывать frontmatter-разметку в ваших markdown-файлах**, чтобы Notepub правильно понимал как собирать ваш сайт.
 >Читайте ниже.
 
-![[content.webp]]
+![](/media/content.webp)
 Что делает CI:
 
 - скачивает зафиксированный бинарник `notepub`

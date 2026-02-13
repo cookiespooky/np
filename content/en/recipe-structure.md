@@ -88,7 +88,7 @@ Recipe templates usually have three relation kinds:
 
 - `belongs_to` - membership in hubs via `hub`
 - `related` - manual links via `related`
-- `wiki` - wiki-links in markdown body (`[[...]]`)
+- `wiki` - wiki-links in markdown body (double-bracket wikilink syntax)
 
 For wikilink syntax, aliases, and resolver order, see:
 [Links and Wikilinks](/en/docs/links-and-wikilinks/)
