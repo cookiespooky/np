@@ -3,7 +3,7 @@ type: article_ru
 slug: getting-started
 title: Быстрый старт
 description: Краткий путь от нуля до опубликованного сайта с дефолтным local-режимом.
-hub: "[[docs]]"
+hub: "docs"
 order: 2
 draft: false
 lang: ru

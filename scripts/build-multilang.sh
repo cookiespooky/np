@@ -52,6 +52,22 @@ if [[ -f "$OUT_DIST/assets/llms-full.txt" ]]; then
   cp "$OUT_DIST/assets/llms-full.txt" "$OUT_DIST/llms-full.txt"
 fi
 
+# Export media files for local static preview (same intent as CI workflow).
+rm -rf "$OUT_DIST/media"
+mkdir -p "$OUT_DIST/media"
+rsync -a --prune-empty-dirs \
+  --exclude '.git/' \
+  --exclude '.github/' \
+  --exclude '.obsidian/' \
+  --exclude '*.md' \
+  ./content/en/ "$OUT_DIST/media/"
+rsync -a --prune-empty-dirs \
+  --exclude '.git/' \
+  --exclude '.github/' \
+  --exclude '.obsidian/' \
+  --exclude '*.md' \
+  ./content/ru/ "$OUT_DIST/media/"
+
 echo "[5/7] generate combined sitemap.xml"
 find "$OUT_DIST" -maxdepth 1 -type f \( -name 'sitemap-index.xml' -o -name 'sitemap-*.xml' \) -delete 2>/dev/null || true
 {
