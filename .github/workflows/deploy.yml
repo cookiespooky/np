@@ -196,9 +196,12 @@ jobs:
           fi
           EN_CFG="${BUILD_CONFIG_EN:-./config.yaml}"
           RU_CFG="${BUILD_CONFIG_RU:-./config.ru.yaml}"
+          MEDIA_BASE_URL="${BASE_URL}media/"
           echo "Using BASE_URL=$BASE_URL in $EN_CFG and $RU_CFG"
           sed -i "s|base_url: \".*\"|base_url: \"${BASE_URL}\"|" "$EN_CFG"
           sed -i "s|base_url: \".*\"|base_url: \"${BASE_URL}\"|" "$RU_CFG"
+          sed -i "s|media_base_url: \".*\"|media_base_url: \"${MEDIA_BASE_URL}\"|" "$EN_CFG"
+          sed -i "s|media_base_url: \".*\"|media_base_url: \"${MEDIA_BASE_URL}\"|" "$RU_CFG"
 
       - name: Build multilingual site
         env:
