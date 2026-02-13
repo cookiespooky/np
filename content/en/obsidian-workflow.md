@@ -1,23 +1,22 @@
 ---
 type: article_en
 slug: obsidian-workflow
-title: Obsidian Workflow and Repo Variables
-description: End-to-end setup for one-click content updates via Obsidian Git.
+title: Obsidian Workflow and Repository Variables
+description: Full setup of one-click content updates via Obsidian Git.
 hub: operations
 order: 17
 draft: false
 lang: en
 ---
-
-This setup gives authors a native editing flow: edit in Obsidian, commit, push, auto-deploy.
+This option gives authors a native flow: edit in Obsidian, commit, push, auto-deploy.
 
 ## Recommended architecture
 
-- Site repo: templates, theme, workflow, rules.
+- Site repo: theme, templates, workflow, rules.
 - Content repo: markdown files only.
-- Obsidian vault points to the content repo root.
+- Obsidian vault points to content repository root.
 
-## Content repo setup
+## Content repository setup
 
 Repository variable:
 
@@ -25,11 +24,11 @@ Repository variable:
 
 Repository secret:
 
-- `NP_DEPLOY_TOKEN` with permission to call `repository_dispatch` on `NP_SITE_REPO`
+- `NP_DEPLOY_TOKEN` with permission to call `repository_dispatch` in `NP_SITE_REPO`
 
-Workflow in content repo sends `content-updated` dispatch to the site repo.
+Content repository workflow sends `content-updated` event to site repository.
 
-## Site repo setup for content repo mode
+## Site repository setup for content_repo mode
 
 Repository variables:
 
@@ -37,30 +36,30 @@ Repository variables:
 - `CONTENT_REPO=owner/repo` (your content repository)
 - `CONTENT_REF=main` (optional)
 
-## Obsidian Git plugin flow
+## Obsidian Git flow
 
-1. Open content repo as vault.
-2. Edit markdown notes.
+1. Open content repository as vault.
+2. Edit markdown.
 3. Run "Commit-and-sync" in Obsidian Git.
-4. Content repo workflow triggers site deploy automatically.
+4. Content repository workflow automatically triggers site deploy.
 
-## Obsidian pre-build normalization
+## Pre-build Obsidian normalization
 
 In CI, pre-build script normalizes two Obsidian-native patterns before index/build:
 
 - image embeds: `!\[\[cover.webp\]\]` -> standard markdown image links
-- `hub` frontmatter values: wikilinks are converted to plain slugs
+- `hub` values in frontmatter: wikilinks are converted to plain slug
 
-`hub` normalization supports both direct slug links and filename links:
+For `hub`, both direct slug links and filename links are supported:
 
 - `\[\[product\]\]` -> `product`
-- `\[\[product-hub\]\]` -> `product` (resolved via frontmatter `slug` in that file)
+- `\[\[product-hub\]\]` -> `product` (via frontmatter `slug` in hub file)
 
-This keeps Obsidian-native authoring while preserving stable hub filtering in templates.
+This keeps native Obsidian flow and provides stable hub filtering in templates.
 
-## Token scope guidance
+## Token guidance
 
-- Public repos: fine-grained PAT with access to target repo, repository contents read/write is sufficient.
-- Private repos: same, but repo must be explicitly included in token access list.
+- Public repo: fine-grained PAT with target repo access, usually repository contents read/write is enough.
+- Private repo: same, but target repository must be explicitly included in token access.
 
-Use one token per project instead of reusing a global token.
+Use a dedicated token per project, not one shared token for all projects.

@@ -51,6 +51,13 @@ types:
       sitemap: true
       search: false
 
+  search_ru:
+    template: "search.html"
+    permalink: "/search"
+    include_in:
+      sitemap: false
+      search: false
+
 links:
   - name: "belongs_to_ru"
     kind: "field"
@@ -222,6 +229,7 @@ validation:
   single_page_of_type:
     home_ru: 1
     docs_ru: 1
+    search_ru: 1
   duplicate_route:
     action: "error"
   unknown_type:

@@ -2,18 +2,18 @@
 type: article_en
 slug: themes
 title: Themes and Templates
-description: Theme directory layout, template contract, and fallback behavior.
+description: Theme structure, template contract, and fallback behavior.
 hub: operations
 order: 3
 draft: false
 lang: en
 ---
 
-Themes are loaded from:
+Theme is loaded from `<theme.dir>/<theme.name>/` in repository root.
 
-`<theme.dir>/<theme.name>/`
+## Structure
 
-## Recommended structure
+Recipe repository example. It can differ when custom `rules.yaml` setup is used.
 
 ```text
 <theme>/
@@ -33,23 +33,23 @@ Themes are loaded from:
 
 ## Template selection
 
-- `layout.html` is the wrapper.
-- Home route (`/`) uses home template logic.
-- For each page, Notepub uses template from `rules.types.<type>.template`.
-- Missing custom files can fall back to embedded theme assets/templates.
+- `layout.html` is the common wrapper.
+- Route `/` uses home logic.
+- For pages, `rules.types.<type>.template` is used.
+- If files are missing, engine falls back to embedded templates/assets.
 
-## Data exposed to templates
+## Data in templates
 
-Common fields include:
+Most commonly used values:
 
 - `.Title`, `.Description`, `.Canonical`, `.BaseURL`
 - `.Page.Type`, `.Page.Slug`, `.Page.Title`
-- `.Body` rendered HTML
-- `.Collections` map of evaluated collections
+- `.Body` (rendered HTML)
+- `.Collections` (evaluated collections)
 - `.Meta.OpenGraph`, `.Meta.JSONLD`
 - `.SearchMode` (`server` or `static`)
 
 ## Asset serving
 
-- Serve mode: assets available under `/assets/*`.
-- Build mode: assets copied to `dist/assets/*`.
+- In `serve`: assets are available via `/assets/*`.
+- In `build`: assets are copied to `dist/assets/*`.

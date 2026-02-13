@@ -9,11 +9,11 @@ draft: false
 lang: ru
 ---
 
-Тема загружается из:
+Тема загружается из `<theme.dir>/<theme.name>/` в корне репозитория.
 
-`<theme.dir>/<theme.name>/`
+## Структура
 
-## Рекомендуемая структура
+На примере recipe-репозитория. Может отличаться в случае кастомных настроек `rules.yaml`.
 
 ```text
 <theme>/
@@ -48,7 +48,6 @@ lang: ru
 - `.Collections` (вычисленные коллекции)
 - `.Meta.OpenGraph`, `.Meta.JSONLD`
 - `.SearchMode` (`server` или `static`)
-
 ## Раздача ассетов
 
 - В `serve`: ассеты доступны по `/assets/*`.

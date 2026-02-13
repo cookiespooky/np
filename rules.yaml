@@ -58,6 +58,13 @@ types:
       sitemap: true
       search: false
 
+  search_en:
+    template: "search.html"
+    permalink: "/search"
+    include_in:
+      sitemap: false
+      search: false
+
 links:
   - name: "belongs_to_en"
     kind: "field"
@@ -230,6 +237,7 @@ validation:
     redirect_root: 1
     home_en: 1
     docs_en: 1
+    search_en: 1
   duplicate_route:
     action: "error"
   unknown_type:

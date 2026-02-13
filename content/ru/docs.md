@@ -8,14 +8,17 @@ order: 0
 lang: ru
 ---
 
-Notepub — это publishing-движок в одном бинарнике, который превращает Markdown-заметки в сайт.
+Notepub — это publishing-движок в одном бинарнике, который генерирует html из markdown по правилам и конфигу, описанным в `rules.yaml` и `config.yaml`, соответственно.
 
 Если вы только начинаете, идите по порядку:
 
 1. [Обзор](/ru/docs/overview)
 2. [Быстрый старт](/ru/docs/getting-started)
 3. [Template-репозитории](/ru/docs/template-repos)
-4. [Сборка и деплой](/ru/docs/build-and-deploy)
+4. [Структура контента в recipe-репозиториях](/ru/docs/recipe-structure)
+5. [Сборка и деплой](/ru/docs/build-and-deploy)
+6. [Локальный запуск](/ru/docs/local-run)
+7. [Бриф для AI/MCP-агента](/ru/docs/ai-agent-brief)
 
 Дальше углубляйтесь по разделам:
 

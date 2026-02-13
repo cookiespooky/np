@@ -2,43 +2,46 @@
 type: docs_en
 slug: docs
 title: Documentation
-description: Complete Notepub documentation for newcomers and advanced users.
+description: Full Notepub documentation for beginners and advanced users.
 draft: false
 order: 0
 lang: en
 ---
 
-Notepub is a single-binary publishing engine that turns Markdown notes into a website.
+Notepub is a single-binary publishing engine that generates HTML from markdown using rules in `rules.yaml` and settings in `config.yaml`.
 
-Use this docs hub in this order if you are new:
+If you are just starting, follow this order:
 
-1. [[Overview]]
-2. [[Getting Started]]
-3. [[Template Repos]]
-4. [[Build and Deploy]]
+1. [Overview](/en/docs/overview)
+2. [Getting Started](/en/docs/getting-started)
+3. [Template Repositories](/en/docs/template-repos)
+4. [Content Structure in Recipe Repositories](/en/docs/recipe-structure)
+5. [Build and Deploy](/en/docs/build-and-deploy)
+6. [Local Run](/en/docs/local-run)
+7. [AI/MCP Agent Brief](/en/docs/ai-agent-brief)
 
 Then go deeper by area:
 
-- [[Concepts and Architecture]]
-- [[Content Authoring]]
-- [[Operations]]
-- [[Reference]]
+- [Concepts and Architecture](/en/docs/concepts)
+- [Content Authoring](/en/docs/content-authoring)
+- [Operations](/en/docs/operations)
+- [Reference](/en/docs/reference)
 
-## What you get with Notepub
+## What Notepub gives you
 
 - Markdown content from local folders or S3.
-- Rules-driven routing, templates, links, and collections.
-- Two runtimes:
-  - `serve` for dynamic rendering from indexed content.
-  - `build` for static HTML output in `dist/`.
-- SEO outputs by default: sitemap, robots, canonical metadata, OpenGraph, JSON-LD support.
+- Declarative routing, templates, links, and collections.
+- Two operation modes:
+  - `serve` for dynamic rendering.
+  - `build` for static HTML in `dist/`.
+- SEO artifacts by default: sitemap, robots, canonical, OpenGraph, JSON-LD.
 
-## Default no-code workflow
+## Basic no-code workflow
 
-If you use a recipe repository with GitHub Actions, you usually only edit:
+If you use a recipe repository with GitHub Actions, most of the time you only edit:
 
 - `content/*.md`
 - `config.yaml`
-- `rules.yaml` (optional once you need custom behavior)
+- `rules.yaml` (as needed)
 
-The workflow runs `validate` + `build` and deploys to GitHub Pages.
+Workflow runs `validate` + `build` and deploys site to GitHub Pages.

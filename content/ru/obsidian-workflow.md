@@ -8,7 +8,6 @@ order: 17
 draft: false
 lang: ru
 ---
-
 Этот вариант дает авторам нативный поток: редактирование в Obsidian, commit, push, auto-deploy.
 
 ## Рекомендуемая архитектура

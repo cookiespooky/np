@@ -11,17 +11,17 @@ lang: en
 
 ## Required frontmatter
 
-With typical recipe rules, each note needs:
+For a typical recipe, each note should contain at minimum:
 
 ```yaml
 ---
 type: article
 slug: my-slug
-title: Human readable title
+title: Clear title
 ---
 ```
 
-Optional but common:
+Common optional fields:
 
 - `description`
 - `draft`
@@ -34,21 +34,21 @@ Optional but common:
 
 ## Draft behavior
 
-`draft` default is usually set in rules (`fields.defaults.draft: false`).
+Default is usually defined in rules (`fields.defaults.draft: false`).
 
-- If `draft: true`, inclusion in search/sitemap depends on your rules (`exclude_drafts`).
-- Draft pages may still exist in resolve/meta unless filtered out by rules.
+- With `draft: true`, inclusion in search/sitemap depends on rules (`exclude_drafts`).
+- Draft pages may exist in resolve/meta unless explicitly filtered out.
 
 ## Metadata behavior
 
-- `canonical`: auto-built from `site.base_url + route` unless overridden.
-- `robots`: auto-generated from `noindex` unless overridden.
-- OpenGraph fields are derived from frontmatter/content/site defaults.
-- `jsonld` is injected only if valid JSON.
+- `canonical`: built automatically from `site.base_url + route`, unless overridden.
+- `robots`: built from `noindex`, unless explicitly set.
+- OpenGraph: built from frontmatter, content, and site defaults.
+- `jsonld`: embedded only when JSON is valid.
 
-## Practical writing conventions
+## Writing practice
 
-- Use stable slugs; avoid changing them after publishing unless you create redirects.
-- Keep one clear H1 in markdown body.
-- Write first paragraph as summary for better snippets and previews.
-- Use explicit `description` for reliable search preview text.
+- Use stable slugs and change them only with redirects.
+- In recipe templates, frontmatter `title` is already rendered as `h1`; in page body, usually start with `h2` to avoid duplicate `h1`.
+- For predictable search snippets, fill frontmatter `description`: this field is used as `snippet`.
+- The first paragraph is useful as a concise intro and can be used as fallback for `og:description`, but it is not the main source for search snippet.

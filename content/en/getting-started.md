@@ -2,67 +2,66 @@
 type: article_en
 slug: getting-started
 title: Getting Started
-description: Fast path from zero to a deployed site with default local content mode.
+description: Short path from zero to a published site with default local mode.
 hub: docs
 order: 2
 draft: false
 lang: en
 ---
+This is the shortest default scenario. Start here.
 
-This page is the shortest default path. Start with `local` content mode and switch later only if needed.
+## Recommended default: local content in the same repository
 
-## Recommended default: local content in the same repo
+1. Create your site repository via **Use this template** from a Notepub template. [Available templates](/en/docs/template-repos/)
+![[use-this-template.webp]]
+2. In repository settings, enable GitHub Pages with **GitHub Actions** as the source. You can also configure a custom domain there.
+![[github-pages.webp]]
+3. Push changes to `main`. Build usually takes under a minute. Monitor progress in **Actions**.
+![[actions.webp]]
+After build, the site will be available at: `https://USER.github.io/REPOSITORY`, where `USER` is your GitHub username and `REPOSITORY` is your repository name. You can always check the current URL in repository Settings -> Pages.
 
-1. Create your site from a Notepub template repository using **Use this template**.
-2. In repo settings, enable GitHub Pages with source **GitHub Actions**.
-3. Keep default mode:
-- `content.source: local` in `config.yaml`
-- markdown files in `content/`
-4. Push to `main`.
+To edit your site content, place your markdown files into `content/` and remove unnecessary starter files.
 
-CI build flow:
+>**Important:** keep frontmatter structure in your markdown files consistent with your rules, so Notepub can build your site correctly.
+
+![[content.webp]]
+CI does:
 
 - downloads pinned `notepub` binary
-- runs index/build scripts
+- runs index/build
 - deploys `dist/` to Pages
 
-## Local run commands
+## What users usually do next
 
-Index:
+After first deploy, you usually need to:
 
-```bash
-./notepub index --config ./config.yaml --rules ./rules.yaml
-```
+- Update site metadata (`title`, `description`, `base_url`, etc.): [Configuration Reference](/en/docs/configuration/)
+- Customize templates and visual style: [Themes and Templates](/en/docs/themes/)
+- Run project locally before push: [Local Run](/en/docs/local-run/)
+- Delegate setup to an agent when needed: [AI/MCP Agent Brief](/en/docs/ai-agent-brief/)
 
-Serve:
+If you use template repos, also see [Template Repositories](/en/docs/template-repos/).
 
-```bash
-./notepub serve --config ./config.yaml --rules ./rules.yaml
-```
+## Minimal frontmatter
 
-Build:
+Before writing lots of content, read [Content Structure in Recipe Repositories](/en/docs/recipe-structure/). It helps you model notes correctly (`home`/`hub`/`article`/`page`/`search`). Once you understand the structure, you can model your own markdown worlds and build static websites of any complexity and nesting.
 
-```bash
-./notepub build --config ./config.yaml --rules ./rules.yaml --dist ./dist
-```
-
-## Content checklist
-
-Every note should have frontmatter compatible with your rules. Minimal example:
+For a typical recipe:
 
 ```yaml
 ---
 type: article
-slug: my-first-note
-title: My First Note
+slug: my-first-note # canonical page URL
+title: Page title # also SEO title
+description: Note description # also SEO meta description
 draft: false
 ---
 ```
 
-## Advanced source modes
+## Advanced content source modes
 
 - Content from a separate repository: [Content Repository Mode](/en/docs/content-repo/)
 - Content from S3-compatible storage: [S3 Content Mode](/en/docs/s3-content/)
-- Obsidian one-click flow and required variables/secrets: [Obsidian Workflow](/en/docs/obsidian-workflow/)
+- Obsidian flow and required variables/secrets: [Obsidian Workflow](/en/docs/obsidian-workflow/)
 
-Continue with [[Configuration Reference]] and [[rules.yaml Reference]].
+Next: [Configuration Reference](/en/docs/configuration/) and [rules.yaml Reference](/en/docs/rules-yaml/).

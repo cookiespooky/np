@@ -90,11 +90,14 @@ a:hover {
 
 .breadcrumb a {
   color: var(--muted);
+  padding: 0;
+  background: transparent;
 }
 
 .breadcrumb a:hover {
-  color: var(--fg);
-  text-decoration: none;
+  color: var(--muted);
+  background: transparent;
+  text-decoration: underline;
 }
 
 .sidebar-title {
@@ -458,6 +461,10 @@ body.is-home section:first-of-type {
   margin: 0 0 10px;
 }
 
+body.is-page .section-title {
+  margin: 30px 0 20px;
+}
+
 .section-subtitle {
   margin-bottom: 2em;
   color: var(--muted);
@@ -761,6 +768,18 @@ strong {
   color: var(--fg);
 }
 
+.content a {
+  color: #0b57d0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.content a:hover {
+  color: #0845a6;
+  text-decoration-thickness: 2px;
+}
+
 .content img {
   max-width: 100%;
   border-radius: 12px;
@@ -801,7 +820,7 @@ strong {
 }
 
 .page-hero h1 {
-  margin: 0 0 8px;
+  margin: 0 0 20px;
 }
 
 .mode-pill {
@@ -906,6 +925,14 @@ strong {
   border: 1px solid var(--border);
   background: var(--bg);
   font-weight: 600;
+  cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+
+.np-search-form button:hover,
+.np-search-form button:focus-visible {
+  border-color: var(--border);
+  background: var(--soft-2);
 }
 
 .np-search-close {

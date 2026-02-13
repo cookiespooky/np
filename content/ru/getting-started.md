@@ -3,58 +3,56 @@ type: article_ru
 slug: getting-started
 title: Быстрый старт
 description: Краткий путь от нуля до опубликованного сайта с дефолтным local-режимом.
-hub: docs
+hub: "[[docs]]"
 order: 2
 draft: false
 lang: ru
 ---
-
-Это самый короткий дефолтный сценарий. Начните с `local` и переключайтесь на другие источники только при необходимости.
-
+Это самый короткий дефолтный сценарий. Начните с него.
 ## Рекомендуемый дефолт: local-контент в этом же репозитории
 
-1. Создайте сайт через **Use this template** из шаблона Notepub.
-2. В настройках репозитория включите GitHub Pages с источником **GitHub Actions**.
-3. Оставьте дефолтный режим:
-- `content.source: local` в `config.yaml`
-- markdown-файлы в `content/`
-4. Запушьте изменения в `main`.
+1. Создайте репозиторий для вашего сайта через **Use this template** из шаблона Notepub. [[ru/template-repos|Доступные шаблоны]]
+![[use-this-template.webp]]
+2. В настройках репозитория включите GitHub Pages с источником **GitHub Actions**. Здесь же можно указать собственный домен.
+![[github-pages.webp]]
+3. Push изменения в `main`. Сборка занимает менее минуты. Процесс можно наблюдать в разделе **Actions**.
+![[actions.webp]]
+После сборки сайт будет доступен по адресу: https://USER.github.io/REPOSITORY, где USER - ваш GitHub username, а REPOSITORY - название репозитория. Актуальную ссылку можно посмотреть в разделе Settings - Pages репозитория.
 
+Чтобы отредактировать контент вашего сайта, положите ваши markdown-файлы в content/ и удалите лишние.
+
+>**Важно учитывать frontmatter-разметку в ваших markdown-файлах**, чтобы Notepub правильно понимал как собирать ваш сайт.
+>Читайте ниже.
+
+![[content.webp]]
 Что делает CI:
 
 - скачивает зафиксированный бинарник `notepub`
 - выполняет index/build
 - деплоит `dist/` в Pages
 
-## Команды для локального запуска
+## Что обычно делают дальше
 
-Index:
+После первого деплоя обычно нужно:
 
-```bash
-./notepub index --config ./config.yaml --rules ./rules.yaml
-```
+- Изменить данные сайта (title, description, base_url и другие параметры): [Справочник config.yaml](/ru/docs/configuration/)
+- Изменить шаблоны и внешний вид: [Темы и шаблоны](/ru/docs/themes/)
+- Запускать проект локально перед push: [Локальный запуск](/ru/docs/local-run/)
+- Если хотите делегировать setup агенту: [Бриф для AI/MCP-агента](/ru/docs/ai-agent-brief/)
 
-Serve:
-
-```bash
-./notepub serve --config ./config.yaml --rules ./rules.yaml
-```
-
-Build:
-
-```bash
-./notepub build --config ./config.yaml --rules ./rules.yaml --dist ./dist
-```
-
+Если вы работаете через template-repo, смотрите также [Template-репозитории](/ru/docs/template-repos/).
 ## Минимальный frontmatter
+
+Перед наполнением контента прочитайте [Структура контента в recipe-репозиториях](/ru/docs/recipe-structure/) — это поможет сразу разложить заметки по правильной модели шаблона (`home`/`hub`/`article`/`page`/`search`). Поняв, как устроена структура, вы сможете моделировать собственные markdown-миры и собирать статические сайты любой структуры/сложности/вложенности.
 
 Для типового recipe:
 
 ```yaml
 ---
 type: article
-slug: my-first-note
-title: Моя первая заметка
+slug: my-first-note #canonical url страницы
+title: Заголовок страницы #он же SEO-заголовок
+description: Описание заметки #оно же SEO метаописание
 draft: false
 ---
 ```
@@ -65,4 +63,4 @@ draft: false
 - Контент из S3-совместимого хранилища: [Режим S3](/ru/docs/s3-content/)
 - Поток через Obsidian и настройки variables/secrets: [Workflow с Obsidian](/ru/docs/obsidian-workflow/)
 
-Дальше: [Справочник config.yaml](/ru/docs/configuration) и [Справочник rules.yaml](/ru/docs/rules-yaml).
+Дальше: [Справочник config.yaml](/ru/docs/configuration/) и [Справочник rules.yaml](/ru/docs/rules-yaml/).

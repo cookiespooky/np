@@ -1,14 +1,13 @@
 ---
 type: article_en
 slug: configuration
-title: Configuration Reference
-description: Detailed explanation of all major config.yaml sections.
+title: config.yaml Reference
+description: Detailed description of major config.yaml sections.
 hub: reference
 order: 1
 draft: false
 lang: en
 ---
-
 ## Loading and defaults
 
 Config is loaded from YAML and then normalized.
@@ -19,46 +18,60 @@ Path precedence:
 2. `CONFIG_PATH`
 3. `config.yaml`
 
-Important defaults:
+Current starter values for template repositories (`notepub-recipe-blog`, `notepub-recipe-docs`):
 
-- `paths.file_root`: `/var/lib/notepub`
-- `paths.artifacts_dir`: `<file_root>/artifacts`
-- `paths.snapshot_file`: `<file_root>/snapshot/objects.json`
-- `paths.cache_root`: `/var/cache/notepub`
-- `theme.dir`: `/opt/notepub/themes`
-- `theme.name`: `seo-minimal`
-- `server.listen`: `:8081`
-- `s3.region`: `us-east-1`
+- `site.id`: `default`
+- `content.source`: `local`
+- `content.local_dir`: `./content`
+- `paths.file_root`: `./.notepub`
+- `paths.artifacts_dir`: `./.notepub/artifacts`
+- `paths.snapshot_file`: `./.notepub/snapshot/objects.json`
+- `paths.cache_root`: `./.notepub/cache`
+- `theme.dir`: `.`
+- `theme.name`: `theme`
+- `theme.templates_subdir`: `templates`
+- `theme.assets_subdir`: `assets`
+- `server.listen`: `127.0.0.1:8080`
+- `cache.html_ttl_seconds`: `600`
+- `cache.stale_if_error_seconds`: `604800`
+
+Engine-level defaults (when fields are omitted) may differ from recipe configs.
 
 ## `site`
 
-- `id`: cache namespace identifier.
-- `base_url`: required; normalized without trailing slash.
-- `title`, `description`: defaults for metadata.
-- `default_og_image`: fallback OG image.
-- `media_base_url`: optional absolute base for media URLs.
-- `host`: optional host allowlist primary value.
-- `host_aliases`: optional additional allowed hosts.
+- `id`: cache namespace identifier (default `default`).
+- `base_url`: required, normalized without trailing `/`.
+- `title`, `description`: default metadata.
+- `default_og_image`: OpenGraph fallback image.
+- `media_base_url`: optional absolute base URL for media.
+- `host`: primary allowlist host for `serve`.
+- `host_aliases`: additional allowed hosts for `serve`.
 
 ## `content`
 
 - `source`: `local` or `s3`.
-- `local_dir`: used when source is local; relative paths are resolved from config file directory.
+- `local_dir`: path for local mode; relative path is resolved from config directory.
+  If `source=local` and `local_dir` is missing, `markdown` is used.
 
 If `content.source` is empty:
 
-- defaults to `local` when `s3.bucket` is empty
-- defaults to `s3` when `s3.bucket` exists
+- `local` is selected when `s3.bucket` is empty
+- `s3` is selected when `s3.bucket` is set
 
 ## `s3`
 
 - `endpoint`, `region`, `force_path_style`
-- `bucket` (required when using source `s3`)
-- `prefix` normalized to no leading slash and optional trailing slash
+- `bucket` (required for `content.source: s3`)
+- `prefix` is normalized without leading `/`; if set, engine adds trailing `/`
 - credentials:
-  - both `access_key` and `secret_key`, or neither
-  - if both omitted, AWS default credential chain is used
-- `anonymous: true` disables signing (public bucket mode)
+  - either both `access_key` + `secret_key`, or neither
+  - when omitted, AWS default credential chain is used
+- `anonymous: true` disables request signing (public bucket)
+
+## `og_type_by_type`
+
+Map `type -> og:type` for OpenGraph.  
+Example: `article: article`, `page: website`.
 
 ## `theme`
 
@@ -68,16 +81,33 @@ If `content.source` is empty:
 
 ## `paths`
 
-- `artifacts_dir`: where index outputs are read/written
-- `snapshot_file`: object snapshot diff cache
-- `cache_root`: serve HTML cache root
+- `artifacts_dir`: directory for reading/writing index artifacts
+- `snapshot_file`: snapshot file for incremental indexing
+- `cache_root`: HTML cache root in `serve`
+
+## `robots`
+
+- `disallow`: list of paths for `robots.txt`.
+- `extra`: arbitrary text appended to `robots.txt`.
+
+## `cache`
+
+- `html_ttl_seconds`: HTML cache TTL in `serve` (default `600`).
+- `stale_if_error_seconds`: stale cache window on errors (default `604800`).
 
 ## `media`
 
 - `expose_all_under_prefix`:
-  - `false` default: `/media/*` only for media referenced in indexed markdown
-  - `true`: allow all media keys under prefix
+  - `false`: `/media/*` only for media referenced in indexed markdown
+  - `true`: expose all media under configured prefix
 
 ## `rules_path`
 
-If omitted, defaults to `rules.yaml` adjacent to config file.
+If omitted, default is `rules.yaml` next to config file.
+
+## Load-time validation
+
+- `site.base_url` is required.
+- `content.source` must be only `local` or `s3`.
+- For `source=s3`, `s3.bucket` is required.
+- For `source=s3`, `s3.access_key` and `s3.secret_key` must be set as a pair.
