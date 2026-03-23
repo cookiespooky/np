@@ -1087,6 +1087,24 @@ footer {
   text-align: center;
 }
 
+.productradar-badge-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 8px;
+}
+
+.productradar-badge-link {
+  display: inline-block;
+  line-height: 0;
+}
+
+.productradar-badge-link img {
+  display: block;
+  width: 196px;
+  height: 60px;
+}
+
 /* Personal-style header + mobile nav */
 .site-header {
   position: fixed;
