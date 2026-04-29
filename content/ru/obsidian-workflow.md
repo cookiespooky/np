@@ -43,19 +43,15 @@ Repository variables:
 3. Запустите "Commit-and-sync" в Obsidian Git.
 4. Workflow контент-репозитория автоматически триггерит deploy сайта.
 
-## Pre-build нормализация Obsidian
+## Обработка Obsidian в актуальном движке
 
-В CI pre-build скрипт нормализует два Obsidian-native паттерна до index/build:
+Новые версии движка обрабатывают Obsidian markdown-синтаксис нативно в `index`/`serve`/`build`.
+Pre-build нормализация markdown обычно нужна только для legacy-пайплайнов.
 
-- image embeds: `!\[\[cover.webp\]\]` -> стандартные markdown-ссылки на изображения
-- значения `hub` во frontmatter: вики-ссылки приводятся к plain slug
+Для `hub`-связей во frontmatter придерживайтесь соглашений вашего шаблона:
 
-Для `hub` поддерживаются и прямые slug-ссылки, и ссылки на filename:
-
-- `\[\[product\]\]` -> `product`
-- `\[\[product-hub\]\]` -> `product` (через frontmatter `slug` в файле хаба)
-
-Это сохраняет нативный поток в Obsidian и дает стабильную фильтрацию по хабам в шаблонах.
+- прямое slug-значение (`product`)
+- или формат, описанный в шаблоне (если в проекте включена нормализация wikilink frontmatter)
 
 ## Рекомендации по токенам
 

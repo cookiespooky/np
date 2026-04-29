@@ -28,7 +28,7 @@ lang: ru
 Что делает CI:
 
 - скачивает зафиксированный бинарник `notepub`
-- выполняет index/build
+- выполняет index + validate + build
 - деплоит `dist/` в Pages
 
 ## Что обычно делают дальше

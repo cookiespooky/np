@@ -61,6 +61,14 @@ notepub serve --config ./config.yaml --rules ./rules.yaml
 
 Для воспроизводимой сборки в команде и CI:
 
-- фиксируйте `NOTEPUB_VERSION` (например, `v0.1.3`)
+- фиксируйте `NOTEPUB_VERSION` (например, `v0.1.7`)
 - берите бинарники из GitHub Releases, а не через `latest`
 - держите локальные инструкции/скрипты и CI workflow на одной версии
+
+Для template-репозиториев дополнительно запускайте:
+
+```bash
+notepub template check
+```
+
+перед rollout, чтобы заранее увидеть drift инфраструктуры.

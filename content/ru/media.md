@@ -11,14 +11,15 @@ lang: ru
 
 Notepub переписывает ссылки на изображения из markdown и Obsidian-embed синтаксиса.
 
-В шаблонных репозиториях и CI обычно используется pre-build скрипт нормализации Obsidian embed-ссылок.
-Этот же скрипт может нормализовать и `hub`-викиссылки во frontmatter для стабильной фильтрации хабов на клиенте.
+Актуальные версии движка поддерживают Obsidian-синтаксис нативно в `serve`/`build`,
+поэтому pre-build rewrite-скрипты для markdown обычно нужны только в legacy-пайплайнах.
 
 ## Поддерживаемые синтаксисы
 
 - Markdown image: `![alt](path/to/image.png)`
 - Obsidian embed: `!\[\[image.png\]\]`
 - Obsidian embed с подписью: `!\[\[image.png|Cover image\]\]`
+- Video embed: `!\[\[demo.mp4\]\]` (рендерится как `<video ...>` для поддерживаемых расширений)
 
 ## Поведение в serve
 

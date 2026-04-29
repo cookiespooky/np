@@ -44,3 +44,8 @@ Template-репозитории — базовый путь запуска Notep
 - Контент и правила держите как главный источник истины.
 - Обновляйте версию `notepub` в CI постепенно.
 - Перед rollout всегда запускайте `validate`.
+- Используйте `notepub template check` / `template update --apply`, чтобы синхронизировать build/deploy-инфраструктуру с движком.
+- Для release-sensitive template-репозиториев добавляйте matrix quality gate по:
+  - `compat_mode` (`auto|modern|legacy`)
+  - режиму notes (`present|absent`)
+  - режиму source (`local|s3`)

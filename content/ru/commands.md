@@ -16,6 +16,8 @@ notepub index
 notepub serve
 notepub build
 notepub validate
+notepub template check
+notepub template update --apply
 notepub help
 notepub version
 ```
@@ -79,6 +81,29 @@ notepub validate --config ./config.yaml --rules ./rules.yaml --links
 
 - `--resolve` — явный путь к resolve-файлу
 - `--links` — валидация связей (нужен resolve.json)
+- `--markdown` — markdown-диагностика
+- `--markdown-strict` — падение команды при markdown-warning
+- `--markdown-format text|json` — формат вывода диагностики
+- `--output <path>` — запись markdown-диагностики в файл
+
+Примеры:
+
+```bash
+notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --markdown
+notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --markdown --markdown-strict
+```
+
+## `template check` / `template update`
+
+```bash
+notepub template check
+notepub template update
+notepub template update --apply
+```
+
+- `template check`: статус инфраструктуры шаблона + manual findings.
+- `template update`: dry-run по умолчанию.
+- `template update --apply`: обновляет распознанные инфраструктурные файлы (build/workflow/config wiring), не трогая контент.
 
 ## Коды выхода
 
