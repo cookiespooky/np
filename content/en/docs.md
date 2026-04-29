@@ -45,3 +45,8 @@ If you use a recipe repository with GitHub Actions, most of the time you only ed
 - `rules.yaml` (as needed)
 
 Workflow runs `validate` + `build` and deploys site to GitHub Pages.
+
+For template repositories, also keep infrastructure aligned with engine releases using:
+
+- `notepub template check`
+- `notepub template update --apply`

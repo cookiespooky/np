@@ -28,7 +28,7 @@ To edit your site content, place your markdown files into `content/` and remove 
 CI does:
 
 - downloads pinned `notepub` binary
-- runs index/build
+- runs index + validate + build
 - deploys `dist/` to Pages
 
 ## What users usually do next

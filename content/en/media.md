@@ -11,14 +11,15 @@ lang: en
 
 Notepub rewrites image references from markdown and Obsidian embeds.
 
-For template repositories and CI pipelines, Obsidian embed normalization is typically done in a pre-build script.
-That script can also normalize `hub` wikilinks in frontmatter for stable client-side hub filtering.
+Current engine versions support Obsidian syntax natively in serve/build paths,
+so pre-build markdown rewrite scripts are optional and mostly legacy.
 
 ## Supported image syntaxes
 
 - Markdown image: `![alt](path/to/image.png)`
 - Obsidian embed: `!\[\[image.png\]\]`
 - Obsidian embed with alt-like label: `!\[\[image.png|Cover image\]\]`
+- Video embed: `!\[\[demo.mp4\]\]` (renders as `<video ...>` for supported extensions)
 
 ## Serve mode behavior
 

@@ -16,6 +16,8 @@ notepub index
 notepub serve
 notepub build
 notepub validate
+notepub template check
+notepub template update --apply
 notepub help
 notepub version
 ```
@@ -79,6 +81,29 @@ Flags:
 
 - `--resolve` explicit resolve path
 - `--links` validate resolved links (requires resolve.json)
+- `--markdown` run markdown diagnostics
+- `--markdown-strict` fail command on markdown warnings
+- `--markdown-format text|json` diagnostics output format
+- `--output <path>` write markdown diagnostics report to file
+
+Examples:
+
+```bash
+notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --markdown
+notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --markdown --markdown-strict
+```
+
+## `template check` / `template update`
+
+```bash
+notepub template check
+notepub template update
+notepub template update --apply
+```
+
+- `template check`: reports infrastructure status and manual review findings.
+- `template update`: dry run by default.
+- `template update --apply`: updates recognized infrastructure files (build scripts/workflows/config wiring), while leaving content unchanged.
 
 ## Exit codes
 

@@ -44,3 +44,8 @@ If you need:
 - Keep content and rules as your primary source of truth.
 - Upgrade `notepub` version in CI gradually.
 - Always run `validate` before rollout.
+- Use `notepub template check` / `template update --apply` to keep build/deploy infrastructure in sync.
+- For release-sensitive template repos, add a matrix quality gate across:
+  - `compat_mode` (`auto|modern|legacy`)
+  - notes mode (`present|absent`)
+  - source mode (`local|s3`)

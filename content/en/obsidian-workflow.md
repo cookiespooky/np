@@ -43,19 +43,15 @@ Repository variables:
 3. Run "Commit-and-sync" in Obsidian Git.
 4. Content repository workflow automatically triggers site deploy.
 
-## Pre-build Obsidian normalization
+## Obsidian handling in current engine
 
-In CI, pre-build script normalizes two Obsidian-native patterns before index/build:
+Recent engine versions handle Obsidian markdown syntax natively during `index`/`serve`/`build`.
+Pre-build markdown normalization scripts are optional and usually kept only for legacy pipelines.
 
-- image embeds: `!\[\[cover.webp\]\]` -> standard markdown image links
-- `hub` values in frontmatter: wikilinks are converted to plain slug
+For `hub` relationships in frontmatter, keep values consistent with your template rules:
 
-For `hub`, both direct slug links and filename links are supported:
-
-- `\[\[product\]\]` -> `product`
-- `\[\[product-hub\]\]` -> `product` (via frontmatter `slug` in hub file)
-
-This keeps native Obsidian flow and provides stable hub filtering in templates.
+- direct slug-like value (`product`)
+- or repository conventions documented by your template (if wikilink frontmatter is normalized in that project)
 
 ## Token guidance
 

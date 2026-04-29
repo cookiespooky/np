@@ -61,6 +61,14 @@ If pages render but media is broken on static host, fix `site.media_base_url` fi
 
 For reproducible builds in teams and CI:
 
-- pin `NOTEPUB_VERSION` (for example, `v0.1.3`)
+- pin `NOTEPUB_VERSION` (for example, `v0.1.7`)
 - download binaries from GitHub Releases instead of using `latest`
 - keep local docs/scripts and CI workflow on the same pinned version
+
+For template-based repos, also run:
+
+```bash
+notepub template check
+```
+
+before rollouts to catch infrastructure drift.
