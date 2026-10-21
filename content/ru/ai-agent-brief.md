@@ -12,7 +12,7 @@ lang: ru
 Эта страница нужна, если вы хотите делегировать запуск/настройку сайта AI-агенту.
 
 Если вы только знакомитесь с Notepub, сначала пройдите:
-[Быстрый старт](/ru/docs/getting-started/), [Template-репозитории](/ru/docs/template-repos/) и [Структура контента в template-репозиториях](/ru/docs/recipe-structure/).
+[[getting-started|Быстрый старт]], [[template-repos|Template-репозитории]] и [[recipe-structure|Структура контента в template-репозиториях]].
 
 Короткая ссылка на общую документацию:
 
@@ -24,12 +24,12 @@ lang: ru
 1. Цель проекта: `blog` или `docs`.
 2. Сценарий: `one-repo` (template site repo) или `content_repo`.
 `one-repo` = один сайт-репозиторий с контентом и темой - простой дефолтный способ.  
-`content_repo` = отдельный репозиторий с контентом. Подробно: [Режим Content Repository](/ru/docs/content-repo/).
+`content_repo` = отдельный репозиторий с контентом. Подробно: [[content-repo|Режим Content Repository]].
 3. URL и имя репозитория: `owner/repo` (и контент-репозитория, если выбрали режим `content-repo`).
 4. Рабочая директория на вашей локальной машине (абсолютный путь).
 5. Язык(и) и структура контента (например, только RU или RU+EN).
 6. Что можно менять: только `content/` или также `theme/`, `rules.yaml`, workflow.
-Если нужен S3-источник, смотрите: [Режим S3](/ru/docs/s3-content/).
+Если нужен S3-источник, смотрите: [[s3-content|Режим S3]].
 
 ## Какие доступы нужны агенту
 
@@ -47,9 +47,9 @@ lang: ru
 
 Справочники по этим пунктам:
 
-- [Справочник config.yaml](/ru/docs/configuration/)
-- [Справочник rules.yaml](/ru/docs/rules-yaml/)
-- [Руководство по авторингу](/ru/docs/content-authoring/)
+- [[configuration|Справочник config.yaml]]
+- [[rules-yaml|Справочник rules.yaml]]
+- [[content-authoring|Руководство по авторингу]]
 
 ## Definition of Done (критерии готовности)
 
@@ -61,8 +61,8 @@ lang: ru
 
 Про локальный прогон и деплой:
 
-- [Локальный запуск](/ru/docs/local-run/)
-- [Сборка и деплой](/ru/docs/build-and-deploy/)
+- [[local-run|Локальный запуск]]
+- [[build-and-deploy|Сборка и деплой]]
 
 ## Готовый шаблон сообщения агенту
 

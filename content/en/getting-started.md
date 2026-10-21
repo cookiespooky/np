@@ -12,7 +12,7 @@ This is the shortest default scenario. Start here.
 
 ## Recommended default: local content in the same repository
 
-1. Create your site repository via **Use this template** from a Notepub template. [Available templates](/en/docs/template-repos/)
+1. Create your site repository via **Use this template** from a Notepub template. [[template-repos|Available templates]]
 ![](/media/use-this-template.webp)
 2. In repository settings, enable GitHub Pages with **GitHub Actions** as the source. You can also configure a custom domain there.
 ![](/media/github-pages.webp)
@@ -35,16 +35,16 @@ CI does:
 
 After first deploy, you usually need to:
 
-- Update site metadata (`title`, `description`, `base_url`, etc.): [Configuration Reference](/en/docs/configuration/)
-- Customize templates and visual style: [Themes and Templates](/en/docs/themes/)
-- Run project locally before push: [Local Run](/en/docs/local-run/)
-- Delegate setup to an agent when needed: [AI/MCP Agent Brief](/en/docs/ai-agent-brief/)
+- Update site metadata (`title`, `description`, `base_url`, etc.): [[configuration|Configuration Reference]]
+- Customize templates and visual style: [[themes|Themes and Templates]]
+- Run project locally before push: [[local-run|Local Run]]
+- Delegate setup to an agent when needed: [[ai-agent-brief|AI/MCP Agent Brief]]
 
-If you use template repos, also see [Template Repositories](/en/docs/template-repos/).
+If you use template repos, also see [[template-repos|Template Repositories]].
 
 ## Minimal frontmatter
 
-Before writing lots of content, read [Content Structure in Template Repositories](/en/docs/recipe-structure/). It shows the page types of the documentation, services and blog templates. Once you understand the structure, you can model your own markdown worlds and build static websites of any complexity and nesting.
+Before writing lots of content, read [[recipe-structure|Content Structure in Template Repositories]]. It shows the page types of the documentation, services and blog templates. Once you understand the structure, you can model your own markdown worlds and build static websites of any complexity and nesting.
 
 For a typical template:
 
@@ -60,8 +60,8 @@ draft: false
 
 ## Advanced content source modes
 
-- Content from a separate repository: [Content Repository Mode](/en/docs/content-repo/)
-- Content from S3-compatible storage: [S3 Content Mode](/en/docs/s3-content/)
-- Obsidian flow and required variables/secrets: [Obsidian Workflow](/en/docs/obsidian-workflow/)
+- Content from a separate repository: [[content-repo|Content Repository Mode]]
+- Content from S3-compatible storage: [[s3-content|S3 Content Mode]]
+- Obsidian flow and required variables/secrets: [[obsidian-workflow|Obsidian Workflow]]
 
-Next: [Configuration Reference](/en/docs/configuration/) and [rules.yaml Reference](/en/docs/rules-yaml/).
+Next: [[configuration|Configuration Reference]] and [[rules-yaml|rules.yaml Reference]].

@@ -12,7 +12,7 @@ lang: en
 Use this page if you want to delegate site setup/deploy to an AI agent.
 
 If you are new to Notepub, go through:
-[Getting Started](/en/docs/getting-started/), [Template Repositories](/en/docs/template-repos/), and [Content Structure in Template Repositories](/en/docs/recipe-structure/).
+[[getting-started|Getting Started]], [[template-repos|Template Repositories]], and [[recipe-structure|Content Structure in Template Repositories]].
 
 Short links to full docs:
 
@@ -24,12 +24,12 @@ Short links to full docs:
 1. Project goal: `blog` or `docs`.
 2. Scenario: `one-repo` (template site repo) or `content_repo`.
 `one-repo` = one site repo with both content and theme - the simple default option.  
-`content_repo` = separate content repository. Details: [Content Repository Mode](/en/docs/content-repo/).
+`content_repo` = separate content repository. Details: [[content-repo|Content Repository Mode]].
 3. Repository URL and name: `owner/repo` (and content repo too, if `content_repo` mode is selected).
 4. Working directory on your local machine (absolute path).
 5. Language(s) and content structure (for example EN only or EN+RU).
 6. Allowed change scope: only `content/`, or also `theme/`, `rules.yaml`, workflow.
-For S3 source mode, see: [S3 Content Mode](/en/docs/s3-content/).
+For S3 source mode, see: [[s3-content|S3 Content Mode]].
 
 ## Access the agent needs
 
@@ -47,9 +47,9 @@ For S3 source mode, see: [S3 Content Mode](/en/docs/s3-content/).
 
 References for these inputs:
 
-- [Configuration Reference](/en/docs/configuration/)
-- [rules.yaml Reference](/en/docs/rules-yaml/)
-- [Authoring Guide](/en/docs/content-authoring/)
+- [[configuration|Configuration Reference]]
+- [[rules-yaml|rules.yaml Reference]]
+- [[content-authoring|Authoring Guide]]
 
 ## Definition of Done
 
@@ -61,8 +61,8 @@ References for these inputs:
 
 Local run and deploy references:
 
-- [Local Run](/en/docs/local-run/)
-- [Build and Deploy](/en/docs/build-and-deploy/)
+- [[local-run|Local Run]]
+- [[build-and-deploy|Build and Deploy]]
 
 ## Ready-to-use prompt template
 

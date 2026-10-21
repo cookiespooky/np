@@ -45,4 +45,4 @@ Workflow в сайт-репозитории подтягивает контен�
 - Избегайте дублирующихся slug внутри одного языка.
 - Оставляйте search-страницу для каждого языка, если она требуется правилами.
 
-Дальше: [Workflow с Obsidian](/ru/docs/obsidian-workflow/).
+Дальше: [[obsidian-workflow|Workflow с Obsidian]].

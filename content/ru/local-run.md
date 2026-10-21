@@ -66,4 +66,4 @@ $NOTEPUB_BIN build --config ./config.yaml --rules ./rules.yaml --dist ./dist
 - `serve` — посмотреть сайт локально в серверном режиме.
 - `build` — получить статический output в `dist/`.
 
-Если нужен полный справочник флагов, смотрите [Команды](/ru/docs/commands/).
+Если нужен полный справочник флагов, смотрите [[commands|Команды]].

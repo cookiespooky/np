@@ -22,7 +22,7 @@ This page highlights recent releases that materially changed template behavior.
 - Fixed: an incremental `index` kept old canonical/`og:url` after `base_url` changed; pages 2…N of a paginated list carried page 1's `og:url`.
 - `template update`: the deploy workflow checks out full history, `build.sh` dates notes by commits, turns the Pages `http://` address into `https://` and runs the SEO check.
 
-See [SEO Reference](/en/docs/seo).
+See [[seo|SEO Reference]].
 
 ## Release `v0.1.8` (`2026-09-10`)
 

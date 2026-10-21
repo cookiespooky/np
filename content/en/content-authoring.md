@@ -36,7 +36,7 @@ Common optional fields:
 - `alternates` — language versions for hreflang
 - `schema_type` — schema.org type of the page with `seo.jsonld: auto`
 
-See [SEO Reference](/en/docs/seo).
+See [[seo|SEO Reference]].
 
 ## Draft behavior
 

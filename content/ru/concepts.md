@@ -13,6 +13,6 @@ lang: ru
 
 Рекомендуемый порядок:
 
-1. [Для кого подходит Notepub](/ru/docs/for-whom)
-2. [Модель контента и маршрутизация](/ru/docs/content-model)
-3. [Переносимость и vendor lock-in](/ru/docs/vendor-lock-in)
+1. [[for-whom|Для кого подходит Notepub]]
+2. [[content-model|Модель контента и маршрутизация]]
+3. [[vendor-lock-in|Переносимость и vendor lock-in]]

@@ -13,9 +13,9 @@ Technical section for precise setup and diagnostics.
 
 Read by topic:
 
-1. [config.yaml Reference](/en/docs/configuration)
-2. [rules.yaml Reference](/en/docs/rules-yaml)
-3. [Collections Reference](/en/docs/collections-reference)
-4. [Artifacts and Outputs](/en/docs/artifacts-reference)
-5. [Engine Changelog](/en/docs/engine-changelog)
-6. [SEO Reference](/en/docs/seo)
+1. [[configuration|config.yaml Reference]]
+2. [[rules-yaml|rules.yaml Reference]]
+3. [[collections-reference|Collections Reference]]
+4. [[artifacts-reference|Artifacts and Outputs]]
+5. [[engine-changelog|Engine Changelog]]
+6. [[seo|SEO Reference]]

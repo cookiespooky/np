@@ -85,7 +85,7 @@ Flags:
 - `--markdown-strict` fail command on markdown warnings
 - `--markdown-format text|json` diagnostics output format
 - `--output <path>` write markdown diagnostics report to file
-- `--seo` check titles, descriptions, isolated pages, robots and lastmod ([SEO Reference](/en/docs/seo))
+- `--seo` check titles, descriptions, isolated pages, robots and lastmod ([[seo|SEO Reference]])
 - `--seo-strict` fail command on SEO warnings
 - `--seo-format text|json` SEO findings output format
 

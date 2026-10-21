@@ -88,7 +88,7 @@ Example: `article: article`, `page: website`.
 - `article_types`: types marked up as `Article` (default: types `og_type_by_type` maps to `article`).
 - `author_name`: default `author` of `Article` markup.
 
-See [SEO Reference](/en/docs/seo).
+See [[seo|SEO Reference]].
 
 ## `feed`
 

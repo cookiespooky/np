@@ -11,7 +11,7 @@ lang: ru
 Это самый короткий дефолтный сценарий. Начните с него.
 ## Рекомендуемый дефолт: local-контент в этом же репозитории
 
-1. Создайте репозиторий для вашего сайта через **Use this template** из шаблона Notepub. [Доступные шаблоны](/ru/docs/template-repos/)
+1. Создайте репозиторий для вашего сайта через **Use this template** из шаблона Notepub. [[template-repos|Доступные шаблоны]]
 ![](/media/use-this-template.webp)
 2. В настройках репозитория включите GitHub Pages с источником **GitHub Actions**. Здесь же можно указать собственный домен.
 ![](/media/github-pages.webp)
@@ -35,15 +35,15 @@ lang: ru
 
 После первого деплоя обычно нужно:
 
-- Изменить данные сайта (title, description, base_url и другие параметры): [Справочник config.yaml](/ru/docs/configuration/)
-- Изменить шаблоны и внешний вид: [Темы и шаблоны](/ru/docs/themes/)
-- Запускать проект локально перед push: [Локальный запуск](/ru/docs/local-run/)
-- Если хотите делегировать setup агенту: [Бриф для AI/MCP-агента](/ru/docs/ai-agent-brief/)
+- Изменить данные сайта (title, description, base_url и другие параметры): [[configuration|Справочник config.yaml]]
+- Изменить шаблоны и внешний вид: [[themes|Темы и шаблоны]]
+- Запускать проект локально перед push: [[local-run|Локальный запуск]]
+- Если хотите делегировать setup агенту: [[ai-agent-brief|Бриф для AI/MCP-агента]]
 
-Если вы работаете через template-repo, смотрите также [Template-репозитории](/ru/docs/template-repos/).
+Если вы работаете через template-repo, смотрите также [[template-repos|Template-репозитории]].
 ## Минимальный frontmatter
 
-Перед наполнением контента прочитайте [Структура контента в template-репозиториях](/ru/docs/recipe-structure/) — там типы страниц шаблонов документации, сайта услуг и блога. Поняв, как устроена структура, вы сможете моделировать собственные markdown-миры и собирать статические сайты любой структуры/сложности/вложенности.
+Перед наполнением контента прочитайте [[recipe-structure|Структура контента в template-репозиториях]] — там типы страниц шаблонов документации, сайта услуг и блога. Поняв, как устроена структура, вы сможете моделировать собственные markdown-миры и собирать статические сайты любой структуры/сложности/вложенности.
 
 Для типового шаблона:
 
@@ -59,8 +59,8 @@ draft: false
 
 ## Продвинутые режимы источника контента
 
-- Контент из отдельного репозитория: [Режим Content Repository](/ru/docs/content-repo/)
-- Контент из S3-совместимого хранилища: [Режим S3](/ru/docs/s3-content/)
-- Поток через Obsidian и настройки variables/secrets: [Workflow с Obsidian](/ru/docs/obsidian-workflow/)
+- Контент из отдельного репозитория: [[content-repo|Режим Content Repository]]
+- Контент из S3-совместимого хранилища: [[s3-content|Режим S3]]
+- Поток через Obsidian и настройки variables/secrets: [[obsidian-workflow|Workflow с Obsidian]]
 
-Дальше: [Справочник config.yaml](/ru/docs/configuration/) и [Справочник rules.yaml](/ru/docs/rules-yaml/).
+Дальше: [[configuration|Справочник config.yaml]] и [[rules-yaml|Справочник rules.yaml]].

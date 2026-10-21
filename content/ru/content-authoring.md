@@ -36,7 +36,7 @@ title: Понятный заголовок
 - `alternates` — языковые версии для hreflang
 - `schema_type` — тип schema.org для страницы при `seo.jsonld: auto`
 
-См. [Справочник по SEO](/ru/docs/seo).
+См. [[seo|Справочник по SEO]].
 
 ## Поведение draft
 

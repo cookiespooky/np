@@ -43,12 +43,12 @@ Every list on a page is a collection in `rules.yaml`, read in a template as `.Co
 - `backrefs` — notes that link to the current page through a link rule (works of a service, pages of a hub);
 - `forward` — notes the current page links to (`related`, the service of a work).
 
-See [Collections Reference](/en/docs/collections-reference/).
+See [[collections-reference|Collections Reference]].
 
 ## Relations
 
 - field links: `hub`, `related`, `service` — a property holding a slug or a `[[wikilink]]`;
-- body wikilinks — `[[slug|text]]` in the text, resolved by path, file name or slug ([Links and Wikilinks](/en/docs/links-and-wikilinks/));
+- body wikilinks — `[[slug|text]]` in the text, resolved by path, file name or slug ([[links-and-wikilinks|Links and Wikilinks]]);
 - embeds — `![[photo.jpg]]` finds the file by name in `content/` and `media/`, as Obsidian does.
 
 ## Modeling your own notes

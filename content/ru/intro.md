@@ -13,6 +13,6 @@ lang: ru
 
 Рекомендуемый порядок:
 
-1. [Руководство по авторингу](/ru/docs/content-authoring)
-2. [Ссылки и wikilinks](/ru/docs/links-and-wikilinks)
-3. [Медиа и изображения](/ru/docs/media)
+1. [[content-authoring|Руководство по авторингу]]
+2. [[links-and-wikilinks|Ссылки и wikilinks]]
+3. [[media|Медиа и изображения]]

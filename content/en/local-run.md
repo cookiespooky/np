@@ -66,4 +66,4 @@ $NOTEPUB_BIN build --config ./config.yaml --rules ./rules.yaml --dist ./dist
 - `serve` - preview site locally in server mode.
 - `build` - produce static output in `dist/`.
 
-For full flags reference, see [Commands](/en/docs/commands/).
+For full flags reference, see [[commands|Commands]].

@@ -85,7 +85,7 @@ notepub validate --config ./config.yaml --rules ./rules.yaml --links
 - `--markdown-strict` — падение команды при markdown-warning
 - `--markdown-format text|json` — формат вывода диагностики
 - `--output <path>` — запись markdown-диагностики в файл
-- `--seo` — проверка заголовков, описаний, изолированных страниц, robots и lastmod ([Справочник по SEO](/ru/docs/seo))
+- `--seo` — проверка заголовков, описаний, изолированных страниц, robots и lastmod ([[seo|Справочник по SEO]])
 - `--seo-strict` — падение команды при SEO-warning
 - `--seo-format text|json` — формат вывода находок SEO
 

@@ -13,9 +13,9 @@ lang: ru
 
 Читайте по темам:
 
-1. [Справочник config.yaml](/ru/docs/configuration)
-2. [Справочник rules.yaml](/ru/docs/rules-yaml)
-3. [Справочник коллекций](/ru/docs/collections-reference)
-4. [Артефакты и output](/ru/docs/artifacts-reference)
-5. [Журнал изменений движка](/ru/docs/engine-changelog)
-6. [Справочник по SEO](/ru/docs/seo)
+1. [[configuration|Справочник config.yaml]]
+2. [[rules-yaml|Справочник rules.yaml]]
+3. [[collections-reference|Справочник коллекций]]
+4. [[artifacts-reference|Артефакты и output]]
+5. [[engine-changelog|Журнал изменений движка]]
+6. [[seo|Справочник по SEO]]

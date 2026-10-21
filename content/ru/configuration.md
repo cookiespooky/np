@@ -88,7 +88,7 @@ Config читается из YAML, затем нормализуется.
 - `article_types`: типы, размечаемые как `Article` (по умолчанию — типы, которые `og_type_by_type` называет `article`).
 - `author_name`: `author` по умолчанию в разметке `Article`.
 
-См. [Справочник по SEO](/ru/docs/seo).
+См. [[seo|Справочник по SEO]].
 
 ## `feed`
 

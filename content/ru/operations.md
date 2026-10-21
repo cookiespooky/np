@@ -13,7 +13,7 @@ lang: ru
 
 Рекомендуемый порядок:
 
-1. [Команды](/ru/docs/commands)
-2. [Поиск](/ru/docs/search)
-3. [Темы и шаблоны](/ru/docs/themes)
-4. [Диагностика проблем](/ru/docs/troubleshooting)
+1. [[commands|Команды]]
+2. [[search|Поиск]]
+3. [[themes|Темы и шаблоны]]
+4. [[troubleshooting|Диагностика проблем]]

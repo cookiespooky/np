@@ -12,20 +12,20 @@ Notepub — это publishing-движок в одном бинарнике, к�
 
 Если вы только начинаете, идите по порядку:
 
-1. [Обзор](/ru/docs/overview)
-2. [Быстрый старт](/ru/docs/getting-started)
-3. [Template-репозитории](/ru/docs/template-repos)
-4. [Структура контента в template-репозиториях](/ru/docs/recipe-structure)
-5. [Сборка и деплой](/ru/docs/build-and-deploy)
-6. [Локальный запуск](/ru/docs/local-run)
-7. [Бриф для AI/MCP-агента](/ru/docs/ai-agent-brief)
+1. [[overview|Обзор]]
+2. [[getting-started|Быстрый старт]]
+3. [[template-repos|Template-репозитории]]
+4. [[recipe-structure|Структура контента в template-репозиториях]]
+5. [[build-and-deploy|Сборка и деплой]]
+6. [[local-run|Локальный запуск]]
+7. [[ai-agent-brief|Бриф для AI/MCP-агента]]
 
 Дальше углубляйтесь по разделам:
 
-- [Концепции и архитектура](/ru/docs/concepts)
-- [Авторинг контента](/ru/docs/content-authoring)
-- [Эксплуатация](/ru/docs/operations)
-- [Справочник](/ru/docs/reference)
+- [[concepts|Концепции и архитектура]]
+- [[content-authoring|Авторинг контента]]
+- [[operations|Эксплуатация]]
+- [[reference|Справочник]]
 
 ## Что дает Notepub
 
@@ -34,7 +34,7 @@ Notepub — это publishing-движок в одном бинарнике, к�
 - Два режима работы:
   - `serve` для динамического рендеринга.
   - `build` для статического HTML в `dist/`.
-- SEO по умолчанию: карта сайта с настоящими датами изменений, robots, canonical, OpenGraph, hreflang, JSON-LD, RSS и проверка `validate --seo` — см. [Справочник по SEO](/ru/docs/seo).
+- SEO по умолчанию: карта сайта с настоящими датами изменений, robots, canonical, OpenGraph, hreflang, JSON-LD, RSS и проверка `validate --seo` — см. [[seo|Справочник по SEO]].
 
 ## Базовый no-code workflow
 

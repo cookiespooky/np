@@ -45,4 +45,4 @@ Mandatory pages expected by rules:
 - Avoid duplicate slugs per language.
 - Keep `search` page in each language if your rules require it.
 
-Continue with [Obsidian Workflow](/en/docs/obsidian-workflow/) for trigger setup.
+Continue with [[obsidian-workflow|Obsidian Workflow]] for trigger setup.
