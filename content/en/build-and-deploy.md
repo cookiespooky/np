@@ -52,16 +52,20 @@ Serve mode is best when:
 - `validate` passes in CI.
 - `search.json` is generated/copied for static search pages.
 - theme contains `notfound.html` for custom 404.
+- `validate --seo` has no warnings you did not mean to keep.
+- a site under a path (`https://example.com/docs/`) lists its sitemap in the root `robots.txt` of the host.
 
 ## Deploy debugging
 
 If pages render but media is broken on static host, fix `site.media_base_url` first.
 
+If canonical URLs name another host than the one the site opens on, or every menu link opens in a new tab, the site was built for a different address. On GitHub Pages, take the address from `actions/configure-pages` (`steps.pages.outputs.base_url`) rather than building `owner.github.io/repo` yourself: when the account's user site has a custom domain, every project site moves to that domain, and it is only reflected after the project site is rebuilt.
+
 ## Binary source policy
 
 For reproducible builds in teams and CI:
 
-- pin `NOTEPUB_VERSION` (for example, `v0.1.7`)
+- pin `NOTEPUB_VERSION` (for example, `v0.1.9`)
 - download binaries from GitHub Releases instead of using `latest`
 - keep local docs/scripts and CI workflow on the same pinned version
 

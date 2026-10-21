@@ -18,3 +18,4 @@ lang: ru
 3. [Справочник коллекций](/ru/docs/collections-reference)
 4. [Артефакты и output](/ru/docs/artifacts-reference)
 5. [Журнал изменений движка](/ru/docs/engine-changelog)
+6. [Справочник по SEO](/ru/docs/seo)

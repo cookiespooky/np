@@ -2,7 +2,7 @@
 type: hub_en
 slug: operations
 title: Operations
-description: Running Notepub in CI and production.
+description: Running Notepub in CI and production — builds, deploys, health checks and troubleshooting.
 hub: docs
 order: 12
 draft: false

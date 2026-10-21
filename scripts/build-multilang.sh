@@ -28,10 +28,12 @@ fi
 
 echo "[1/7] EN index/build"
 "$BIN" index --config "$EN_CFG" --rules "$EN_RULES"
+"$BIN" validate --config "$EN_CFG" --rules "$EN_RULES" --resolve "$EN_ART/resolve.json" --seo
 "$BIN" build --config "$EN_CFG" --rules "$EN_RULES" --artifacts "$EN_ART" --dist "$EN_DIST"
 
 echo "[2/7] RU index/build"
 "$BIN" index --config "$RU_CFG" --rules "$RU_RULES"
+"$BIN" validate --config "$RU_CFG" --rules "$RU_RULES" --resolve "$RU_ART/resolve.json" --seo
 "$BIN" build --config "$RU_CFG" --rules "$RU_RULES" --artifacts "$RU_ART" --dist "$RU_DIST"
 
 echo "[3/7] prepare output"
@@ -69,18 +71,30 @@ rsync -a --prune-empty-dirs \
   ./content/ru/ "$OUT_DIST/media/"
 
 echo "[5/7] generate combined sitemap.xml"
+# Both language builds already wrote sitemaps with public URLs (trailing slash) and <lastmod>;
+# the combined one keeps their <url> entries as they are.
 find "$OUT_DIST" -maxdepth 1 -type f \( -name 'sitemap-index.xml' -o -name 'sitemap-*.xml' \) -delete 2>/dev/null || true
-{
-  echo '<?xml version="1.0" encoding="UTF-8"?>'
-  echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-  jq -r '.routes | to_entries[] | select(.value.status == 200) | .key' "$EN_ART/resolve.json" "$RU_ART/resolve.json" \
-    | sort -u \
-    | while IFS= read -r p; do
-        [[ -z "$p" ]] && continue
-        echo "  <url><loc>${BASE_URL}${p}</loc></url>"
-      done
-  echo '</urlset>'
-} > "$OUT_DIST/sitemap.xml"
+python3 - "$OUT_DIST/sitemap.xml" "$EN_ART" "$RU_ART" <<'PY'
+import glob
+import re
+import sys
+
+out, dirs = sys.argv[1], sys.argv[2:]
+entries = {}
+for d in dirs:
+    for f in sorted(glob.glob(f"{d}/sitemap-*.xml")):
+        if f.endswith("sitemap-index.xml"):
+            continue
+        for block in re.findall(r"<url>.*?</url>", open(f, encoding="utf-8").read(), re.S):
+            loc = re.search(r"<loc>(.*?)</loc>", block).group(1)
+            entries[loc] = re.sub(r"\s+", "", block)
+with open(out, "w", encoding="utf-8") as fh:
+    fh.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
+    for loc in sorted(entries):
+        fh.write("  " + entries[loc] + "\n")
+    fh.write("</urlset>\n")
+print(f"sitemap: {len(entries)} urls")
+PY
 
 echo "[6/7] normalize robots and llms pointers"
 if [[ -f "$OUT_DIST/robots.txt" ]]; then

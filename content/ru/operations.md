@@ -2,7 +2,7 @@
 type: hub_ru
 slug: operations
 title: Эксплуатация
-description: Запуск и поддержка Notepub в CI и production.
+description: Запуск и поддержка Notepub в CI и production — сборка, публикация, проверки и разбор проблем.
 hub: docs
 order: 12
 draft: false

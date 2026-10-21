@@ -15,7 +15,7 @@ If you are just starting, follow this order:
 1. [Overview](/en/docs/overview)
 2. [Getting Started](/en/docs/getting-started)
 3. [Template Repositories](/en/docs/template-repos)
-4. [Content Structure in Recipe Repositories](/en/docs/recipe-structure)
+4. [Content Structure in Template Repositories](/en/docs/recipe-structure)
 5. [Build and Deploy](/en/docs/build-and-deploy)
 6. [Local Run](/en/docs/local-run)
 7. [AI/MCP Agent Brief](/en/docs/ai-agent-brief)
@@ -34,15 +34,15 @@ Then go deeper by area:
 - Two operation modes:
   - `serve` for dynamic rendering.
   - `build` for static HTML in `dist/`.
-- SEO artifacts by default: sitemap, robots, canonical, OpenGraph, JSON-LD.
+- SEO by default: sitemap with real change dates, robots, canonical, OpenGraph, hreflang, JSON-LD, RSS and a `validate --seo` check — see [SEO Reference](/en/docs/seo).
 
 ## Basic no-code workflow
 
-If you use a recipe repository with GitHub Actions, most of the time you only edit:
+If you use a template repository with GitHub Actions, most of the time you only edit:
 
-- `content/*.md`
-- `config.yaml`
-- `rules.yaml` (as needed)
+- `content/*.md` and `media/`
+- `Site.md` and `Interface.md`
+- `.np/rules.yaml` (as needed)
 
 Workflow runs `validate` + `build` and deploys site to GitHub Pages.
 

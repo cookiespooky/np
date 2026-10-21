@@ -44,15 +44,15 @@ If you use template repos, also see [Template Repositories](/en/docs/template-re
 
 ## Minimal frontmatter
 
-Before writing lots of content, read [Content Structure in Recipe Repositories](/en/docs/recipe-structure/). It helps you model notes correctly (`home`/`hub`/`article`/`page`/`search`). Once you understand the structure, you can model your own markdown worlds and build static websites of any complexity and nesting.
+Before writing lots of content, read [Content Structure in Template Repositories](/en/docs/recipe-structure/). It shows the page types of the documentation, services and blog templates. Once you understand the structure, you can model your own markdown worlds and build static websites of any complexity and nesting.
 
-For a typical recipe:
+For a typical template:
 
 ```yaml
 ---
 type: article
 slug: my-first-note # canonical page URL
-title: Page title # also SEO title
+title: Page title # page heading and <title>; seo_title overrides the latter
 description: Note description # also SEO meta description
 draft: false
 ---

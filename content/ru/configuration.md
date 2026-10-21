@@ -2,7 +2,7 @@
 type: article_ru
 slug: configuration
 title: Справочник config.yaml
-description: Подробное описание основных секций config.yaml.
+description: Подробное описание основных секций config.yaml — разделы site, content, seo, feed, media, robots и другие.
 hub: reference
 order: 1
 draft: false
@@ -18,16 +18,18 @@ Config читается из YAML, затем нормализуется.
 2. `CONFIG_PATH`
 3. `config.yaml`
 
-Актуальные стартовые значения для template-репозиториев (`notepub-recipe-blog`, `notepub-recipe-docs`):
+Стартовые значения в официальных шаблонах (`np-template-docs`, `np-template-services`, `np-template-blog`), конфиг которых лежит в `.np/config.yaml`:
 
-- `site.id`: `default`
+- `site.id`: имя шаблона
 - `content.source`: `local`
-- `content.local_dir`: `./content`
+- `content.local_dir`: `../content` (относительно `.np/`)
+- `media.dirs`: `["../media"]`
+- `runtime.mode`: `auto`
 - `paths.file_root`: `./.notepub`
 - `paths.artifacts_dir`: `./.notepub/artifacts`
 - `paths.snapshot_file`: `./.notepub/snapshot/objects.json`
 - `paths.cache_root`: `./.notepub/cache`
-- `theme.dir`: `.`
+- `theme.dir`: `./.np`
 - `theme.name`: `theme`
 - `theme.templates_subdir`: `templates`
 - `theme.assets_subdir`: `assets`
@@ -35,7 +37,7 @@ Config читается из YAML, затем нормализуется.
 - `cache.html_ttl_seconds`: `600`
 - `cache.stale_if_error_seconds`: `604800`
 
-Системные defaults движка (если поля не заданы) могут отличаться от recipe-конфигов.
+Системные defaults движка (если поля не заданы) могут отличаться от конфигов шаблонов.
 
 ## `site`
 
@@ -46,6 +48,7 @@ Config читается из YAML, затем нормализуется.
 - `media_base_url`: опциональная абсолютная база для медиа.
 - `host`: основной allowlist host для `serve`.
 - `host_aliases`: дополнительные разрешенные host для `serve`.
+- `language`: язык разметки schema.org и RSS-ленты; то же значение, что настройка `site_language` (по умолчанию `en`).
 
 ## `content`
 
@@ -79,6 +82,20 @@ Config читается из YAML, затем нормализуется.
 - `templates_subdir` (по умолчанию `templates`)
 - `assets_subdir` (по умолчанию `assets`)
 
+## `seo`
+
+- `jsonld`: `auto` — генерировать разметку schema.org для страниц без своего `jsonld`; пусто или `off` — разметку пишет тема.
+- `article_types`: типы, размечаемые как `Article` (по умолчанию — типы, которые `og_type_by_type` называет `article`).
+- `author_name`: `author` по умолчанию в разметке `Article`.
+
+См. [Справочник по SEO](/ru/docs/seo).
+
+## `feed`
+
+- `enabled`: писать RSS 2.0 (`build`) и отдавать ленту (`serve`).
+- `types`: типы контента в ленте (по умолчанию — типы-статьи).
+- `limit` (по умолчанию `20`), `path` (по умолчанию `feed.xml`), `title`, `description`.
+
 ## `paths`
 
 - `artifacts_dir`: директория чтения/записи index-артефактов
@@ -100,6 +117,7 @@ Config читается из YAML, затем нормализуется.
 - `expose_all_under_prefix`:
   - `false`: `/media/*` только для медиа, найденных в индексированном markdown
   - `true`: открыть все медиа под заданным prefix
+- `dirs`: локальные папки помимо папки контента, файлы которых сборка публикует в `/media/` (папка `media/` хранилища); вставки `![[файл]]` находят там файлы по имени. Относительные пути — от папки конфига.
 
 ## `rules_path`
 

@@ -13,7 +13,7 @@ Theme is loaded from `<theme.dir>/<theme.name>/` in repository root.
 
 ## Structure
 
-Recipe repository example. It can differ when custom `rules.yaml` setup is used.
+Example from the documentation template (`.np/theme/` there). Other templates and custom `rules.yaml` setups have other page templates.
 
 ```text
 <theme>/
@@ -46,8 +46,27 @@ Most commonly used values:
 - `.Page.Type`, `.Page.Slug`, `.Page.Title`
 - `.Body` (rendered HTML)
 - `.Collections` (evaluated collections)
-- `.Meta.OpenGraph`, `.Meta.JSONLD`
+- `.Meta.Title` — the `<title>`: `seo_title`, else `title`
+- `.Meta.OpenGraph`, `.Meta.JSONLD`, `.Meta.Robots`
+- `.Meta.Alternates` — language versions (`.Lang`, `.URL`) for hreflang
+- `.Meta.Published` — the note's `date` as RFC 3339
+- `.FeedURL` — the RSS feed address when `feed.enabled` is set
+- `.Settings.<key>` — settings from `config.yaml` and the `Site.md` / `Interface.md` notes
+- `.FM.<key>` — the note's frontmatter
 - `.SearchMode` (`server` or `static`)
+
+## Template functions
+
+Besides Go's built-ins:
+
+- `humanDate value lang` — a frontmatter date as «4 марта 2025» for `ru`, «March 4, 2025» otherwise;
+- `isoDate value` — `2025-03-04`, for `<time datetime>`;
+- `dict "Key" value …` — several values for one `{{ template }}` call.
+
+```html
+<time datetime="{{ isoDate .FM.date }}">{{ humanDate .FM.date "en" }}</time>
+{{ template "card.html" (dict "Root" $ "Item" .) }}
+```
 
 ## Asset serving
 

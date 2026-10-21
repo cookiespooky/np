@@ -13,7 +13,7 @@ lang: ru
 
 ## Структура
 
-На примере recipe-репозитория. Может отличаться в случае кастомных настроек `rules.yaml`.
+На примере шаблона документации (там это `.np/theme/`). У других шаблонов и своих настроек `rules.yaml` набор шаблонов страниц другой.
 
 ```text
 <theme>/
@@ -46,8 +46,28 @@ lang: ru
 - `.Page.Type`, `.Page.Slug`, `.Page.Title`
 - `.Body` (готовый HTML)
 - `.Collections` (вычисленные коллекции)
-- `.Meta.OpenGraph`, `.Meta.JSONLD`
+- `.Meta.Title` — содержимое `<title>`: `seo_title`, иначе `title`
+- `.Meta.OpenGraph`, `.Meta.JSONLD`, `.Meta.Robots`
+- `.Meta.Alternates` — языковые версии (`.Lang`, `.URL`) для hreflang
+- `.Meta.Published` — `date` заметки в формате RFC 3339
+- `.FeedURL` — адрес RSS-ленты, если включён `feed.enabled`
+- `.Settings.<ключ>` — настройки из `config.yaml` и заметок `Site.md` / `Interface.md`
+- `.FM.<ключ>` — frontmatter заметки
 - `.SearchMode` (`server` или `static`)
+
+## Функции шаблонов
+
+Кроме встроенных в Go:
+
+- `humanDate значение язык` — дата из frontmatter как «4 марта 2025» для `ru`, «March 4, 2025» для остальных;
+- `isoDate значение` — `2025-03-04`, для `<time datetime>`;
+- `dict "Ключ" значение …` — несколько значений в один вызов `{{ template }}`.
+
+```html
+<time datetime="{{ isoDate .FM.date }}">{{ humanDate .FM.date "ru" }}</time>
+{{ template "card.html" (dict "Root" $ "Item" .) }}
+```
+
 ## Раздача ассетов
 
 - В `serve`: ассеты доступны по `/assets/*`.

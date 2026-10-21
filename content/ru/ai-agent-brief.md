@@ -12,12 +12,12 @@ lang: ru
 Эта страница нужна, если вы хотите делегировать запуск/настройку сайта AI-агенту.
 
 Если вы только знакомитесь с Notepub, сначала пройдите:
-[Быстрый старт](/ru/docs/getting-started/), [Template-репозитории](/ru/docs/template-repos/) и [Структура контента в recipe-репозиториях](/ru/docs/recipe-structure/).
+[Быстрый старт](/ru/docs/getting-started/), [Template-репозитории](/ru/docs/template-repos/) и [Структура контента в template-репозиториях](/ru/docs/recipe-structure/).
 
 Короткая ссылка на общую документацию:
 
-- RU: https://cookiespooky.github.io/np/ru/docs/
-- EN: https://cookiespooky.github.io/np/en/docs/
+- RU: https://antonlozhkin.ru/np/ru/docs/
+- EN: https://antonlozhkin.ru/np/en/docs/
 
 ## Что сообщить агенту в начале
 
@@ -71,7 +71,7 @@ lang: ru
 
 Контекст:
 - Сценарий: one-repo
-- Шаблон: notepub-recipe-blog
+- Шаблон: np-template-blog (или np-template-docs, np-template-services)
 - Репозиторий: <owner/repo>
 - Локальная папка: <abs-path>
 - Язык: RU
@@ -79,7 +79,7 @@ lang: ru
 - Base URL: <https://.../>
 
 Ограничения:
-- Можно менять: content/, config.yaml, rules.yaml, theme/
+- Можно менять: content/, media/, Site.md, Interface.md, .np/rules.yaml, .np/theme/
 - Нельзя менять: <если есть ограничения>
 
 Критерии done:

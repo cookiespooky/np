@@ -1,104 +1,59 @@
 ---
 type: article_en
 slug: recipe-structure
-title: Content Structure in Recipe Repositories
-description: How Notepub templates organize page types, homepage, hubs, search, and links between notes.
+title: Content Structure in Template Repositories
+description: How the documentation, services and blog templates model page types, the homepage, sections, lists and links between notes.
 hub: docs
 order: 6
 draft: false
 lang: en
 ---
 
-This page explains the baseline content model for templates:
+Every note has `type`, `slug` and `title` in its frontmatter; `type` picks the template and the address (`rules.yaml` → `types`). The three official templates use different type sets on the same mechanics.
 
-- `notepub-recipe-blog`
-- `notepub-recipe-docs`
+## Documentation template
 
-## Page types in recipe templates
+- `home` — `/`, the only one of its type.
+- `hub` — a section; a page joins it with `hub: ["dev"]`, and the `belongs_to` link plus the `hub_items` collection list it there. Hubs can nest.
+- `article`, `page` — content pages, `/{{ slug }}/`; `related: [...]` adds manual links.
+- `search` — `/search/`, `footer` — the footer note, loaded on every page.
 
-Both recipe templates follow the same core type model:
+## Services template
 
-- `home` - homepage (`/`)
-- `page` - regular page (`/{{ slug }}/` in docs recipe, `/{{ slug }}/` for page in blog recipe)
-- `article` - article (in blog recipe usually `/articles/{{ slug }}/`, in docs recipe `/{slug}/`)
-- `hub` - topic section/hub page
-- `search` - search page (`/search/`)
+- `home` — template-rendered hero (`title`, `description`, `kicker`, `facts`), the services grid, the note body, recent works and a contact block.
+- `services` (`/uslugi/`) and `works` (`/raboty/`) — one page each, listing every `service` and `work`.
+- `service` — `/uslugi/{{ slug }}/`, with `price` and `duration` shown in a side card.
+- `work` — `/raboty/{{ slug }}/`; `service: "[[restavraciya]]"` ties it to a service, and the `service_works` collection shows it on the service page.
+- `page` — with `show_contacts: true` it gets the contacts from `Site.md`.
 
-Minimal required frontmatter fields:
+The menu is a collection: notes with `menu: true`, sorted by `order`.
 
-- `type`
-- `slug`
-- `title`
+## Blog template
 
-In docs portal template (`np`), language-specific types are used (`home_en`, `article_en`, `hub_ru`, etc.), but the model is the same.
+- `home` — the feed of `post` notes sorted by `date`, paginated (`paginate: { collection: posts_all, per_page: 6, path: "/page/{{ n }}/" }`).
+- `post` — `/{{ slug }}/` with `date` and `tags`; posts are marked up as Article and go to the RSS feed (`feed.types: ["post"]`).
+- `tags` — one page grouping posts by `tags` (`group_by: { by: fm.tags, multi: true }`).
+- `page` — static pages such as "About".
 
-## How homepage works
+## Lists are collections
 
-`home` is a special single page type at route `/`.
+Every list on a page is a collection in `rules.yaml`, read in a template as `.Collections.<name>.Items` (or `.Groups` when grouped):
 
-Recipe validation expects exactly one page of this type (and exactly one `search` as well).
+- `filter` — by type and frontmatter (`type_in`, `fm_eq`), sorted by `title`, `slug`, `updated_at` or `fm.<key>`;
+- `backrefs` — notes that link to the current page through a link rule (works of a service, pages of a hub);
+- `forward` — notes the current page links to (`related`, the service of a work).
 
-Homepage usually shows:
+See [Collections Reference](/en/docs/collections-reference/).
 
-- article/page collections
-- list of hubs
-- featured content cards (in blog recipe)
+## Relations
 
-Block composition is controlled by collections in `rules.yaml` and template `home.html`.
+- field links: `hub`, `related`, `service` — a property holding a slug or a `[[wikilink]]`;
+- body wikilinks — `[[slug|text]]` in the text, resolved by path, file name or slug ([Links and Wikilinks](/en/docs/links-and-wikilinks/));
+- embeds — `![[photo.jpg]]` finds the file by name in `content/` and `media/`, as Obsidian does.
 
-## How hubs work
+## Modeling your own notes
 
-`hub` is a section page that receives content through frontmatter links.
-
-Baseline mechanism:
-
-- in page/article, set `hub: ["some-hub"]`
-- `belongs_to` link rule connects content to hub by `slug`
-- `hub_items` collection builds hub page items
-
-Result: hub pages are assembled automatically when `hub` is filled correctly.
-
-## How pages and articles work
-
-In practice:
-
-- `page` is usually for static sections (about, contacts, landing pages)
-- `article` is the primary stream of notes/docs
-
-What goes into search and sitemap is defined in `rules.yaml`:
-
-- usually search includes `page` and `article`
-- `home`, `hub`, `search` are usually excluded from search index
-
-## How search works
-
-Recipe templates include a dedicated `search` page and `search` rules in `rules.yaml`.
-
-Typical setup:
-
-- search index is built from `page` and `article`
-- draft content is excluded (`exclude_drafts: true`)
-- snippet is taken from `description` (`preview.from: "description"`)
-
-So for predictable results, fill `description`.
-
-## How relations and links work
-
-Recipe templates usually have three relation kinds:
-
-- `belongs_to` - membership in hubs via `hub`
-- `related` - manual links via `related`
-- `wiki` - wiki-links in markdown body (double-bracket wikilink syntax)
-
-For wikilink syntax, aliases, and resolver order, see:
-[Links and Wikilinks](/en/docs/links-and-wikilinks/)
-
-## Practical modeling pattern for notes
-
-If you want to use your own markdown-world structure:
-
-1. Define top-level hub pages first.
-2. Attach articles to hubs via `hub`.
-3. Add `related` only where explicit editorial relation is needed.
-4. Fill `title` and `description` for each note to improve search quality.
-5. Keep `slug` stable; when changed, add redirects.
+1. Choose the template whose types are closest and rename types in `rules.yaml` rather than inventing new mechanics.
+2. Give every note a `description`: it is the search snippet, the feed item and what `validate --seo` checks.
+3. Keep `slug` stable; when you change it, leave a note with `redirect_to`.
+4. Mark unfinished notes `draft: true` — collections, search, the feed and the sitemap skip them.

@@ -20,11 +20,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NOTEPUB_VERSION: v0.1.3
+      NOTEPUB_VERSION: v0.1.9
       NOTEPUB_BIN: ./notepub
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Full history: every note is dated by its last commit (sitemap <lastmod>).
+          fetch-depth: 0
 
       - name: Prepare tools
         run: |
@@ -177,21 +180,34 @@ jobs:
           chmod +x ./scripts/normalize-obsidian-embeds.sh
           ./scripts/normalize-obsidian-embeds.sh ./content
 
+      # After the normalizer: it rewrites every note, which resets file times.
+      - name: Date notes by their last commit
+        run: python3 scripts/git-dates.py content
+
       - name: Download notepub binary
         run: |
           curl -L -o notepub "https://github.com/cookiespooky/notepub/releases/download/${NOTEPUB_VERSION}/notepub_linux_amd64"
           chmod +x notepub
 
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Prepare base_url for GitHub Pages
         env:
           BUILD_CONFIG_EN: ${{ steps.buildcfg.outputs.path_en }}
           BUILD_CONFIG_RU: ${{ steps.buildcfg.outputs.path_ru }}
+          PAGES_BASE_URL: ${{ steps.pages.outputs.base_url }}
         run: |
-          OWNER="${GITHUB_REPOSITORY_OWNER}"
-          REPO="${GITHUB_REPOSITORY#*/}"
-          if [ "$REPO" = "${OWNER}.github.io" ]; then
-            BASE_URL="https://${OWNER}.github.io/"
-          else
+          # The address Pages actually serves: with a custom domain on the account's user site
+          # it is that domain (https://antonlozhkin.ru/np/), not owner.github.io/np/.
+          BASE_URL="${PAGES_BASE_URL%/}/"
+          case "$BASE_URL" in
+            http://*) BASE_URL="https://${BASE_URL#http://}" ;;
+          esac
+          if [ "$BASE_URL" = "/" ]; then
+            OWNER="${GITHUB_REPOSITORY_OWNER}"
+            REPO="${GITHUB_REPOSITORY#*/}"
             BASE_URL="https://${OWNER}.github.io/${REPO}/"
           fi
           EN_CFG="${BUILD_CONFIG_EN:-./config.yaml}"
@@ -228,9 +244,6 @@ jobs:
             --exclude '.obsidian/' \
             --exclude '*.md' \
             ./content/ru/ ./dist/media/
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

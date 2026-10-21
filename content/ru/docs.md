@@ -15,7 +15,7 @@ Notepub — это publishing-движок в одном бинарнике, к�
 1. [Обзор](/ru/docs/overview)
 2. [Быстрый старт](/ru/docs/getting-started)
 3. [Template-репозитории](/ru/docs/template-repos)
-4. [Структура контента в recipe-репозиториях](/ru/docs/recipe-structure)
+4. [Структура контента в template-репозиториях](/ru/docs/recipe-structure)
 5. [Сборка и деплой](/ru/docs/build-and-deploy)
 6. [Локальный запуск](/ru/docs/local-run)
 7. [Бриф для AI/MCP-агента](/ru/docs/ai-agent-brief)
@@ -34,15 +34,15 @@ Notepub — это publishing-движок в одном бинарнике, к�
 - Два режима работы:
   - `serve` для динамического рендеринга.
   - `build` для статического HTML в `dist/`.
-- SEO-артефакты по умолчанию: sitemap, robots, canonical, OpenGraph, JSON-LD.
+- SEO по умолчанию: карта сайта с настоящими датами изменений, robots, canonical, OpenGraph, hreflang, JSON-LD, RSS и проверка `validate --seo` — см. [Справочник по SEO](/ru/docs/seo).
 
 ## Базовый no-code workflow
 
-Если вы используете recipe-репозиторий с GitHub Actions, чаще всего вы редактируете только:
+Если вы используете template-репозиторий с GitHub Actions, чаще всего вы редактируете только:
 
-- `content/*.md`
-- `config.yaml`
-- `rules.yaml` (по необходимости)
+- `content/*.md` и `media/`
+- `Site.md` и `Interface.md`
+- `.np/rules.yaml` (по необходимости)
 
 Workflow запускает `validate` + `build` и деплоит сайт в GitHub Pages.
 

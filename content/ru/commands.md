@@ -2,7 +2,7 @@
 type: article_ru
 slug: commands
 title: Команды
-description: Полный справочник CLI-команд и нюансов поведения.
+description: Полный справочник команд notepub — index, serve, build, validate, template — с флагами и кодами выхода.
 hub: operations
 order: 1
 draft: false
@@ -85,12 +85,16 @@ notepub validate --config ./config.yaml --rules ./rules.yaml --links
 - `--markdown-strict` — падение команды при markdown-warning
 - `--markdown-format text|json` — формат вывода диагностики
 - `--output <path>` — запись markdown-диагностики в файл
+- `--seo` — проверка заголовков, описаний, изолированных страниц, robots и lastmod ([Справочник по SEO](/ru/docs/seo))
+- `--seo-strict` — падение команды при SEO-warning
+- `--seo-format text|json` — формат вывода находок SEO
 
 Примеры:
 
 ```bash
 notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --markdown
 notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --markdown --markdown-strict
+notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --seo
 ```
 
 ## `template check` / `template update`
@@ -104,6 +108,7 @@ notepub template update --apply
 - `template check`: статус инфраструктуры шаблона + manual findings.
 - `template update`: dry-run по умолчанию.
 - `template update --apply`: обновляет распознанные инфраструктурные файлы (build/workflow/config wiring), не трогая контент.
+- `template check` также сообщает, датируются ли страницы по коммитам и запускает ли сборка проверку SEO.
 
 ## Коды выхода
 

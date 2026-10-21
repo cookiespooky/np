@@ -21,6 +21,18 @@ so pre-build markdown rewrite scripts are optional and mostly legacy.
 - Obsidian embed with alt-like label: `!\[\[image.png|Cover image\]\]`
 - Video embed: `!\[\[demo.mp4\]\]` (renders as `<video ...>` for supported extensions)
 
+## How an embed finds its file
+
+An Obsidian embed names a file the way Obsidian does, so notes can live in any folder:
+
+1. next to the note (`content/works/photo.jpg` for a note in `content/works/`);
+2. from the content root (`![[photos/photo.jpg]]`);
+3. by file name anywhere in the content folder and in `media.dirs` — the shortest path wins when several files share a name.
+
+A Markdown image (`![alt](photo.jpg)`) stays relative to the note. `validate --markdown` reports an embed whose file exists nowhere as `NP-MD-EMBED-MISSING`. The first image of a note — embed or Markdown — becomes its `og:image` unless `og_image` is set.
+
+Template repositories keep images in `content/` or `media/` and set `media.dirs: ["../media"]`.
+
 ## Serve mode behavior
 
 - Relative media links are resolved to `/media/...` unless `site.media_base_url` is set.

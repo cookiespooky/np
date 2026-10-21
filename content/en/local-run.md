@@ -15,7 +15,7 @@ This page covers a quick local run workflow before deploy.
 
 You need the `notepub` binary for build/render.
 
-For recipe repositories, use one of these options:
+For template repositories, use one of these options (the template's `.np/scripts/preview.sh` builds and serves the site in one step):
 
 - Download release binary `notepub` into project root (usually `./notepub`).
 or

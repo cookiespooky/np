@@ -18,3 +18,4 @@ Read by topic:
 3. [Collections Reference](/en/docs/collections-reference)
 4. [Artifacts and Outputs](/en/docs/artifacts-reference)
 5. [Engine Changelog](/en/docs/engine-changelog)
+6. [SEO Reference](/en/docs/seo)

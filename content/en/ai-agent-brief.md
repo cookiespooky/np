@@ -12,12 +12,12 @@ lang: en
 Use this page if you want to delegate site setup/deploy to an AI agent.
 
 If you are new to Notepub, go through:
-[Getting Started](/en/docs/getting-started/), [Template Repositories](/en/docs/template-repos/), and [Content Structure in Recipe Repositories](/en/docs/recipe-structure/).
+[Getting Started](/en/docs/getting-started/), [Template Repositories](/en/docs/template-repos/), and [Content Structure in Template Repositories](/en/docs/recipe-structure/).
 
 Short links to full docs:
 
-- RU: https://cookiespooky.github.io/np/ru/docs/
-- EN: https://cookiespooky.github.io/np/en/docs/
+- RU: https://antonlozhkin.ru/np/ru/docs/
+- EN: https://antonlozhkin.ru/np/en/docs/
 
 ## What to tell the agent first
 
@@ -71,7 +71,7 @@ Build a Notepub site end-to-end.
 
 Context:
 - Scenario: one-repo
-- Template: notepub-recipe-blog
+- Template: np-template-blog (or np-template-docs, np-template-services)
 - Repository: <owner/repo>
 - Local folder: <abs-path>
 - Language: EN
@@ -79,7 +79,7 @@ Context:
 - Base URL: <https://.../>
 
 Constraints:
-- Allowed edits: content/, config.yaml, rules.yaml, theme/
+- Allowed edits: content/, media/, Site.md, Interface.md, .np/rules.yaml, .np/theme/
 - Restricted edits: <if any constraints>
 
 Done criteria:

@@ -29,7 +29,7 @@ The deploy workflow pulls content from `CONTENT_REPO` and syncs it into `content
 
 ## Content layout
 
-For the multilingual `np` recipe, keep language folders in the content repository:
+For the multilingual `np` site, keep language folders in the content repository:
 
 - `en/*.md`
 - `ru/*.md`

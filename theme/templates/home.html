@@ -160,8 +160,9 @@
     </div>
     <div class="roadmap-right">
       <ul class="roadmap-list">
-        <li><span class="dot" aria-hidden="true"></span>SEO blog / personal site / digital garden</li>
-        <li><span class="dot" aria-hidden="true"></span>{{ if $isRU }}документация{{ else }}documentation{{ end }}</li>
+        <li><span class="dot" aria-hidden="true"></span><a href="https://github.com/cookiespooky/np-template-docs">{{ if $isRU }}документация{{ else }}documentation{{ end }}</a></li>
+        <li><span class="dot" aria-hidden="true"></span><a href="https://github.com/cookiespooky/np-template-services">{{ if $isRU }}сайт услуг{{ else }}services site{{ end }}</a></li>
+        <li><span class="dot" aria-hidden="true"></span><a href="https://github.com/cookiespooky/np-template-blog">{{ if $isRU }}личный блог{{ else }}personal blog{{ end }}</a></li>
         <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}каталог{{ else }}catalog{{ end }}</li>
         <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}курс{{ else }}course{{ end }}</li>
         <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}community-шаблоны{{ else }}community templates{{ end }}</li>
@@ -214,9 +215,9 @@
   <div class="section-subtitle">{{ if $isRU }}Без кода и инфраструктуры{{ else }}No-code path with minimal setup{{ end }}</div>
   <div class="card soft">
     <ul>
-      <li>{{ if $isRU }}Выберите шаблон{{ else }}Pick a template{{ end }}</li>
+      <li>{{ if $isRU }}Выберите шаблон{{ else }}Pick a template{{ end }}: <a href="https://github.com/cookiespooky/np-template-docs">{{ if $isRU }}документация{{ else }}docs{{ end }}</a>, <a href="https://github.com/cookiespooky/np-template-services">{{ if $isRU }}сайт услуг{{ else }}services{{ end }}</a>, <a href="https://github.com/cookiespooky/np-template-blog">{{ if $isRU }}блог{{ else }}blog{{ end }}</a></li>
       <li>Github -> Use this template</li>
-      <li>{{ if $isRU }}Положите контент в /content или укажите S3 credentials{{ else }}Put content into /content or configure S3 credentials{{ end }}</li>
+      <li>{{ if $isRU }}Откройте папку в Obsidian и пишите в content/{{ else }}Open the folder in Obsidian and write in content/{{ end }}</li>
       <li>{{ if $isRU }}Включите Github Pages{{ else }}Enable GitHub Pages{{ end }}</li>
       <li>{{ if $isRU }}Запустите CI{{ else }}Run CI{{ end }}</li>
     </ul>

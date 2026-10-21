@@ -11,7 +11,7 @@ lang: en
 
 ## Required frontmatter
 
-For a typical recipe, each note should contain at minimum:
+For a typical template, each note should contain at minimum:
 
 ```yaml
 ---
@@ -31,6 +31,12 @@ Common optional fields:
 - `noindex`
 - `redirect_to`
 - `jsonld`
+- `seo_title` — the `<title>` when `title` is too long for search results
+- `date`, `updated` — publication and change dates (`updated` becomes the sitemap `<lastmod>`)
+- `alternates` — language versions for hreflang
+- `schema_type` — schema.org type of the page with `seo.jsonld: auto`
+
+See [SEO Reference](/en/docs/seo).
 
 ## Draft behavior
 
@@ -49,6 +55,6 @@ Default is usually defined in rules (`fields.defaults.draft: false`).
 ## Writing practice
 
 - Use stable slugs and change them only with redirects.
-- In recipe templates, frontmatter `title` is already rendered as `h1`; in page body, usually start with `h2` to avoid duplicate `h1`.
+- In the official templates, frontmatter `title` is already rendered as `h1`; in page body, usually start with `h2` to avoid duplicate `h1`.
 - For predictable search snippets, fill frontmatter `description`: this field is used as `snippet`.
 - The first paragraph is useful as a concise intro and can be used as fallback for `og:description`, but it is not the main source for search snippet.

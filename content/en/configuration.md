@@ -18,16 +18,18 @@ Path precedence:
 2. `CONFIG_PATH`
 3. `config.yaml`
 
-Current starter values for template repositories (`notepub-recipe-blog`, `notepub-recipe-docs`):
+Starter values in the official templates (`np-template-docs`, `np-template-services`, `np-template-blog`), whose config lives at `.np/config.yaml`:
 
-- `site.id`: `default`
+- `site.id`: the template name
 - `content.source`: `local`
-- `content.local_dir`: `./content`
+- `content.local_dir`: `../content` (relative to `.np/`)
+- `media.dirs`: `["../media"]`
+- `runtime.mode`: `auto`
 - `paths.file_root`: `./.notepub`
 - `paths.artifacts_dir`: `./.notepub/artifacts`
 - `paths.snapshot_file`: `./.notepub/snapshot/objects.json`
 - `paths.cache_root`: `./.notepub/cache`
-- `theme.dir`: `.`
+- `theme.dir`: `./.np`
 - `theme.name`: `theme`
 - `theme.templates_subdir`: `templates`
 - `theme.assets_subdir`: `assets`
@@ -35,7 +37,7 @@ Current starter values for template repositories (`notepub-recipe-blog`, `notepu
 - `cache.html_ttl_seconds`: `600`
 - `cache.stale_if_error_seconds`: `604800`
 
-Engine-level defaults (when fields are omitted) may differ from recipe configs.
+Engine-level defaults (when fields are omitted) may differ from template configs.
 
 ## `site`
 
@@ -46,6 +48,7 @@ Engine-level defaults (when fields are omitted) may differ from recipe configs.
 - `media_base_url`: optional absolute base URL for media.
 - `host`: primary allowlist host for `serve`.
 - `host_aliases`: additional allowed hosts for `serve`.
+- `language`: language of schema.org markup and the RSS feed; the same value as the `site_language` setting (default `en`).
 
 ## `content`
 
@@ -79,6 +82,20 @@ Example: `article: article`, `page: website`.
 - `templates_subdir` (default `templates`)
 - `assets_subdir` (default `assets`)
 
+## `seo`
+
+- `jsonld`: `auto` generates schema.org markup for pages without their own `jsonld`; empty or `off` leaves it to the theme.
+- `article_types`: types marked up as `Article` (default: types `og_type_by_type` maps to `article`).
+- `author_name`: default `author` of `Article` markup.
+
+See [SEO Reference](/en/docs/seo).
+
+## `feed`
+
+- `enabled`: write an RSS 2.0 feed (`build`) and serve it (`serve`).
+- `types`: content types in the feed (default: article types).
+- `limit` (default `20`), `path` (default `feed.xml`), `title`, `description`.
+
 ## `paths`
 
 - `artifacts_dir`: directory for reading/writing index artifacts
@@ -100,6 +117,7 @@ Example: `article: article`, `page: website`.
 - `expose_all_under_prefix`:
   - `false`: `/media/*` only for media referenced in indexed markdown
   - `true`: expose all media under configured prefix
+- `dirs`: local folders, besides the content folder, whose files the build publishes under `/media/` (a vault's `media/`); `![[file]]` embeds find files there by name. Relative paths are resolved from the config directory.
 
 ## `rules_path`
 
