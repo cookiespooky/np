@@ -12,13 +12,13 @@ Template repositories are the default way to start Notepub. Press **Use this tem
 
 ## Official templates
 
-| Template | Repository | Page types |
-|---|---|---|
-| Documentation | https://github.com/cookiespooky/np-template-docs | `home`, `hub`, `article`, `page`, `search`, `footer` |
-| Services site | https://github.com/cookiespooky/np-template-services | `home`, `services`, `service`, `works`, `work`, `page` |
-| Personal blog | https://github.com/cookiespooky/np-template-blog | `home` (paginated feed), `post`, `tags`, `page` |
+| Template | Demo | Repository | Page types |
+|---|---|---|---|
+| Documentation | [antonlozhkin.ru/np-template-docs](https://antonlozhkin.ru/np-template-docs/) | `np-template-docs` | `home`, `hub`, `article`, `page`, `search`, `footer` |
+| Services site | [antonlozhkin.ru/np-template-services](https://antonlozhkin.ru/np-template-services/) | `np-template-services` | `home`, `services`, `service`, `works`, `work`, `page` |
+| Personal blog | [antonlozhkin.ru/np-template-blog](https://antonlozhkin.ru/np-template-blog/) | `np-template-blog` | `home` (paginated feed), `post`, `tags`, `page` |
 
-Each one is a working site with demo content and is built with the same pinned engine release (`NOTEPUB_VERSION` in `.github/workflows/deploy.yml`). Earlier recipe repositories (`notepub-recipe-blog`, `notepub-recipe-docs`, `np-obsidian-template` and others) are archived.
+Each one is a working site with demo content and is built with the same pinned engine release (`NOTEPUB_VERSION` in `.github/workflows/deploy.yml`). Earlier recipe repositories (`notepub-recipe-blog`, `notepub-recipe-docs`, `np-obsidian-template` and others) are archived. Each demo links to its repository, where **Use this template** starts.
 
 ## Repository layout
 

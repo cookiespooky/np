@@ -12,13 +12,13 @@ Template-репозиторий — основной способ начать �
 
 ## Официальные шаблоны
 
-| Шаблон | Репозиторий | Типы страниц |
-|---|---|---|
-| Документация | https://github.com/cookiespooky/np-template-docs | `home`, `hub`, `article`, `page`, `search`, `footer` |
-| Сайт услуг | https://github.com/cookiespooky/np-template-services | `home`, `services`, `service`, `works`, `work`, `page` |
-| Личный блог | https://github.com/cookiespooky/np-template-blog | `home` (лента с пагинацией), `post`, `tags`, `page` |
+| Шаблон | Демо | Репозиторий | Типы страниц |
+|---|---|---|---|
+| Документация | [antonlozhkin.ru/np-template-docs](https://antonlozhkin.ru/np-template-docs/) | `np-template-docs` | `home`, `hub`, `article`, `page`, `search`, `footer` |
+| Сайт услуг | [antonlozhkin.ru/np-template-services](https://antonlozhkin.ru/np-template-services/) | `np-template-services` | `home`, `services`, `service`, `works`, `work`, `page` |
+| Личный блог | [antonlozhkin.ru/np-template-blog](https://antonlozhkin.ru/np-template-blog/) | `np-template-blog` | `home` (лента с пагинацией), `post`, `tags`, `page` |
 
-Каждый — рабочий сайт с демо-содержимым, собранный одной и той же закреплённой версией движка (`NOTEPUB_VERSION` в `.github/workflows/deploy.yml`). Прежние recipe-репозитории (`notepub-recipe-blog`, `notepub-recipe-docs`, `np-obsidian-template` и другие) переведены в архив.
+Каждый — рабочий сайт с демо-содержимым, собранный одной и той же закреплённой версией движка (`NOTEPUB_VERSION` в `.github/workflows/deploy.yml`). Прежние recipe-репозитории (`notepub-recipe-blog`, `notepub-recipe-docs`, `np-obsidian-template` и другие) переведены в архив. На каждом демо есть ссылка на его репозиторий — с неё и начинается **Use this template**.
 
 ## Устройство репозитория
 

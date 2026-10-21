@@ -767,14 +767,18 @@ strong {
   color: var(--fg);
 }
 
-.content a {
+.content a,
+#roadmap .roadmap-list a,
+#quickstart a:not(.btn) {
   color: #0b57d0;
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
 }
 
-.content a:hover {
+.content a:hover,
+#roadmap .roadmap-list a:hover,
+#quickstart a:not(.btn):hover {
   color: #0845a6;
   text-decoration-thickness: 2px;
 }

@@ -160,13 +160,9 @@
     </div>
     <div class="roadmap-right">
       <ul class="roadmap-list">
-        <li><span class="dot" aria-hidden="true"></span><a href="https://github.com/cookiespooky/np-template-docs">{{ if $isRU }}документация{{ else }}documentation{{ end }}</a></li>
-        <li><span class="dot" aria-hidden="true"></span><a href="https://github.com/cookiespooky/np-template-services">{{ if $isRU }}сайт услуг{{ else }}services site{{ end }}</a></li>
-        <li><span class="dot" aria-hidden="true"></span><a href="https://github.com/cookiespooky/np-template-blog">{{ if $isRU }}личный блог{{ else }}personal blog{{ end }}</a></li>
-        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}каталог{{ else }}catalog{{ end }}</li>
-        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}курс{{ else }}course{{ end }}</li>
-        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}community-шаблоны{{ else }}community templates{{ end }}</li>
-        <li><span class="dot dot-outline" aria-hidden="true"></span>best practices inside templates</li>
+        <li><span class="dot" aria-hidden="true"></span><a href="https://antonlozhkin.ru/np-template-docs/">{{ if $isRU }}документация / курс{{ else }}documentation / course{{ end }}</a></li>
+        <li><span class="dot" aria-hidden="true"></span><a href="https://antonlozhkin.ru/np-template-services/">{{ if $isRU }}сайт услуг / каталог{{ else }}services site / catalog{{ end }}</a></li>
+        <li><span class="dot" aria-hidden="true"></span><a href="https://antonlozhkin.ru/np-template-blog/">{{ if $isRU }}личный блог{{ else }}personal blog{{ end }}</a></li>
       </ul>
     </div>
   </div>
@@ -190,23 +186,6 @@
       </div>
     </div>
   </div>
-
-  <div class="roadmap-item">
-    <div class="roadmap-left">
-      <h3>🧠 Advanced tooling</h3>
-      <p><em>{{ if $isRU }}Инструменты для сложных систем и больших проектов.{{ else }}Tooling for complex systems and large content bases.{{ end }}</em></p>
-    </div>
-    <div class="roadmap-right">
-      <p>{{ if $isRU }}Возможные направления:{{ else }}Possible directions:{{ end }}</p>
-      <ul class="roadmap-list">
-        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}визуализация структуры / графа{{ else }}structure/graph visualization{{ end }}</li>
-        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}анализ связей и контента{{ else }}link and content analysis{{ end }}</li>
-        <li><span class="dot dot-outline" aria-hidden="true"></span>{{ if $isRU }}AI-помощники для генерации и рефакторинга{{ else }}AI assistants for generation and refactoring{{ end }}</li>
-        <li><span class="dot dot-outline" aria-hidden="true"></span>search / embeddings</li>
-        <li><span class="dot dot-outline" aria-hidden="true"></span>content health &amp; consistency</li>
-      </ul>
-    </div>
-  </div>
   </div>
 </section>
 
@@ -215,8 +194,8 @@
   <div class="section-subtitle">{{ if $isRU }}Без кода и инфраструктуры{{ else }}No-code path with minimal setup{{ end }}</div>
   <div class="card soft">
     <ul>
-      <li>{{ if $isRU }}Выберите шаблон{{ else }}Pick a template{{ end }}: <a href="https://github.com/cookiespooky/np-template-docs">{{ if $isRU }}документация{{ else }}docs{{ end }}</a>, <a href="https://github.com/cookiespooky/np-template-services">{{ if $isRU }}сайт услуг{{ else }}services{{ end }}</a>, <a href="https://github.com/cookiespooky/np-template-blog">{{ if $isRU }}блог{{ else }}blog{{ end }}</a></li>
-      <li>Github -> Use this template</li>
+      <li>{{ if $isRU }}Выберите шаблон{{ else }}Pick a template{{ end }}: <a href="https://antonlozhkin.ru/np-template-docs/">{{ if $isRU }}документация{{ else }}docs{{ end }}</a>, <a href="https://antonlozhkin.ru/np-template-services/">{{ if $isRU }}сайт услуг{{ else }}services{{ end }}</a>, <a href="https://antonlozhkin.ru/np-template-blog/">{{ if $isRU }}блог{{ else }}blog{{ end }}</a></li>
+      <li>{{ if $isRU }}С демо перейдите в репозиторий шаблона -> Use this template{{ else }}From the demo, open the template repository -> Use this template{{ end }}</li>
       <li>{{ if $isRU }}Откройте папку в Obsidian и пишите в content/{{ else }}Open the folder in Obsidian and write in content/{{ end }}</li>
       <li>{{ if $isRU }}Включите Github Pages{{ else }}Enable GitHub Pages{{ end }}</li>
       <li>{{ if $isRU }}Запустите CI{{ else }}Run CI{{ end }}</li>
