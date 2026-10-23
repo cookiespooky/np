@@ -1,8 +1,8 @@
 {{- $lang := "en" -}}
 {{- if eq .FM.lang "ru" }}{{- $lang = "ru" -}}{{- end -}}
 {{- $isHome := or .IsHome (eq .Page.Type "home_en") (eq .Page.Type "home_ru") -}}
-{{- $homePath := printf "%s/%s" .BaseURL $lang -}}
-{{- $docsPath := printf "%s/%s/docs" .BaseURL $lang -}}
+{{- $homePath := printf "%s/%s/" .BaseURL $lang -}}
+{{- $docsPath := printf "%s/%s/docs/" .BaseURL $lang -}}
 {{- $docsTitle := "Documentation" -}}
 {{- $searchLabel := "Search" -}}
 {{- if eq $lang "ru" -}}
@@ -16,14 +16,14 @@
   {{- $manifestFile = "site.ru.webmanifest" -}}
 {{- end -}}
 {{- if or (eq .Page.Type "docs_en") (eq .Page.Type "docs_ru") -}}
-  {{- $switchEN = printf "%s/en/docs" .BaseURL -}}
-  {{- $switchRU = printf "%s/ru/docs" .BaseURL -}}
+  {{- $switchEN = printf "%s/en/docs/" .BaseURL -}}
+  {{- $switchRU = printf "%s/ru/docs/" .BaseURL -}}
 {{- else if or (eq .Page.Type "article_en") (eq .Page.Type "article_ru") (eq .Page.Type "hub_en") (eq .Page.Type "hub_ru") -}}
-  {{- $switchEN = printf "%s/en/docs/%s" .BaseURL .Page.Slug -}}
-  {{- $switchRU = printf "%s/ru/docs/%s" .BaseURL .Page.Slug -}}
+  {{- $switchEN = printf "%s/en/docs/%s/" .BaseURL .Page.Slug -}}
+  {{- $switchRU = printf "%s/ru/docs/%s/" .BaseURL .Page.Slug -}}
 {{- else if or (eq .Page.Type "page_en") (eq .Page.Type "page_ru") -}}
-  {{- $switchEN = printf "%s/en/%s" .BaseURL .Page.Slug -}}
-  {{- $switchRU = printf "%s/ru/%s" .BaseURL .Page.Slug -}}
+  {{- $switchEN = printf "%s/en/%s/" .BaseURL .Page.Slug -}}
+  {{- $switchRU = printf "%s/ru/%s/" .BaseURL .Page.Slug -}}
 {{- end -}}
 <!doctype html>
 <html lang="{{ $lang }}">
@@ -51,7 +51,7 @@
   <link rel="alternate" hreflang="en" href="{{ $switchEN }}" />
   <link rel="alternate" hreflang="ru" href="{{ $switchRU }}" />
   <link rel="alternate" hreflang="x-default" href="{{ printf "%s/en/" .BaseURL }}" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{{ .Title }}" />
   {{- if .Page.Description }}
   <meta name="twitter:description" content="{{ .Page.Description }}" />
@@ -286,7 +286,7 @@
             <li class="sidebar-group">
               <ul class="sidebar-sublist sidebar-root">
                 {{- range $root }}
-                <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s" $.BaseURL .Path }}">{{ .Title }}</a></li>
+                <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s/" $.BaseURL .Path }}">{{ .Title }}</a></li>
                 {{- end }}
               </ul>
             </li>
@@ -295,13 +295,13 @@
             {{- range $hubs }}
             {{- $hub := . }}
             <li class="sidebar-group">
-              <a class="{{ if eq $hub.Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s" $.BaseURL $hub.Path }}">{{ $hub.Title }}</a>
+              <a class="{{ if eq $hub.Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s/" $.BaseURL $hub.Path }}">{{ $hub.Title }}</a>
               {{- if $groups }}
               <ul class="sidebar-sublist">
                 {{- range $groups }}
                   {{- if eq .Key $hub.Slug }}
                     {{- range .Items }}
-                    <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s" $.BaseURL .Path }}">{{ .Title }}</a></li>
+                    <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s/" $.BaseURL .Path }}">{{ .Title }}</a></li>
                     {{- end }}
                   {{- end }}
                 {{- end }}
@@ -327,7 +327,7 @@
             <li class="sidebar-group">
               <ul class="sidebar-sublist sidebar-root">
                 {{- range $root }}
-                <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s" $.BaseURL .Path }}">{{ .Title }}</a></li>
+                <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s/" $.BaseURL .Path }}">{{ .Title }}</a></li>
                 {{- end }}
               </ul>
             </li>
@@ -336,13 +336,13 @@
             {{- range $hubs }}
             {{- $hub := . }}
             <li class="sidebar-group">
-              <a class="{{ if eq $hub.Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s" $.BaseURL $hub.Path }}">{{ $hub.Title }}</a>
+              <a class="{{ if eq $hub.Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s/" $.BaseURL $hub.Path }}">{{ $hub.Title }}</a>
               {{- if $groups }}
               <ul class="sidebar-sublist">
                 {{- range $groups }}
                   {{- if eq .Key $hub.Slug }}
                     {{- range .Items }}
-                    <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s" $.BaseURL .Path }}">{{ .Title }}</a></li>
+                    <li><a class="{{ if eq .Slug $.Page.Slug }}is-active{{ end }}" href="{{ printf "%s%s/" $.BaseURL .Path }}">{{ .Title }}</a></li>
                     {{- end }}
                   {{- end }}
                 {{- end }}

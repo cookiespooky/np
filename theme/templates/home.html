@@ -1,8 +1,8 @@
 {{- $lang := "en" -}}
 {{- if eq .FM.lang "ru" }}{{- $lang = "ru" -}}{{- end -}}
 {{- $isRU := eq $lang "ru" -}}
-{{- $docsPath := printf "%s/%s/docs" .BaseURL $lang -}}
-{{- $gettingStartedPath := printf "%s/%s/docs/getting-started" .BaseURL $lang -}}
+{{- $docsPath := printf "%s/%s/docs/" .BaseURL $lang -}}
+{{- $gettingStartedPath := printf "%s/%s/docs/getting-started/" .BaseURL $lang -}}
 
 <div class="hero">
   <div class="kicker">

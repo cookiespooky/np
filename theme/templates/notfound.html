@@ -1,5 +1,26 @@
-<section class="section">
-  <h1 class="section-title">Страница не найдена</h1>
-  <p class="lead">Кажется, такой страницы больше нет или её не было.</p>
-  <a class="btn" href="{{ .BaseURL }}/">Вернуться на главную</a>
-</section>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="robots" content="noindex" />
+  <title>Page not found — Notepub</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ .AssetsBase }}/favicon-32x32.png" />
+  <link rel="icon" href="{{ .AssetsBase }}/favicon.ico" />
+  <link rel="stylesheet" href="{{ .AssetsBase }}/styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <section class="section">
+      <h1 class="section-title">Page not found</h1>
+      <p class="lead">This page doesn't exist or has moved. <span lang="ru">Такой страницы нет или она переехала.</span></p>
+      <p>
+        <a class="btn" href="{{ .BaseURL }}/en/">Home</a>
+        <a class="btn" href="{{ .BaseURL }}/en/docs/">Documentation</a>
+        <a class="btn" href="{{ .BaseURL }}/ru/" lang="ru">На главную</a>
+      </p>
+    </section>
+  </main>
+</body>
+</html>
