@@ -20,7 +20,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NOTEPUB_VERSION: v0.1.9
+      NOTEPUB_VERSION: v0.1.10
       NOTEPUB_BIN: ./notepub
     steps:
       - name: Checkout
@@ -244,6 +244,13 @@ jobs:
             --exclude '.obsidian/' \
             --exclude '*.md' \
             ./content/ru/ ./dist/media/
+
+      # Errors (a broken link, a sitemap address with no page, a title missing)
+      # stop the deploy; warnings are printed for the log.
+      - name: Audit the built site
+        env:
+          BUILD_CONFIG_EN: ${{ steps.buildcfg.outputs.path_en }}
+        run: ./notepub audit --config "${BUILD_CONFIG_EN:-./config.yaml}" --dist ./dist
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

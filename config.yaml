@@ -31,3 +31,17 @@ robots:
 cache:
   html_ttl_seconds: 600
   stale_if_error_seconds: 604800
+
+# llms.txt for language models, made from the notes on every build (engine v0.1.10+)
+llms:
+  enabled: true
+  intro: "Notepub is an open-source engine (MIT, one Go binary) that builds a static site from a folder of Markdown notes, Obsidian vaults included: page kinds come from note types in rules.yaml, SEO files are generated, and `notepub audit` checks the built site. Russian version: https://antonlozhkin.ru/np/ru/llms.txt"
+  sections:
+    - type: home_en
+      title: Start
+    - type: hub_en
+      title: Documentation sections
+    - type: article_en
+      title: Documentation
+    - type: page_en
+      title: Pages

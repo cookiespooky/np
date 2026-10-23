@@ -2,7 +2,7 @@
 type: article_en
 slug: seo
 title: SEO Reference
-description: What the engine writes for search engines on every page, the frontmatter that controls it, schema.org markup, RSS, and the validate --seo check.
+description: What the engine writes for search engines on every page, the frontmatter that controls it, schema.org markup, RSS, llms.txt, and the validate --seo and audit checks.
 hub: reference
 order: 6
 draft: false
@@ -32,7 +32,8 @@ Pages 2…N of a paginated list are canonical to themselves and carry their own 
 - `sitemap.xml` / `sitemap-index.xml` — indexable routes, split every 50 000 URLs, without `noindex`, redirects and drafts (`sitemap.exclude_drafts`). `<lastmod>` is the note's `updated` (also `lastmod`, `modified`, `date_modified`), else the file time; template build scripts set the file time to the note's last commit in CI.
 - `robots.txt` — `robots.disallow`, `robots.extra` and the sitemap link. Crawlers read it only at the host root: a site under a path (`/docs/`) must have its sitemap listed in the root `robots.txt` of the host.
 - redirects — a note with `redirect_to` answers 301 in `serve`; `build` writes a page with an instant redirect and a canonical to the target.
-- `404.html` — rendered from the theme's `notfound.html`.
+- `404.html` — rendered from the theme's `notfound.html`, outside the layout: make it a full document with its own `<head>`.
+- `llms.txt` — with `llms.enabled`, see below.
 
 ## schema.org markup
 
@@ -58,6 +59,48 @@ feed:
 ```
 
 `build` writes the feed, `serve` answers it; templates link it through `.FeedURL`. Items are sorted by `date`, drafts and `noindex` pages are skipped, and `lastBuildDate` is the newest item's date, so the file changes only when content does.
+
+## audit — the built site
+
+```bash
+notepub audit --config ./config.yaml --dist ./dist             # base_url from config
+notepub audit --dist ./dist --base-url https://example.com/ --strict
+```
+
+`validate --seo` sees notes; `audit` sees the finished pages, templates and menus included — where a link without its trailing slash, a square `og:image` or a 404 page without `<head>` come from. It needs no network. Errors fail it, `--strict` fails on warnings too.
+
+| Code | Level | Meaning |
+|---|---|---|
+| `link-broken`, `sitemap-broken` | error | a link or a sitemap address leads to no page in the build |
+| `title-missing`, `jsonld-invalid` | error | no `<title>`; JSON-LD that does not parse |
+| `link-redirect` | warning | a link without its trailing slash: static hosts answer it with a 301 |
+| `title-long`, `title-duplicate`, `description-missing`, `description-long`, `description-duplicate` | warning | as in `validate --seo`, on the rendered pages |
+| `h1-missing`, `h1-multiple` | warning | no `<h1>` or more than one |
+| `canonical-missing`, `canonical-relative`, `canonical-host` | warning | no canonical, a relative one, or one on another host (a local `base_url` left in the build) |
+| `og-missing`, `og-image-relative`, `og-image-small` | warning | an OpenGraph tag missing, a relative image, an image under 1200×630 |
+| `favicon-missing`, `viewport-missing`, `img-alt-missing`, `image-heavy` | warning | no icon, no mobile viewport, images without `alt`, an image over 500 KB |
+| `page-orphan` | warning | no other page links here, menus included |
+| `robots-missing`, `robots-no-sitemap`, `sitemap-missing`, `sitemap-noindex`, `404-missing`, `404-bare` | warning | site files missing or wrong; a `404.html` that is not a full document |
+| `llms-broken` | warning | `llms.txt` links to a page that is not there |
+| `heading-skip`, `description-short`, `jsonld-missing`, `text-thin`, `html-heavy` | info | worth a look, not a fault |
+| `canonical-other`, `sitemap-absent`, `link-outside-build`, `robots-under-path`, `llms-missing`, `analytics-missing` | info | site-level notes |
+
+Outside it: HTTPS, response headers, www redirects and speed — the host decides them, check them on the live site.
+
+## llms.txt
+
+```yaml
+llms:
+  enabled: true
+  intro: "What the site is, in a paragraph."
+  sections:
+    - type: article
+      title: Documentation
+    - type: service
+      title: Services
+```
+
+`build` writes `llms.txt` (llmstxt.org) and `serve` answers it: the site title and description, the intro, then the indexed pages of each section's type with their descriptions. Without `sections`, every indexed type in alphabetical order; `limit` caps each section; `path` changes the file name. It is made from the notes on every build, so it cannot go stale. Off by default.
 
 ## validate --seo
 

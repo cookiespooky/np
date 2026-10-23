@@ -31,3 +31,17 @@ robots:
 cache:
   html_ttl_seconds: 600
   stale_if_error_seconds: 604800
+
+# llms.txt для языковых моделей, собирается из заметок при каждой сборке (движок v0.1.10+)
+llms:
+  enabled: true
+  intro: "Notepub — открытый движок (MIT, один файл на Go), который собирает статический сайт из папки заметок Markdown, в том числе из хранилища Obsidian: виды страниц задаются типами заметок в rules.yaml, SEO-файлы генерируются, а `notepub audit` проверяет готовый сайт. English version: https://antonlozhkin.ru/np/llms.txt"
+  sections:
+    - type: home_ru
+      title: Начало
+    - type: hub_ru
+      title: Разделы документации
+    - type: article_ru
+      title: Документация
+    - type: page_ru
+      title: Страницы

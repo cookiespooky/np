@@ -11,6 +11,14 @@ lang: en
 
 This page highlights recent releases that materially changed template behavior.
 
+## Release `v0.1.10` (`2026-10-23`)
+
+- `notepub audit --dist ./dist`: the built site against an SEO checklist, offline — links that lead nowhere or only through a redirect, orphan pages with menus included, canonical, OpenGraph and the `og:image` size, the sitemap against the build, `robots.txt`, `llms.txt`, `404.html`. Errors fail it, so it can stop a deploy. See [[seo|SEO Reference]].
+- `llms.txt` generated from the notes with `llms.enabled` (sections by type, in the order you set).
+- `notepub type add <name>`: a new kind of page in one command — the type in `rules.yaml` and its template. See [[commands|Commands]].
+- Templates: `.PublicPath` on collection items — the address with its trailing slash.
+- Fixed: `[[wikilinks]]` linked to the address without its trailing slash, and static hosts answered each with a 301.
+
 ## Release `v0.1.9` (`2026-10-22`)
 
 - SEO:

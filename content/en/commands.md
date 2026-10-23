@@ -2,7 +2,7 @@
 type: article_en
 slug: commands
 title: Commands
-description: Full reference of notepub CLI commands — index, serve, build, validate, template — with flags and exit codes.
+description: Full reference of notepub CLI commands — index, serve, build, validate, audit, type add, template — with flags and exit codes.
 hub: operations
 order: 1
 draft: false
@@ -16,6 +16,8 @@ notepub index
 notepub serve
 notepub build
 notepub validate
+notepub audit
+notepub type add <name>
 notepub template check
 notepub template update --apply
 notepub help
@@ -96,6 +98,42 @@ notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifac
 notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --markdown --markdown-strict
 notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --seo
 ```
+
+## `audit`
+
+```bash
+notepub audit --config ./config.yaml --dist ./dist
+notepub audit --dist ./dist --base-url https://example.com/docs/ --strict
+```
+
+Checks the built site the way a crawler meets it, without network: titles, descriptions, headings, canonical, OpenGraph and the `og:image` size, favicon, viewport, JSON-LD, `alt`, links and images that lead nowhere or only through a redirect, pages no other page links to (menus included), `robots.txt`, the sitemap against the build, `llms.txt`, `404.html`. Codes and levels — [[seo|SEO Reference]].
+
+Flags:
+
+- `--dist` the built site (default `./dist`)
+- `--config` read `site.base_url` from it
+- `--base-url` the address the site is served at (overrides config)
+- `--strict` fail on warnings as well as errors
+- `--format text|json` output format
+
+Errors always fail the command, so a deploy step stops on a broken link.
+
+## `type add`
+
+```bash
+notepub type add service
+notepub type add case --permalink "/cases/{{ slug }}/" --from article.html
+```
+
+Adds a kind of page: the type in `rules.yaml` (comments, order and indentation kept) and its template, copied from `page.html`. A note with `type: service` becomes a page at `/service/<slug>/` on the next build.
+
+Flags:
+
+- `--permalink` address pattern (default `/<name>/{{ slug }}/`)
+- `--template` template file name (default `<name>.html`); an existing one is kept
+- `--from` template to copy (default `page.html`)
+- `--no-sitemap`, `--no-search` leave the type out of the sitemap or search
+- `--config`, `--rules` as in other commands
 
 ## `template check` / `template update`
 

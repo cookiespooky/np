@@ -47,11 +47,9 @@ cp -R "$RU_DIST/ru"/. "$OUT_DIST/ru"/
 if [[ -f "$RU_DIST/search.json" ]]; then
   cp "$RU_DIST/search.json" "$OUT_DIST/ru/search.json"
 fi
-if [[ -f "$OUT_DIST/assets/llms.txt" ]]; then
-  cp "$OUT_DIST/assets/llms.txt" "$OUT_DIST/llms.txt"
-fi
-if [[ -f "$OUT_DIST/assets/llms-full.txt" ]]; then
-  cp "$OUT_DIST/assets/llms-full.txt" "$OUT_DIST/llms-full.txt"
+# llms.txt is written by the engine from each language's notes (llms in config.*.yaml).
+if [[ -f "$RU_DIST/llms.txt" ]]; then
+  cp "$RU_DIST/llms.txt" "$OUT_DIST/ru/llms.txt"
 fi
 
 # Export media files for local static preview (same intent as CI workflow).

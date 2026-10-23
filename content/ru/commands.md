@@ -16,6 +16,8 @@ notepub index
 notepub serve
 notepub build
 notepub validate
+notepub audit
+notepub type add <имя>
 notepub template check
 notepub template update --apply
 notepub help
@@ -96,6 +98,42 @@ notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifac
 notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --markdown --markdown-strict
 notepub validate --config ./config.yaml --rules ./rules.yaml --resolve ./artifacts/resolve.json --seo
 ```
+
+## `audit`
+
+```bash
+notepub audit --config ./config.yaml --dist ./dist
+notepub audit --dist ./dist --base-url https://example.com/docs/ --strict
+```
+
+Проверяет готовый сайт так, как его видит поисковик, без интернета: заголовки, описания, уровни заголовков, canonical, OpenGraph и размер `og:image`, значок, viewport, JSON-LD, `alt`, ссылки и картинки, которые никуда не ведут или ведут через перенаправление, страницы, на которые никто не ссылается (с учётом меню), `robots.txt`, карту сайта против сборки, `llms.txt`, `404.html`. Коды и уровни — [[seo|Справочник по SEO]].
+
+Флаги:
+
+- `--dist` — готовый сайт (по умолчанию `./dist`)
+- `--config` — взять `site.base_url` из конфига
+- `--base-url` — адрес, по которому сайт будет открываться (важнее конфига)
+- `--strict` — падать и на предупреждениях
+- `--format text|json` — формат вывода
+
+Ошибки всегда валят команду, так что шаг деплоя останавливается на битой ссылке.
+
+## `type add`
+
+```bash
+notepub type add service
+notepub type add case --permalink "/cases/{{ slug }}/" --from article.html
+```
+
+Добавляет вид страниц: тип в `rules.yaml` (комментарии, порядок и отступы сохраняются) и его шаблон — копию `page.html`. Заметка с `type: service` при следующей сборке становится страницей `/service/<slug>/`.
+
+Флаги:
+
+- `--permalink` — шаблон адреса (по умолчанию `/<имя>/{{ slug }}/`)
+- `--template` — имя файла шаблона (по умолчанию `<имя>.html`); существующий не перезаписывается
+- `--from` — какой шаблон скопировать (по умолчанию `page.html`)
+- `--no-sitemap`, `--no-search` — не включать тип в карту сайта или поиск
+- `--config`, `--rules` — как у остальных команд
 
 ## `template check` / `template update`
 

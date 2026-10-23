@@ -1,6 +1,6 @@
 <section class="section search-page">
   <h1 class="section-title">Поиск</h1>
-  <form class="np-search-page-form" method="get" action="{{ .BaseURL }}/search">
+  <form class="np-search-page-form" method="get" action="{{ .BaseURL }}/search/">
     <input type="search" name="q" value="{{ .SearchQuery }}" placeholder="Поиск по документации" autocomplete="off" />
   </form>
 
@@ -27,7 +27,7 @@
   {{- end }}
 
   {{- if .SearchNextCursor }}
-  <a class="np-search-more" href="{{ .BaseURL }}/search?q={{ .SearchQuery }}&cursor={{ .SearchNextCursor }}">Следующая страница</a>
+  <a class="np-search-more" href="{{ .BaseURL }}/search/?q={{ .SearchQuery }}&cursor={{ .SearchNextCursor }}">Следующая страница</a>
   {{- end }}
 </section>
 <script>
